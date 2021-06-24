@@ -1,0 +1,45 @@
+//
+//  PhotoCell.swift
+//  MyGallery
+//
+//  Created by Christos Petimezas on 24/6/21.
+//
+// Check this website for gradientColor combinations -> https://digitalsynopsis.com/design/beautiful-color-ui-gradients-backgrounds/
+
+import UIKit
+
+class PhotoCell: UICollectionViewCell {
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet weak var photographer: UILabel!
+    @IBOutlet weak var nameLbl: GradientLabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        containerView.layer.cornerRadius = 6
+        containerView.layer.masksToBounds = true
+        containerView.backgroundColor = UIColor(hexString: "#999999")
+        nameLbl.gradientColors = [UIColor(hexString: "#2b5876").cgColor, UIColor(hexString: "#4e4376").cgColor]
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+    }
+    
+    func setupCell(_ image: UIImage?, photographerName: String) {
+        imageView.image = image
+        photographer.text = "Photographer"
+        photographer.font = UIFont.systemFontItalic(size: 14.0, fontWeight: .black)
+        nameLbl.text = photographerName
+    }
+    
+}
+
+extension UIFont {
+    static func systemFontItalic(size fontSize: CGFloat = 17.0, fontWeight: UIFont.Weight = .regular) -> UIFont {
+        let font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
+        return UIFont(descriptor: font.fontDescriptor.withSymbolicTraits(.traitItalic)!, size: fontSize)
+    }
+}
