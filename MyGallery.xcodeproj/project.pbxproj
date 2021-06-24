@@ -28,6 +28,8 @@
 		B63CEAC22684946000DC941F /* Ext_UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAC12684946000DC941F /* Ext_UIImage.swift */; };
 		B63CEAC42684A55E00DC941F /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAC32684A55E00DC941F /* GradientLabel.swift */; };
 		B63CEAC62684A68400DC941F /* Ext_UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAC52684A68400DC941F /* Ext_UIColor.swift */; };
+		B63CEAC92684B11D00DC941F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAC82684B11D00DC941F /* HomeViewModel.swift */; };
+		B63CEAD32684C76500DC941F /* HomePage+UIContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAD22684C76500DC941F /* HomePage+UIContextMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		B63CEAC12684946000DC941F /* Ext_UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIImage.swift; sourceTree = "<group>"; };
 		B63CEAC32684A55E00DC941F /* GradientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
 		B63CEAC52684A68400DC941F /* Ext_UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIColor.swift; sourceTree = "<group>"; };
+		B63CEAC82684B11D00DC941F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B63CEAD22684C76500DC941F /* HomePage+UIContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomePage+UIContextMenu.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,9 +129,9 @@
 		B63CEA7026845F3C00DC941F /* MyGallery */ = {
 			isa = PBXGroup;
 			children = (
-				B63CEAAF26847BFC00DC941F /* MediaContext */,
 				B63CEAA3268467EA00DC941F /* MainApp */,
 				B63CEAA42684686400DC941F /* ViewControllers */,
+				B63CEAAF26847BFC00DC941F /* MediaContext */,
 				B63CEAAC2684771C00DC941F /* Extensions */,
 				B63CEAB226847F2800DC941F /* Models */,
 				B63CEAB72684819E00DC941F /* CustomViews */,
@@ -169,8 +173,7 @@
 		B63CEAA42684686400DC941F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B63CEAA526846B2800DC941F /* HomeVC.swift */,
-				B63CEABF268485C200DC941F /* HomeVC.xib */,
+				B63CEAC72684B07E00DC941F /* HomePage */,
 				B63CEAA726846B3D00DC941F /* GalleryVC.swift */,
 				B63CEAA926846B8000DC941F /* SearchImagesVC.swift */,
 			);
@@ -221,6 +224,17 @@
 				B63CEABC2684834000DC941F /* PhotoCell.xib */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		B63CEAC72684B07E00DC941F /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				B63CEAA526846B2800DC941F /* HomeVC.swift */,
+				B63CEABF268485C200DC941F /* HomeVC.xib */,
+				B63CEAC82684B11D00DC941F /* HomeViewModel.swift */,
+				B63CEAD22684C76500DC941F /* HomePage+UIContextMenu.swift */,
+			);
+			path = HomePage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +371,7 @@
 				B63CEAC22684946000DC941F /* Ext_UIImage.swift in Sources */,
 				B63CEAA626846B2800DC941F /* HomeVC.swift in Sources */,
 				B63CEA7226845F3C00DC941F /* AppDelegate.swift in Sources */,
+				B63CEAC92684B11D00DC941F /* HomeViewModel.swift in Sources */,
 				B63CEAB126847C0900DC941F /* MediaContext.swift in Sources */,
 				B63CEAA826846B3D00DC941F /* GalleryVC.swift in Sources */,
 				B63CEABD2684834000DC941F /* PhotoCell.swift in Sources */,
@@ -366,6 +381,7 @@
 				B63CEAB9268481AF00DC941F /* PinterestLayout.swift in Sources */,
 				B63CEA7426845F3C00DC941F /* SceneDelegate.swift in Sources */,
 				B63CEAAA26846B8000DC941F /* SearchImagesVC.swift in Sources */,
+				B63CEAD32684C76500DC941F /* HomePage+UIContextMenu.swift in Sources */,
 				B63CEAC62684A68400DC941F /* Ext_UIColor.swift in Sources */,
 				B63CEAC42684A55E00DC941F /* GradientLabel.swift in Sources */,
 				B63CEAA2268462F500DC941F /* TabBar.swift in Sources */,

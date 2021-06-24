@@ -11,7 +11,7 @@ import UIKit
 class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var photographer: UILabel!
     @IBOutlet weak var nameLbl: GradientLabel!
     

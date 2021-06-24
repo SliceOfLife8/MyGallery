@@ -12,7 +12,7 @@ struct Curated: Codable {
     let page, perPage: Int
     let photos: [Photo]
     let totalResults: Int
-    let nextPage: String
+    let nextPage: String?
     
     enum CodingKeys: String, CodingKey {
         case page

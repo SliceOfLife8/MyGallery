@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Collection
 struct CollectionGeneric: Codable {
     let page, perPage: Int
-    let collections: [Collection]
+    let collections: [UserCollection]
     let totalResults: Int
     
     enum CodingKeys: String, CodingKey {
@@ -22,7 +22,7 @@ struct CollectionGeneric: Codable {
 }
 
 // MARK: - Collection
-struct Collection: Codable {
+struct UserCollection: Codable {
     let id, title: String
     let collectionDescription: String?
     let collectionPrivate: Bool

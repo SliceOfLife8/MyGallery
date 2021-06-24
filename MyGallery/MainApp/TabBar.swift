@@ -29,7 +29,7 @@ class TabBar: UITabBarController {
     
     func setupVCs() {
         viewControllers = [
-            createNavController(for: HomeVC(), title: "Home", image: UIImage(systemName: "house")),
+            createNavController(for: HomeVC(HomeViewModel()), title: "Home", image: UIImage(systemName: "house")),
             createNavController(for: GalleryVC(), title: "Gallery", image: UIImage(systemName: "photo.on.rectangle")),
             createNavController(for: SearchImagesVC(), title: "Search", image: UIImage(systemName: "magnifyingglass"))
         ]
