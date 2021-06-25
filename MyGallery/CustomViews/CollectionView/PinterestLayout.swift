@@ -18,7 +18,7 @@ class PinterestLayout: UICollectionViewLayout {
     private let numberOfColumns = 2
     private let cellPadding: CGFloat = 6
     private var cache: [UICollectionViewLayoutAttributes] = []
-    private var contentHeight: CGFloat = 0
+    internal var contentHeight: CGFloat = 0
     
     private var contentWidth: CGFloat {
         guard let collectionView = collectionView else {
@@ -34,7 +34,8 @@ class PinterestLayout: UICollectionViewLayout {
     }
     
     override func prepare() {
-        guard let collectionView = collectionView else { return }
+        cache.removeAll()
+        guard cache.isEmpty == true, let collectionView = collectionView else { return }
         
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []

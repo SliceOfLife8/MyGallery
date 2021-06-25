@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol SearchVMDelegate: AnyObject {
-    func didGetImages(_ status: Bool)
+    func didGetImages(_ status: Bool, paginationJustReset: Bool)
 }
 
 class SearchViewModel {
@@ -20,6 +20,7 @@ class SearchViewModel {
     var images: [Int:UIImage] = [:]
     var page: Int = 1
     var hasNext: Bool = false
+    var numberOfImagesBatch: Int = 10
     
     init() {}
     
@@ -29,22 +30,21 @@ class SearchViewModel {
         if reset {
             clearData()
         }
-        let pageAsString = String(page)
-        MediaContext.dataRequest(with: "https://api.pexels.com/v1/search?query=\(formattedQuery)&page=\(pageAsString)", objectType: Curated.self) { (result: Result) in
+        MediaContext.dataRequest(with: "https://api.pexels.com/v1/search?query=\(formattedQuery)&page=\(page)&per_page=\(numberOfImagesBatch)", objectType: Curated.self) { (result: Result) in
             switch result {
             case .success(let object):
                 /// Check if there is a corresponding page
                 self.hasNext = (object.nextPage == nil) ? false : true
                 if self.hasNext == false {
                     if reset { /// If reset is true it means that a new query defined by a user. So, we don't have response to show. Otherwise, the user has already see multiple pages and there aren't more pages to show him.
-                        self.delegate?.didGetImages(false)
+                        self.delegate?.didGetImages(false, paginationJustReset: reset)
                     }
                     return
                 }
                 self.photos.append(contentsOf: object.photos)
                 self.page += 1
                 self.addImagesURL { [weak self] in
-                    self?.delegate?.didGetImages(true)
+                    self?.delegate?.didGetImages(true, paginationJustReset: reset)
                 }
             case .failure(let error):
                 print(error)
@@ -72,11 +72,4 @@ class SearchViewModel {
         page = 1
     }
     
-}
-
-extension String {
-    func withReplacedCharacters(_ oldChar: String, by newChar: String) -> String {
-        let newStr = self.replacingOccurrences(of: oldChar, with: newChar, options: .literal, range: nil)
-        return newStr
-    }
 }

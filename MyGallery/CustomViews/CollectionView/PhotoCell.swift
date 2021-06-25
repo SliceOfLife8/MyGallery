@@ -19,7 +19,6 @@ class PhotoCell: UICollectionViewCell {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 6
         containerView.layer.masksToBounds = true
-        containerView.backgroundColor = UIColor(hexString: "#999999")
         nameLbl.gradientColors = [UIColor(hexString: "#2b5876").cgColor, UIColor(hexString: "#4e4376").cgColor]
     }
     
@@ -28,7 +27,8 @@ class PhotoCell: UICollectionViewCell {
         imageView.image = nil
     }
     
-    func setupCell(_ image: UIImage?, photographerName: String) {
+    func setupCell(_ image: UIImage?, photographerName: String, containerBGColor: UIColor = UIColor(hexString: "#999999")) {
+        containerView.backgroundColor = containerBGColor
         imageView.image = image
         photographer.text = "Photographer"
         photographer.font = UIFont.systemFontItalic(size: 14.0, fontWeight: .black)

@@ -17,6 +17,7 @@
                 <outlet property="failureView" destination="hox-qt-0M2" id="hXj-Mm-pUN"/>
                 <outlet property="searchTF" destination="paa-AL-hQT" id="eDA-o7-eNP"/>
                 <outlet property="searchView" destination="Wcu-Ed-9x9" id="1Po-kM-wRL"/>
+                <outlet property="stackView" destination="QnN-a1-LzM" id="SGK-Eh-7Uc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="64M-4I-jCG"/>
             </connections>
         </placeholder>
@@ -81,7 +82,7 @@
                     </constraints>
                 </view>
                 <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0Wf-fv-wch">
-                    <rect key="frame" x="0.0" y="78" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="86" width="414" height="810"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uhe-sO-Okp">
                         <size key="itemSize" width="128" height="128"/>
@@ -126,7 +127,7 @@
                 <constraint firstItem="hox-qt-0M2" firstAttribute="top" secondItem="QnN-a1-LzM" secondAttribute="bottom" constant="8" id="KsK-sz-bZa"/>
                 <constraint firstAttribute="bottom" secondItem="Wcu-Ed-9x9" secondAttribute="bottom" id="MU4-c9-sKE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wcu-Ed-9x9" secondAttribute="trailing" id="Nhp-MO-LhT"/>
-                <constraint firstItem="0Wf-fv-wch" firstAttribute="top" secondItem="QnN-a1-LzM" secondAttribute="bottom" id="SFZ-1G-gnw"/>
+                <constraint firstItem="0Wf-fv-wch" firstAttribute="top" secondItem="QnN-a1-LzM" secondAttribute="bottom" constant="8" id="SFZ-1G-gnw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QnN-a1-LzM" secondAttribute="trailing" constant="16" id="XRd-O2-SdO"/>
                 <constraint firstAttribute="bottom" secondItem="0Wf-fv-wch" secondAttribute="bottom" id="Xob-dQ-pKF"/>
                 <constraint firstItem="QnN-a1-LzM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ir4-eH-Vak"/>
@@ -141,7 +142,7 @@
     </objects>
     <designables>
         <designable name="paa-AL-hQT">
-            <size key="intrinsicContentSize" width="177" height="34"/>
+            <size key="intrinsicContentSize" width="145" height="34"/>
         </designable>
     </designables>
     <resources>
