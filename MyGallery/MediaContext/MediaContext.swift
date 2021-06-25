@@ -27,11 +27,11 @@ struct MediaContext {
         return Bundle.main.infoDictionary?["Pexels Key"] as! String
     }
     
-    //fetchImages which sends request to given URL and convert to Decodable Object
-    static func fetchImages<T: Decodable>(with url: String, objectType: T.Type, completion: @escaping (Result<T>) -> Void) {
+    //dataRequest which sends request to given URL and convert to Decodable Object
+    static func dataRequest<T: Decodable>(with url: String, objectType: T.Type, completion: @escaping (Result<T>) -> Void) {
         
         //create the url with NSURL
-        let dataURL = URL(string: url)! //change the url
+        guard let dataURL = URL(string: url) else { return }
         
         //create the session object
         let session = URLSession.shared

@@ -25,7 +25,7 @@ class HomeViewModel {
     
     func getImages() {
         let pageAsString = String(page)
-        MediaContext.fetchImages(with: "https://api.pexels.com/v1/curated?page=\(pageAsString)", objectType: Curated.self) { (result: Result) in
+        MediaContext.dataRequest(with: "https://api.pexels.com/v1/curated?page=\(pageAsString)", objectType: Curated.self) { (result: Result) in
             switch result {
             case .success(let object):
                 /// Check if there is a corresponding page

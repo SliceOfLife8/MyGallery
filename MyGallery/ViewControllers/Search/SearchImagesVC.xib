@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchImagesVC" customModule="MyGallery" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelBtn" destination="Inp-Mj-b0f" id="5SB-mn-wAN"/>
+                <outlet property="collectionView" destination="0Wf-fv-wch" id="5O2-IB-Kbn"/>
+                <outlet property="failureView" destination="hox-qt-0M2" id="hXj-Mm-pUN"/>
+                <outlet property="searchTF" destination="paa-AL-hQT" id="eDA-o7-eNP"/>
+                <outlet property="searchView" destination="Wcu-Ed-9x9" id="1Po-kM-wRL"/>
+                <outlet property="view" destination="iN0-l3-epB" id="64M-4I-jCG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QnN-a1-LzM">
+                    <rect key="frame" x="16" y="44" width="382" height="34"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for images" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="paa-AL-hQT" userLabel="Search Text Field" customClass="SearchTextField" customModule="MyGallery" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="318" height="34"/>
+                            <color key="textColor" systemColor="systemBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage">
+                                    <imageReference key="value" image="magnifyingglass" catalog="system" symbolScale="default"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Inp-Mj-b0f">
+                            <rect key="frame" x="334" y="0.0" width="48" height="34"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" systemColor="systemBackgroundColor"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelBtnTapped:" destination="-1" eventType="touchUpInside" id="fFS-gX-Ih5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="SmO-0H-zNQ"/>
+                </stackView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hox-qt-0M2" userLabel="Failure View">
+                    <rect key="frame" x="0.0" y="86" width="414" height="810"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-results" translatesAutoresizingMaskIntoConstraints="NO" id="0Aq-c0-KoI" userLabel="noResults">
+                            <rect key="frame" x="157" y="205" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="bNa-qo-TFM"/>
+                                <constraint firstAttribute="width" constant="100" id="hCM-59-DfI"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Δε βρέθηκαν αποτελέσματα γι' αυτό που ψάχνεις. Μη τα παρατάς, δοκίμασε κάτι άλλο!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfb-wk-zJu">
+                            <rect key="frame" x="24" y="321" width="366" height="72"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <color key="highlightedColor" systemColor="systemGray2Color"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="vfb-wk-zJu" firstAttribute="top" secondItem="0Aq-c0-KoI" secondAttribute="bottom" constant="16" id="IDQ-1w-14E"/>
+                        <constraint firstAttribute="trailing" secondItem="vfb-wk-zJu" secondAttribute="trailing" constant="24" id="K9P-dP-8zs"/>
+                        <constraint firstItem="0Aq-c0-KoI" firstAttribute="centerX" secondItem="hox-qt-0M2" secondAttribute="centerX" id="Pr3-jt-x5X"/>
+                        <constraint firstItem="0Aq-c0-KoI" firstAttribute="centerY" secondItem="hox-qt-0M2" secondAttribute="centerY" constant="-150" id="Xif-Dv-76D"/>
+                        <constraint firstItem="vfb-wk-zJu" firstAttribute="leading" secondItem="hox-qt-0M2" secondAttribute="leading" constant="24" id="aRI-Qe-QdX"/>
+                    </constraints>
+                </view>
+                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0Wf-fv-wch">
+                    <rect key="frame" x="0.0" y="78" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uhe-sO-Okp">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wcu-Ed-9x9" userLabel="Search View">
+                    <rect key="frame" x="0.0" y="86" width="414" height="810"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search-images" translatesAutoresizingMaskIntoConstraints="NO" id="w8v-q6-mqo">
+                            <rect key="frame" x="157" y="205" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="CAD-UU-fkh"/>
+                                <constraint firstAttribute="width" constant="100" id="GBU-Qs-gPK"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ανακάλυψε φωτογραφίες με μια λέξη!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxM-mZ-hVS">
+                            <rect key="frame" x="24" y="321" width="366" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <color key="highlightedColor" systemColor="systemGray2Color"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HxM-mZ-hVS" secondAttribute="trailing" constant="24" id="64U-ct-KaN"/>
+                        <constraint firstItem="w8v-q6-mqo" firstAttribute="centerY" secondItem="Wcu-Ed-9x9" secondAttribute="centerY" constant="-150" id="DU8-45-nhP"/>
+                        <constraint firstItem="HxM-mZ-hVS" firstAttribute="leading" secondItem="Wcu-Ed-9x9" secondAttribute="leading" constant="24" id="Jd1-ym-12O"/>
+                        <constraint firstItem="HxM-mZ-hVS" firstAttribute="top" secondItem="w8v-q6-mqo" secondAttribute="bottom" constant="16" id="ZII-5P-42z"/>
+                        <constraint firstItem="w8v-q6-mqo" firstAttribute="centerX" secondItem="Wcu-Ed-9x9" secondAttribute="centerX" id="v3f-2v-niu"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="hox-qt-0M2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0uk-Vm-Xan"/>
+                <constraint firstItem="QnN-a1-LzM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="1nG-My-O2H"/>
+                <constraint firstItem="Wcu-Ed-9x9" firstAttribute="top" secondItem="QnN-a1-LzM" secondAttribute="bottom" constant="8" id="BFY-Kj-7fX"/>
+                <constraint firstItem="hox-qt-0M2" firstAttribute="top" secondItem="QnN-a1-LzM" secondAttribute="bottom" constant="8" id="KsK-sz-bZa"/>
+                <constraint firstAttribute="bottom" secondItem="Wcu-Ed-9x9" secondAttribute="bottom" id="MU4-c9-sKE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wcu-Ed-9x9" secondAttribute="trailing" id="Nhp-MO-LhT"/>
+                <constraint firstItem="0Wf-fv-wch" firstAttribute="top" secondItem="QnN-a1-LzM" secondAttribute="bottom" id="SFZ-1G-gnw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QnN-a1-LzM" secondAttribute="trailing" constant="16" id="XRd-O2-SdO"/>
+                <constraint firstAttribute="bottom" secondItem="0Wf-fv-wch" secondAttribute="bottom" id="Xob-dQ-pKF"/>
+                <constraint firstItem="QnN-a1-LzM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ir4-eH-Vak"/>
+                <constraint firstAttribute="bottom" secondItem="hox-qt-0M2" secondAttribute="bottom" id="jSz-f9-1Ak"/>
+                <constraint firstItem="hox-qt-0M2" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="nhL-ts-NYD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0Wf-fv-wch" secondAttribute="trailing" id="xir-0v-aYO"/>
+                <constraint firstItem="0Wf-fv-wch" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yCb-EX-dK7"/>
+                <constraint firstItem="Wcu-Ed-9x9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="za7-tp-hE4"/>
+            </constraints>
+            <point key="canvasLocation" x="28" y="88"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="paa-AL-hQT">
+            <size key="intrinsicContentSize" width="177" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="no-results" width="512" height="512"/>
+        <image name="search-images" width="512" height="512"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
