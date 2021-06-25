@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum UserDefaultsKeys: String {
+    case TabBarIndex
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -21,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = home
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
+        let quickActionDetected: Bool = checkForQuickActions(connectionOptions.shortcutItem)
+        if quickActionDetected { return }
         home.selectedIndex = retrieveTabBarIndexState()
     }
     
@@ -54,15 +60,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if let shortcutType = TabBarValues(rawValue: shortcutItem.type), let tabBar = self.window?.rootViewController as? TabBar {
+            tabBar.selectedIndex = shortcutType.index
+        }
+    }
+    
     private func storeTabBarIndexState() {
         if let tabBar = self.window?.rootViewController as? TabBar {
-            UserDefaults.standard.setValue(tabBar.selectedIndex, forKey: UserDefaults.UserDefaultsKeys.TabBarIndex.rawValue)
+            UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.TabBarIndex.rawValue)
+            UserDefaults.standard.setValue(tabBar.selectedIndex, forKey: UserDefaultsKeys.TabBarIndex.rawValue)
         }
     }
     
     private func retrieveTabBarIndexState() -> Int {
-        let index = UserDefaults.standard.integer(forKey: UserDefaults.UserDefaultsKeys.TabBarIndex.rawValue)
+        let index = UserDefaults.standard.integer(forKey: UserDefaultsKeys.TabBarIndex.rawValue)
         return index
+    }
+    
+    /*
+     Scenario 1. The App Hasn’t Been Loaded.
+     If your app hasn’t been loaded before tapping the quick action, the following code within the scene delegate will be used to respond to the tapping. Specifically, the shortcut item (i.e., the quick action) can be accessed as a connection option for the current scene session.
+     Scenario 2. The App Has Been Loaded.
+     To respond to the tap, we’ll implement the following method within the scene delegate. This method is called when the app has been loaded and the user has just tapped a quick action item.
+     */
+    private func checkForQuickActions(_ item: UIApplicationShortcutItem?) -> Bool {
+        if let shortcutItem = item, let shortcutType = TabBarValues(rawValue: shortcutItem.type), let tabBar = self.window?.rootViewController as? TabBar {
+            tabBar.selectedIndex = shortcutType.index
+            return true
+        } else {
+            return false
+        }
     }
     
 }

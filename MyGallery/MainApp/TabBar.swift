@@ -7,6 +7,23 @@
 
 import UIKit
 
+internal enum TabBarValues: String {
+    case HomeAction
+    case GalleryAction
+    case SearchAction
+    
+    var index: Int {
+        switch self {
+        case .HomeAction:
+            return 0
+        case .GalleryAction:
+            return 1
+        case .SearchAction:
+            return 2
+        }
+    }
+}
+
 class TabBar: UITabBarController {
     
     override func viewDidLoad() {

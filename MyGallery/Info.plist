@@ -2,6 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+        <dict>
+            <key>UIApplicationShortcutItemType</key>
+            <string>SearchAction</string>
+            <key>UIApplicationShortcutItemIconType</key>
+            <string>UIApplicationShortcutIconTypeSearch</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Search</string>
+        </dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>GalleryAction</string>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>photo.on.rectangle</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Gallery</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>HomeAction</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeHome</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Home</string>
+		</dict>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSPhotoLibraryAddUsageDescription</key>
