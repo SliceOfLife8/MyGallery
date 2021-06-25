@@ -36,6 +36,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.barStyle = .black
         setupCollectionView()
         populateData()
     }
@@ -84,7 +85,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard collectionViewIsUpdating == false && viewModel.hasNext == true else { return }
         
-        if targetContentOffset.pointee.y >= (collectionView.contentSize.height - collectionView.frame.size.height) - 10 {
+        if targetContentOffset.pointee.y >= (collectionView.contentSize.height - collectionView.frame.size.height) - 100 {
             collectionViewIsUpdating = true
             viewModel.getImages()
         }

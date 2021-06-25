@@ -7,6 +7,7 @@
 
 import UIKit
 import LinkPresentation
+import Photos
 
 /*
  UIContextMenuInteraction: Adds a context menu to a view.
@@ -57,10 +58,16 @@ extension HomeVC: UIContextMenuInteractionDelegate {
                 title: "Αντιγραφή",
                 image: UIImage(systemName: "doc.on.doc")) { _ in
                 if let image = self.sharedImage { /// Copy image to clipboard
-                    //UIPasteboard.general.image = image // This line produces delay because of the image is not exactly copied to the pasteboard
                     self.copyImageToClipboard(for: image)
                 }
             }
+                let downloadAction = UIAction(
+                    title: "Αποθήκευση",
+                    image: UIImage(systemName: "square.and.arrow.down")) { _ in
+                    if let image = self.sharedImage { /// Download image
+                        self.downloadAsset(for: image)
+                    }
+                }
                 /// #Share selectedImage to other apps.
             let shareAction = UIAction(
                 title: "Κοινή χρήση",
@@ -78,7 +85,7 @@ extension HomeVC: UIContextMenuInteractionDelegate {
                 self.present(activityViewController, animated: true, completion: nil)
             }
                 
-                return UIMenu(title: "", image: nil, children: [copyAction, shareAction])
+                return UIMenu(title: "", image: nil, children: [copyAction, downloadAction, shareAction])
         }
     }
     
@@ -122,6 +129,51 @@ extension HomeVC: UIContextMenuInteractionDelegate {
         if !type.isEmpty, let data = image.pngData() {
             UIPasteboard.general.setData(data, forPasteboardType: type)
         }
+    }
+    
+    private func downloadAsset(for image: UIImage) {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized, .limited:
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { (newStatus) in
+                DispatchQueue.main.async {
+                    if newStatus == .authorized {
+                        UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    }
+                }
+            }
+        default:
+            //Create Alert Controller
+            let alert = UIAlertController(title: "Access to photos no granted!", message: nil, preferredStyle: .alert)
+            //Action 1
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            //Action 2
+            alert.addAction(UIAlertAction(title: "Go to Settings", style: .default, handler: { (_) in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: nil)
+                }
+            }))
+            
+            self.present(alert, animated: true)
+        }
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAlertWith(title: "Save error", message: error.localizedDescription)
+        } else {
+            showAlertWith(title: "Image was saved!")
+        }
+    }
+    
+    private func showAlertWith(title: String, message: String? = nil) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
 }
