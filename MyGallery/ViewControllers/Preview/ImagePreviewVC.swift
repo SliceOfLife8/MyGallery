@@ -5,6 +5,8 @@
 //  Created by Christos Petimezas on 26/6/21.
 //
 
+// TODO: 1) HQ Label loading with animation.
+
 import UIKit
 
 protocol ImagePreviewDelegate: AnyObject {
@@ -165,6 +167,10 @@ open class ImagePreviewVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: Override
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -182,7 +188,6 @@ open class ImagePreviewVC: UIViewController {
     
     override open func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
         imageView.frame = imageInfo.calculate(rect: view.bounds, origin: .zero)
         
         scrollView.frame = view.bounds
@@ -281,7 +286,6 @@ open class ImagePreviewVC: UIViewController {
     fileprivate var panViewAlpha  : CGFloat = 1
     
     @objc fileprivate func pan(_ gesture: UIPanGestureRecognizer) {
-        
         func getProgress() -> CGFloat {
             let origin = panViewOrigin!
             let changeX = abs(scrollView.center.x - origin.x)
@@ -512,9 +516,10 @@ extension ImagePreviewVC {
         
         let authorLink = UIAction(title: imageInfo.authorName ?? "Photographer link", image: UIImage(systemName: "person.crop.circle.fill"), handler: { _ in
             guard let url = self.imageInfo.authorURL else { return }
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url)
-            }
+            
+            let webView = WebPreviewVC(with: url)
+            webView.modalPresentationStyle = .popover
+            self.present(webView, animated: true)
         })
         
         // Use the .displayInline option to avoid displaying the menu as a submenu,

@@ -38,6 +38,7 @@
 		B69A3F2D26872CAC008F16E3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2C26872CAC008F16E3 /* GradientView.swift */; };
 		B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */; };
 		B69A3F3226879B0D008F16E3 /* Ext_UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */; };
+		B69A3F342687A126008F16E3 /* WebPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F332687A126008F16E3 /* WebPreviewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		B69A3F2C26872CAC008F16E3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewVC.swift; sourceTree = "<group>"; };
 		B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIApplication.swift; sourceTree = "<group>"; };
+		B69A3F332687A126008F16E3 /* WebPreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPreviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */,
+				B69A3F332687A126008F16E3 /* WebPreviewVC.swift */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */,
 				B63CEAB126847C0900DC941F /* MediaContext.swift in Sources */,
 				B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */,
+				B69A3F342687A126008F16E3 /* WebPreviewVC.swift in Sources */,
 				B693CC3F26860FC9001715AF /* SearchImages+UIContextMenu.swift in Sources */,
 				B63CEAA826846B3D00DC941F /* VideosVC.swift in Sources */,
 				B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */,
