@@ -82,6 +82,15 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedImage = viewModel.images[indexPath.item], let cell = collectionView.cellForItem(at: indexPath) else { return }
+        /// #Custom transition to ImagePreview
+        let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit)
+        let transitionInfo = TransitionInfo(fromView: cell)
+        let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
+        present(imageViewer, animated: true, completion: nil)
+    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard collectionViewIsUpdating == false && viewModel.hasNext == true else { return }
         
@@ -96,8 +105,8 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
 extension GalleryVC: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
         
-        let height = viewModel.images[indexPath.item]?.size.height ?? 250
-        return height
+        //let height = viewModel.images[indexPath.item]?.size.height ?? 250
+        return 400
     }
 }
 

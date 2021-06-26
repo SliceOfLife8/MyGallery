@@ -55,7 +55,7 @@ class SearchViewModel {
     // #Retrieve images from public urls
     private func addImagesURL(_ completion: @escaping () -> Void) {
         for (index, element) in photos.enumerated() {
-            if let url = URL(string: element.src.medium) {
+            if let url = URL(string: element.src.large) {
                 UIImage.loadFrom(url: url) { image in
                     self.images[index] = image
                     if self.images.count == self.photos.count {

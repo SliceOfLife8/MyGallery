@@ -156,6 +156,20 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
         present(ac, animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let identifier = configuration.identifier as? String,
+              let index = Int(identifier), let selectedImage = viewModel.images[index], let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0))
+        else { return }
+        
+        let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit)
+        let transitionInfo = TransitionInfo(fromView: cell)
+        let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
+        
+        animator.addCompletion {
+            self.present(imageViewer, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 // MARK: - UIActivityItemSource delegate methods

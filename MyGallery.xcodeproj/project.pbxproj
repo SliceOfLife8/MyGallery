@@ -36,6 +36,7 @@
 		B693CC4126861217001715AF /* Ext_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CC4026861217001715AF /* Ext_String.swift */; };
 		B693CC4326861ABD001715AF /* gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = B693CC4226861ABD001715AF /* gallery.png */; };
 		B69A3F2D26872CAC008F16E3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2C26872CAC008F16E3 /* GradientView.swift */; };
+		B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		B693CC4026861217001715AF /* Ext_String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_String.swift; sourceTree = "<group>"; };
 		B693CC4226861ABD001715AF /* gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery.png; sourceTree = "<group>"; };
 		B69A3F2C26872CAC008F16E3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				B63CEAC72684B07E00DC941F /* Gallery */,
 				B693CC332685BD32001715AF /* Search */,
 				B69A3F2A26872340008F16E3 /* Videos */,
+				B69A3F2E26872F28008F16E3 /* Preview */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -269,6 +272,14 @@
 				B63CEAA726846B3D00DC941F /* VideosVC.swift */,
 			);
 			path = Videos;
+			sourceTree = "<group>";
+		};
+		B69A3F2E26872F28008F16E3 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,6 +420,7 @@
 				B63CEA7226845F3C00DC941F /* AppDelegate.swift in Sources */,
 				B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */,
 				B63CEAB126847C0900DC941F /* MediaContext.swift in Sources */,
+				B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */,
 				B693CC3F26860FC9001715AF /* SearchImages+UIContextMenu.swift in Sources */,
 				B63CEAA826846B3D00DC941F /* VideosVC.swift in Sources */,
 				B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */,

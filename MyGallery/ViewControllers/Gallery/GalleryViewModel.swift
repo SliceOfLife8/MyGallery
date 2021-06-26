@@ -20,12 +20,13 @@ class GalleryViewModel {
     var images: [Int:UIImage] = [:]
     var page: Int = 1
     var hasNext: Bool = false
+    var numberOfImagesBatch: Int = 10
     
     init() {}
     
     func getImages() {
         let pageAsString = String(page)
-        MediaContext.dataRequest(with: "https://api.pexels.com/v1/curated?page=\(pageAsString)", objectType: Curated.self) { (result: Result) in
+        MediaContext.dataRequest(with: "https://api.pexels.com/v1/curated?page=\(pageAsString)&per_page=\(numberOfImagesBatch)", objectType: Curated.self) { (result: Result) in
             switch result {
             case .success(let object):
                 /// Check if there is a corresponding page
@@ -45,7 +46,7 @@ class GalleryViewModel {
     /// #Retrieve images from public urls
     private func addImagesURL(_ completion: @escaping () -> Void) {
         for (index, element) in photos.enumerated() {
-            if let url = URL(string: element.src.medium) {
+            if let url = URL(string: element.src.large) {
                 UIImage.loadFrom(url: url) { image in
                     self.images[index] = image
                     if self.images.count == self.photos.count {
