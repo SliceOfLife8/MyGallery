@@ -1,5 +1,5 @@
 //
-//  HomePage+UIContextMenu.swift
+//  Gallery+UIContextMenu.swift
 //  MyGallery
 //
 //  Created by Christos Petimezas on 24/6/21.
@@ -15,7 +15,7 @@ import Photos
  UIContextMenuInteractionDelegate: Manages the lifecycle of the context menu, such as building the UIContextMenuConfiguration.
  */
 
-extension HomeVC: UIContextMenuInteractionDelegate {
+extension GalleryVC: UIContextMenuInteractionDelegate {
     
     /**
      UIContextMenuConfiguration parameters
@@ -179,7 +179,7 @@ extension HomeVC: UIContextMenuInteractionDelegate {
 }
 
 // MARK: - UIActivityItemSource delegate methods
-extension HomeVC: UIActivityItemSource {
+extension GalleryVC: UIActivityItemSource {
     
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return UIImage() // an empty UIImage is sufficient to ensure share sheet shows right actions

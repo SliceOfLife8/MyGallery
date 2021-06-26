@@ -6,6 +6,7 @@
 //
 
 import UIKit
+// 
 
 class SearchImagesVC: UIViewController {
     
@@ -16,11 +17,16 @@ class SearchImagesVC: UIViewController {
     var sharedImageInfo: (sizePerMb: String, photographer: String)?
     private var query: String = ""
     var workItem: DispatchWorkItem?
+    private var photoCellPhotographerColor: UIColor {
+        get {
+            (traitCollection.userInterfaceStyle == .dark) ? UIColor(hexString: "#333333") : UIColor(hexString: "#f2f2f2")
+        }
+    }
     
     // MARK: - Outlets
     @IBOutlet weak var searchTF: SearchTextField!
-    @IBOutlet weak var searchView: UIView!
-    @IBOutlet weak var failureView: UIView!
+    @IBOutlet weak var searchView: GradientView!
+    @IBOutlet weak var failureView: GradientView!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var stackView: UIStackView!
@@ -48,15 +54,27 @@ class SearchImagesVC: UIViewController {
         setupCollectionView()
     }
     
-    private func setupViews() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         searchTF.becomeFirstResponder()
+    }
+    
+    /// #Detect when darkMode changed
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    private func setupViews() {
+        applyGradients()
+        searchTF.keyboardType = .asciiCapable
         searchTF.backgroundColor = UIColor(hexString: "#cccccc")
-        searchView.applyGradient(isVertical: true, colorArray: [UIColor(hexString: "#ddd6f3"), UIColor(hexString: "#faaca8")])
-        failureView.applyGradient(isVertical: true, colorArray: [UIColor(hexString: "#ddd6f3"), UIColor(hexString: "#faaca8")])
-        cancelBtn.isHidden = true
         searchTF.textColor = UIColor(hexString: "#734b6d")
         searchTF.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
-        searchTF.delegate = self
+        searchTF.addTarget(self, action: #selector(textStartEditing(_:)), for: .editingDidBegin)
+        searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchViewTapped)))
     }
     
     private func setupCollectionView() {
@@ -70,6 +88,13 @@ class SearchImagesVC: UIViewController {
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: "PhotoCell")
         collectionView.keyboardDismissMode = .onDrag
+    }
+    
+    private func applyGradients() {
+        searchView.topGradientColor = UIColor(hexString: "#ddd6f3")
+        searchView.bottomGradientColor = UIColor(hexString: "#faaca8")
+        failureView.topGradientColor = UIColor(hexString: "#ddd6f3")
+        failureView.bottomGradientColor = UIColor(hexString: "#faaca8")
     }
     
     private func showDefaultView() {
@@ -111,6 +136,15 @@ class SearchImagesVC: UIViewController {
         }
     }
     
+    @objc func textStartEditing(_ sender: Any) {
+        hideCancelBtn(false)
+    }
+    
+    @objc func searchViewTapped() {
+        searchTF.resignFirstResponder()
+        hideCancelBtn(true)
+    }
+    
 }
 
 extension SearchImagesVC: SearchVMDelegate {
@@ -144,7 +178,7 @@ extension SearchImagesVC: UICollectionViewDataSource, UICollectionViewDelegateFl
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath as IndexPath) as! PhotoCell
         if viewModel.images.count == 0 || viewModel.photos.count == 0 { return cell }
-        cell.setupCell(viewModel.images[indexPath.item], photographerName: viewModel.photos[indexPath.item].photographer, containerBGColor: UIColor(hexString: "#f2f2f2"))
+        cell.setupCell(viewModel.images[indexPath.item], photographerName: viewModel.photos[indexPath.item].photographer, containerBGColor: self.photoCellPhotographerColor)
         // Create a UIContextMenuInteraction with UIContextMenuInteractionDelegate
         if cell.interactions.isEmpty {
             let interaction = UIContextMenuInteraction(delegate: self)
@@ -170,12 +204,5 @@ extension SearchImagesVC: PinterestLayoutDelegate {
         
         let height = viewModel.images[indexPath.item]?.size.height ?? 250
         return height
-    }
-}
-
-extension SearchImagesVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

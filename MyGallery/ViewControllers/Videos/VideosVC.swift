@@ -1,5 +1,5 @@
 //
-//  GalleryVC.swift
+//  Videos.swift
 //  MyGallery
 //
 //  Created by Christos Petimezas on 24/6/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GalleryVC: UIViewController {
+class VideosVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

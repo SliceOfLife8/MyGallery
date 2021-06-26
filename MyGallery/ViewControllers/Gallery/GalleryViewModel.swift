@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  GalleryViewModel.swift
 //  MyGallery
 //
 //  Created by Christos Petimezas on 24/6/21.
@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-protocol HomeVMDelegate: AnyObject {
+protocol GalleryVMDelegate: AnyObject {
     func didGetImages()
 }
 
-class HomeViewModel {
+class GalleryViewModel {
     
-    weak var delegate: HomeVMDelegate?
+    weak var delegate: GalleryVMDelegate?
     
     var photos: [Photo] = []
     var images: [Int:UIImage] = [:]

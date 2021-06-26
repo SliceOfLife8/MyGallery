@@ -1,5 +1,5 @@
 //
-//  HomeVC.swift
+//  GalleryVC.swift
 //  MyGallery
 //
 //  Created by Christos Petimezas on 24/6/21.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+class GalleryVC: UIViewController {
     
     // MARK: - Vars
-    private(set) var viewModel: HomeViewModel
+    private(set) var viewModel: GalleryViewModel
     private var collectionViewIsUpdating = false
     var sharedImage: UIImage?
     var sharedImageInfo: (sizePerMb: String, photographer: String)?
@@ -19,13 +19,13 @@ class HomeVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Init
-    init(_ viewModel: HomeViewModel) {
+    init(_ viewModel: GalleryViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         configure(viewModel: viewModel)
     }
     
-    func configure(viewModel: HomeViewModel) {
+    func configure(viewModel: GalleryViewModel) {
         viewModel.delegate = self
     }
     
@@ -63,7 +63,7 @@ class HomeVC: UIViewController {
     
 }
 
-extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.photos.count
@@ -93,7 +93,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
     
 }
 
-extension HomeVC: PinterestLayoutDelegate {
+extension GalleryVC: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
         
         let height = viewModel.images[indexPath.item]?.size.height ?? 250
@@ -101,7 +101,7 @@ extension HomeVC: PinterestLayoutDelegate {
     }
 }
 
-extension HomeVC: HomeVMDelegate {
+extension GalleryVC: GalleryVMDelegate {
     func didGetImages() {
         collectionViewIsUpdating = false
         DispatchQueue.main.async {

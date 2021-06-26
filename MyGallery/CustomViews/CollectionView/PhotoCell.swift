@@ -25,6 +25,8 @@ class PhotoCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+        photographer.text = ""
+        nameLbl.text = ""
     }
     
     func setupCell(_ image: UIImage?, photographerName: String, containerBGColor: UIColor = UIColor(hexString: "#999999")) {
