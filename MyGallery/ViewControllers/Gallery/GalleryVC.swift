@@ -85,9 +85,11 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedImage = viewModel.images[indexPath.item], let cell = collectionView.cellForItem(at: indexPath) else { return }
         /// #Custom transition to ImagePreview
-        let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit)
+        let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit, imageHD: URL(string: viewModel.photos[indexPath.item].src.original), authorName: viewModel.photos[indexPath.item].photographer, authorURL: URL(string: viewModel.photos[indexPath.item].photographerURL))
         let transitionInfo = TransitionInfo(fromView: cell)
         let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
+        imageViewer.delegate = self
+        imageViewer.modalPresentationStyle = .overFullScreen
         present(imageViewer, animated: true, completion: nil)
     }
     
@@ -116,5 +118,18 @@ extension GalleryVC: GalleryVMDelegate {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+}
+
+extension GalleryVC: ImagePreviewDelegate {
+    func didShareImage(with image: UIImage?, size: String, photographer: String) {
+        self.sharedImage = image
+        self.sharedImageInfo = (size, photographer)
+        self.shareImage(presentOverModal: true)
+    }
+    
+    func didStoreImage(for image: UIImage?) {
+        self.sharedImage = image
+        self.downloadAsset(for: image, presentOverModal: true)
     }
 }

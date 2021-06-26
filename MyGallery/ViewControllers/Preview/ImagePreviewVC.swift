@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol ImagePreviewDelegate: AnyObject {
+    func didShareImage(with image: UIImage?, size: String, photographer: String)
+    func didStoreImage(for image: UIImage?)
+}
+
 public struct ImageInfo {
     
     public enum ImageMode : Int {
@@ -17,6 +22,8 @@ public struct ImageInfo {
     public let image     : UIImage
     public let imageMode : ImageMode
     public var imageHD   : URL?
+    public var authorName: String?
+    public var authorURL: URL?
     
     public var contentMode : UIView.ContentMode {
         return UIView.ContentMode(rawValue: imageMode.rawValue)!
@@ -27,9 +34,11 @@ public struct ImageInfo {
         self.imageMode = imageMode
     }
     
-    public init(image: UIImage, imageMode: ImageMode, imageHD: URL?) {
+    public init(image: UIImage, imageMode: ImageMode, imageHD: URL?, authorName: String?, authorURL: URL?) {
         self.init(image: image, imageMode: imageMode)
         self.imageHD = imageHD
+        self.authorName = authorName
+        self.authorURL = authorURL
     }
     
     func calculate(rect: CGRect, origin: CGPoint? = nil, imageMode: ImageMode? = nil) -> CGRect {
@@ -89,8 +98,12 @@ open class TransitionInfo {
 
 open class ImagePreviewVC: UIViewController {
     
-    public let imageView  = UIImageView()
-    public let scrollView = UIScrollView()
+    weak var delegate: ImagePreviewDelegate?
+    
+    let imageView  = UIImageView()
+    let scrollView = UIScrollView()
+    let dotsView: UIButton = UIButton()
+    let backBtn: UIButton = UIButton()
     
     public let imageInfo: ImageInfo
     
@@ -138,8 +151,8 @@ open class ImagePreviewVC: UIViewController {
         }
     }
     
-    public convenience init(image: UIImage, imageMode: UIView.ContentMode, imageHD: URL?, fromView: UIView?) {
-        let imageInfo = ImageInfo(image: image, imageMode: ImageInfo.ImageMode(rawValue: imageMode.rawValue)!, imageHD: imageHD)
+    public convenience init(image: UIImage, imageMode: UIView.ContentMode, imageHD: URL?, authorName: String?, authorURL: URL?, fromView: UIView?) {
+        let imageInfo = ImageInfo(image: image, imageMode: ImageInfo.ImageMode(rawValue: imageMode.rawValue)!, imageHD: imageHD, authorName: authorName, authorURL: authorURL)
         
         if let fromView = fromView {
             self.init(imageInfo: imageInfo, transitionInfo: TransitionInfo(fromView: fromView))
@@ -159,6 +172,8 @@ open class ImagePreviewVC: UIViewController {
         setupView()
         setupScrollView()
         setupImageView()
+        addDotsBtn()
+        addBackBtn()
         setupGesture()
         setupImageHD()
         
@@ -195,6 +210,22 @@ open class ImagePreviewVC: UIViewController {
         scrollView.addSubview(imageView)
     }
     
+    fileprivate func addDotsBtn() {
+        dotsView.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
+        dotsView.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 16), right: (view.trailingAnchor, 16), width: 32, height: 32)
+        // Create pull-down menu
+        if #available(iOS 14.0, *) {
+            dotsView.showsMenuAsPrimaryAction = true
+            dotsView.menu = addMenuItems()
+        }
+    }
+    
+    fileprivate func addBackBtn() {
+        backBtn.setImage(UIImage(systemName: "arrow.down.backward"), for: .normal)
+        backBtn.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 16), left: (view.leadingAnchor, 16), width: 32, height: 32)
+        backBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnTapped)))
+    }
+    
     fileprivate func setupGesture() {
         let single = UITapGestureRecognizer(target: self, action: #selector(singleTap))
         let double = UITapGestureRecognizer(target: self, action: #selector(doubleTap(_:)))
@@ -215,12 +246,18 @@ open class ImagePreviewVC: UIViewController {
         
         let request = URLRequest(url: imageHD, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+            print("fetch HQ image!")
             guard let data = data else { return }
             guard let image = UIImage(data: data) else { return }
             self.imageView.image = image
             self.view.layoutIfNeeded()
         })
         task.resume()
+    }
+    
+    fileprivate func buttonsVisibility(_ hidden: Bool) {
+        dotsView.isHidden = hidden
+        backBtn.isHidden = hidden
     }
     
     // MARK: Gesture
@@ -267,6 +304,7 @@ open class ImagePreviewVC: UIViewController {
         
         switch gesture.state {
         case .began:
+            buttonsVisibility(true)
             panViewOrigin = scrollView.center
         case .changed:
             scrollView.center = getChanged()
@@ -288,6 +326,7 @@ open class ImagePreviewVC: UIViewController {
                            completion: { _ in
                             self.panViewOrigin = nil
                             self.panViewAlpha  = 1.0
+                            self.buttonsVisibility(false)
                            }
             )
         }
@@ -449,6 +488,40 @@ extension ImagePreviewVC: UIGestureRecognizerDelegate {
             }
         }
         return true
+    }
+    
+    @objc func backBtnTapped() {
+        self.singleTap()
+    }
+    
+}
+
+// MARK: - UIMenu methods for showing menu with actions. This refers as an action on dotsView.
+extension ImagePreviewVC {
+    
+    @available(iOS 14.0, *)
+    fileprivate func addMenuItems() -> UIMenu {
+        // Create actions
+        let storeAction = UIAction(title: "Αποθήκευση", image: UIImage(systemName: "square.and.arrow.down"), handler: { _ in
+            self.delegate?.didStoreImage(for: self.imageView.image)
+        })
+        
+        let shareAction = UIAction(title: "Κοινή χρήση", image: UIImage(systemName: "square.and.arrow.up"), handler: { _ in
+            self.delegate?.didShareImage(with: self.imageView.image, size: self.imageView.image?.getSizeIn(.megabyte) ?? "", photographer: self.imageInfo.authorName ?? "")
+        })
+        
+        let authorLink = UIAction(title: imageInfo.authorName ?? "Photographer link", image: UIImage(systemName: "person.crop.circle.fill"), handler: { _ in
+            guard let url = self.imageInfo.authorURL else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        })
+        
+        // Use the .displayInline option to avoid displaying the menu as a submenu,
+        // and to separate it from the other menu elements using a line separator.
+        let menu = UIMenu(title: "", options: .displayInline, children: [storeAction, shareAction, authorLink])
+        
+        return menu
     }
     
 }

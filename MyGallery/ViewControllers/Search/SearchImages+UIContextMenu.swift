@@ -44,25 +44,13 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
                 let downloadAction = UIAction(
                     title: "Αποθήκευση",
                     image: UIImage(systemName: "square.and.arrow.down")) { _ in
-                    if let image = self.sharedImage { /// Download image
-                        self.downloadAsset(for: image)
-                    }
+                    self.downloadAsset(for: self.sharedImage) /// Download image
                 }
                 /// #Share selectedImage to other apps.
             let shareAction = UIAction(
                 title: "Κοινή χρήση",
                 image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                
-                let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
-                //Excluded Activities
-                activityViewController.excludedActivityTypes = [
-                    .saveToCameraRoll,
-                    .addToReadingList,
-                    .openInIBooks,
-                    .markupAsPDF
-                ]
-                activityViewController.popoverPresentationController?.sourceView = self.view
-                self.present(activityViewController, animated: true, completion: nil)
+                self.shareImage()
             }
                 
                 return UIMenu(title: "", image: nil, children: [copyAction, downloadAction, shareAction])
@@ -92,6 +80,24 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
         return UITargetedPreview(view: image)
     }
     
+    func shareImage(presentOverModal: Bool = false) {
+        let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
+        //Excluded Activities
+        activityViewController.excludedActivityTypes = [
+            .saveToCameraRoll,
+            .addToReadingList,
+            .openInIBooks,
+            .markupAsPDF
+        ]
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        if presentOverModal {
+            UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController?.present(activityViewController, animated: true, completion: nil)
+        } else {
+            present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
     /* We need to fetch high quality images for those who was selected by user. */
     private func getSingleHQImage(_ index: Int) {
         let elementURL = viewModel.photos[index].src.large2X
@@ -111,15 +117,16 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
         }
     }
     
-    private func downloadAsset(for image: UIImage) {
+    func downloadAsset(for image: UIImage?, presentOverModal: Bool = false) {
+        guard let asset = image else { return }
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized, .limited:
-            UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            UIImageWriteToSavedPhotosAlbum(asset, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization { (newStatus) in
                 DispatchQueue.main.async {
                     if newStatus == .authorized {
-                        UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                        UIImageWriteToSavedPhotosAlbum(asset, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
                     }
                 }
             }
@@ -138,7 +145,11 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
                 }
             }))
             
-            self.present(alert, animated: true)
+            if presentOverModal {
+                UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController?.present(alert, animated: true, completion: nil)
+            } else {
+                self.present(alert, animated: true)
+            }
         }
     }
     
@@ -153,7 +164,11 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
     private func showAlertWith(title: String, message: String? = nil) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        if UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController is ImagePreviewVC {
+            UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController?.present(ac, animated: true, completion: nil)
+        } else {
+            present(ac, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
@@ -161,7 +176,7 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
               let index = Int(identifier), let selectedImage = viewModel.images[index], let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0))
         else { return }
         
-        let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit)
+        let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit, imageHD: URL(string: viewModel.photos[index].src.original), authorName: viewModel.photos[index].photographer, authorURL: URL(string: viewModel.photos[index].photographerURL))
         let transitionInfo = TransitionInfo(fromView: cell)
         let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
         
