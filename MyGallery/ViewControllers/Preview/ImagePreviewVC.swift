@@ -5,9 +5,8 @@
 //  Created by Christos Petimezas on 26/6/21.
 //
 
-// TODO: 1) HQ Label loading with animation.
-
 import UIKit
+import DropDown
 
 protocol ImagePreviewDelegate: AnyObject {
     func didShareImage(with image: UIImage?, size: String, photographer: String)
@@ -106,6 +105,8 @@ open class ImagePreviewVC: UIViewController {
     let scrollView = UIScrollView()
     let dotsView: UIButton = UIButton()
     let backBtn: UIButton = UIButton()
+    let dropDown = DropDown()
+    var hqLabel = GradientLabel()
     
     public let imageInfo: ImageInfo
     
@@ -180,8 +181,9 @@ open class ImagePreviewVC: UIViewController {
         setupImageView()
         addDotsBtn()
         addBackBtn()
+        addDropDownMenu()
+        addHQLabel()
         setupGesture()
-        setupImageHD()
         
         edgesForExtendedLayout = UIRectEdge()
     }
@@ -222,6 +224,8 @@ open class ImagePreviewVC: UIViewController {
         if #available(iOS 14.0, *) {
             dotsView.showsMenuAsPrimaryAction = true
             dotsView.menu = addMenuItems()
+        } else { // Fallback to earlier versions
+            dotsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dotsViewTapped)))
         }
     }
     
@@ -229,6 +233,28 @@ open class ImagePreviewVC: UIViewController {
         backBtn.setImage(UIImage(systemName: "arrow.down.backward"), for: .normal)
         backBtn.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 16), left: (view.leadingAnchor, 16), width: 32, height: 32)
         backBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnTapped)))
+    }
+    
+    fileprivate func addDropDownMenu() {
+        dropDown.anchorView = dotsView
+        dropDown.dataSource = ["Αποθήκευση", "Κοινή χρήση", imageInfo.authorName ?? ""]
+        dropDown.cellConfiguration = { (index, item) in return "\(item)"}
+        dropDown.selectionBackgroundColor = .clear
+    }
+    
+    fileprivate func addHQLabel() {
+        if let imageKey = imageInfo.imageHD?.absoluteString, let cachedImage = PhotoManager.shared.retrieveImage(with: imageKey)  {
+            self.imageView.image = cachedImage
+            self.view.layoutIfNeeded()
+            hqLabel.text = "HQ available ✔️"
+        } else {
+            setupImageHD()
+            hqLabel.text = "HQ Loading..."
+        }
+        hqLabel.gradientColors = [UIColor(hexString: "#141e30").cgColor, UIColor(hexString: "#243b55").cgColor] /// Royal gradient Color
+        hqLabel.sizeToFit()
+        hqLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        hqLabel.addExclusiveConstraints(superview: view, centerX: view.centerXAnchor, centerY: backBtn.centerYAnchor)
     }
     
     fileprivate func setupGesture() {
@@ -255,7 +281,9 @@ open class ImagePreviewVC: UIViewController {
             guard let data = data else { return }
             guard let image = UIImage(data: data) else { return }
             self.imageView.image = image
+            self.hqLabel.text = "HQ available ✔️"
             self.view.layoutIfNeeded()
+            PhotoManager.shared.storeImage(image, for: imageHD.absoluteString)
         })
         task.resume()
     }
@@ -263,6 +291,7 @@ open class ImagePreviewVC: UIViewController {
     fileprivate func buttonsVisibility(_ hidden: Bool) {
         dotsView.isHidden = hidden
         backBtn.isHidden = hidden
+        hqLabel.isHidden = hidden
     }
     
     // MARK: Gesture
@@ -498,6 +527,10 @@ extension ImagePreviewVC: UIGestureRecognizerDelegate {
         self.singleTap()
     }
     
+    @objc func dotsViewTapped() {
+        dropDownMenuTapped()
+    }
+    
 }
 
 // MARK: - UIMenu methods for showing menu with actions. This refers as an action on dotsView.
@@ -527,6 +560,26 @@ extension ImagePreviewVC {
         let menu = UIMenu(title: "", options: .displayInline, children: [storeAction, shareAction, authorLink])
         
         return menu
+    }
+    
+    /// #Drop down menu for iOS 13
+    func dropDownMenuTapped() {
+        dropDown.selectionAction = { (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)")
+            if index == 0 {
+                self.delegate?.didStoreImage(for: self.imageView.image)
+            } else if index == 1 {
+                self.delegate?.didShareImage(with: self.imageView.image, size: self.imageView.image?.getSizeIn(.megabyte) ?? "", photographer: self.imageInfo.authorName ?? "")
+            } else {
+                guard let url = self.imageInfo.authorURL else { return }
+                let webView = WebPreviewVC(with: url)
+                webView.modalPresentationStyle = .popover
+                self.present(webView, animated: true)
+            }}
+        
+        dropDown.width = 140
+        dropDown.bottomOffset = CGPoint(x: 0, y: dotsView.bounds.height)
+        dropDown.show()
     }
     
 }

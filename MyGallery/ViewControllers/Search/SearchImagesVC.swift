@@ -6,7 +6,6 @@
 //
 
 import UIKit
-// 
 
 class SearchImagesVC: UIViewController {
     
@@ -70,10 +69,12 @@ class SearchImagesVC: UIViewController {
     private func setupViews() {
         applyGradients()
         searchTF.keyboardType = .asciiCapable
+        searchTF.returnKeyType = .search
+        searchTF.enablesReturnKeyAutomatically = true
         searchTF.backgroundColor = UIColor(hexString: "#cccccc")
         searchTF.textColor = UIColor(hexString: "#734b6d")
         searchTF.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
-        searchTF.addTarget(self, action: #selector(textStartEditing(_:)), for: .editingDidBegin)
+        searchTF.delegate = self
         searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchViewTapped)))
     }
     
@@ -134,10 +135,6 @@ class SearchImagesVC: UIViewController {
         } else if text != query {
             showDefaultView()
         }
-    }
-    
-    @objc func textStartEditing(_ sender: Any) {
-        hideCancelBtn(false)
     }
     
     @objc func searchViewTapped() {
@@ -228,5 +225,23 @@ extension SearchImagesVC: ImagePreviewDelegate {
     func didStoreImage(for image: UIImage?) {
         self.sharedImage = image
         self.downloadAsset(for: image, presentOverModal: true)
+    }
+}
+
+extension SearchImagesVC: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hideCancelBtn(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.workItem?.cancel()
+        let text = searchTF.text?.trimmingCharacters(in: .whitespaces)
+        if let searchTerm = text, !searchTerm.isEmpty {
+            hideCancelBtn(false)
+            viewModel.getImages(query: searchTerm, resettingPagition: true)
+        }
+        
+        return true
     }
 }

@@ -1,0 +1,16 @@
+PODS:
+  - DropDown (2.3.12)
+
+DEPENDENCIES:
+  - DropDown (= 2.3.12)
+
+SPEC REPOS:
+  trunk:
+    - DropDown
+
+SPEC CHECKSUMS:
+  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
+
+PODFILE CHECKSUM: 4a244774ce163466d8b1b78baed52506b2b1a83e
+
+COCOAPODS: 1.9.1
