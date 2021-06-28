@@ -7,114 +7,151 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26E3428F63513D9DA12D61D194D8A8E8 /* Pods-MyGallery-MyGalleryUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E37AF40C2742D4B71FD51977E0797C99 /* Pods-MyGallery-MyGalleryUITests-dummy.m */; };
-		361F5CE2807CBD530C8C6E63FD245F5A /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EA092CDFBD4C66A29A9CDEA1DE78E1 /* DropDownCell.swift */; };
+		2B9C3192EA6AC3B2FE3F3AB796C975DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		361F5CE2807CBD530C8C6E63FD245F5A /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE5E8166B0DC20C35F9792392DBFAA /* DropDownCell.swift */; };
 		39DD9E02CCC96EC634EDCC924A7A0FED /* Pods-MyGalleryTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE952ABAE05F08C32F810FAFBB1491 /* Pods-MyGalleryTests-dummy.m */; };
-		4A8FE4C4F6D45B41CE01A00D24C56961 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F84589A96D52448FD74E261268404 /* DPDUIView+Extension.swift */; };
+		3A0FEA1EC8D5F7D4AE6383A1452C4C95 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606319FF3C2A6298522EBF94558FB52 /* Icons.swift */; };
+		40B82D14ECD70F12D725437F2D64E55E /* Pods-MyGallery-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C32201AE61220D317742AE9D5FB39E4 /* Pods-MyGallery-dummy.m */; };
+		4A8FE4C4F6D45B41CE01A00D24C56961 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AACDFC03DF79FECB889FB2B28E4B4B /* DPDUIView+Extension.swift */; };
+		5225E73324D51CBB026531FF06A77124 /* Pods-MyGallery-MyGalleryUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E37AF40C2742D4B71FD51977E0797C99 /* Pods-MyGallery-MyGalleryUITests-dummy.m */; };
+		5B0FEA4538502B596EE0A19AE0159949 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		5B96EE0115C9493C8F03BF7B60FD01C7 /* Pods-MyGalleryTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 350893F68C7C7BB6B0A4D83CB436BFD7 /* Pods-MyGalleryTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5F515237FF94DAB4C8A15B7E33A3877B /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761A77A038E79C8451C03293CDA4FC0 /* DPDConstants.swift */; };
-		6064C623428CE711C252E442741F81AB /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87586FE2C9DECB6AE7FCA3238E4A1B8 /* DropDown+Appearance.swift */; };
-		61EE534EC208C3D01D610F3607A3AA19 /* Pods-MyGallery-MyGalleryUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E82D33A603A4B58C31C7FEA7B037F5E /* Pods-MyGallery-MyGalleryUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		842DFBB1471889C2CA329AE05620BBE7 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC1AD54C344AFD4E184B9586BFE267 /* DropDown.swift */; };
-		8D43217823A1E30354CA8468A10C1B6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		9518195DB69E904D77247E0A55A0043C /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F61850F82D6CC477FAF8326336FD5A /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95897DCFD4071A7D61AEAE1DA86BB539 /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF17E1BF2597D8F37F69DB34CA024E5C /* DropDown-dummy.m */; };
-		BA7BB2FF04CE1CAFC5238D1807EF0034 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBB2377069976EC65992A59335066D3 /* DPDKeyboardListener.swift */; };
+		5F515237FF94DAB4C8A15B7E33A3877B /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402F6D856C3730BE226EB187ED0BBA2 /* DPDConstants.swift */; };
+		6064C623428CE711C252E442741F81AB /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB58F5A83C06E689CA12715AF27AF36 /* DropDown+Appearance.swift */; };
+		6270527753A2A79739ED04A0E7C2996F /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0220F079DDF616EABF1C5EB98EBDF8 /* Manager.swift */; };
+		68291B4CF16255D3A7B0353C0BE2888F /* Loaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9FDFC5F93BE64DDEA86EE2CEBA272 /* Loaf.swift */; };
+		721A035134E7957C0227E47DCE0270B4 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110D946025488BAAD82DCD16602D032 /* Animator.swift */; };
+		7E3D75A8D56AF9B2FBB453CC9E623BAC /* Loaf-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4519B2CBC8510F403FBBD0DB483EEA4F /* Loaf-dummy.m */; };
+		842DFBB1471889C2CA329AE05620BBE7 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFCC6905816B846E81D585A4D6B22B6 /* DropDown.swift */; };
+		905F6C4AE74097C8490206AAF61F1155 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1984DEB01D9FB9A9D8A6029D29EB3C06 /* Controller.swift */; };
+		9518195DB69E904D77247E0A55A0043C /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 70B73F62CE13CCF70D827616B94BA571 /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95897DCFD4071A7D61AEAE1DA86BB539 /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 546FAB3E4DDD258524C8F9161E086CCB /* DropDown-dummy.m */; };
+		A9B2F2F3DD5180C32939AC32F1B49880 /* Pods-MyGallery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7980AC1A8F1B43A526DE9530473E6458 /* Pods-MyGallery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6F1FF9E90CFD474F65925B5A5815F87 /* Pods-MyGallery-MyGalleryUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E82D33A603A4B58C31C7FEA7B037F5E /* Pods-MyGallery-MyGalleryUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA7BB2FF04CE1CAFC5238D1807EF0034 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8543352ABB2DADC47B8FAA76AA0CE646 /* DPDKeyboardListener.swift */; };
+		BF6DDA092BAB26485BEDB22956DA8C85 /* Loaf-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DE62CD02F8AAEE6B854BD1A8818E8C2D /* Loaf-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C99487C04757ECF4F73FA1D4519CFD6D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		CD19AB1AD8B27134AAB423286E5ACF9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		DBB8CB322AAA7B959D1DB68DE528D114 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		EB14CCC06DC220A9765AD28B1089E572 /* Pods-MyGallery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7980AC1A8F1B43A526DE9530473E6458 /* Pods-MyGallery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB3D83C05EC7793D23A1192C11B9F631 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEBC6D732E1B0C41C6A8D03A8C81CF47 /* DropDownCell.xib */; };
-		EBB729F74A16F6A4163B0DEA3284772D /* Pods-MyGallery-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C32201AE61220D317742AE9D5FB39E4 /* Pods-MyGallery-dummy.m */; };
+		EB3D83C05EC7793D23A1192C11B9F631 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D03200674788B8718FE2CBFA5F8F145 /* DropDownCell.xib */; };
+		EC1B62640BFAA43FF93760C93AA0D5E9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7B130537EB44301564D9854F6D12B /* Extensions.swift */; };
+		FF669312E5814ED8250E627796F121D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6F844E9A1710EBD0774096E0BDC2EFF8 /* PBXContainerItemProxy */ = {
+		4AF1E1B46CB57D04DD92AC8B295165AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
+			remoteInfo = DropDown;
+		};
+		4FCBD36B91DB9626016C4D27B5DC3DCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E12D5ED3565D8FCC3DD9B9DD89246A9;
+			remoteInfo = Loaf;
+		};
+		5CD19642C4281A06016073347142EAA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
+			remoteInfo = DropDown;
+		};
+		9CEB53D15F78A7DBDFF3635B6BE67202 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D440E19013261530D99B247DF5148F98;
 			remoteInfo = "Pods-MyGallery";
 		};
-		99415CE8A2A3463F589D13965901C668 /* PBXContainerItemProxy */ = {
+		B2653962E67A63819581F0160007DEFF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
-			remoteInfo = DropDown;
-		};
-		A5CB82B255F019348A1389088C2E73F2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
-			remoteInfo = DropDown;
+			remoteGlobalIDString = 3E12D5ED3565D8FCC3DD9B9DD89246A9;
+			remoteInfo = Loaf;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0402F6D856C3730BE226EB187ED0BBA2 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		0521A2CC49E52C972E5FA02BF1D9F868 /* Pods-MyGallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyGallery.release.xcconfig"; sourceTree = "<group>"; };
 		0C32201AE61220D317742AE9D5FB39E4 /* Pods-MyGallery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MyGallery-dummy.m"; sourceTree = "<group>"; };
+		1230090BF367557DBC09EA6E43D1A2C8 /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
 		16AFA92CB80F8FB0C1CB42B010BAB385 /* Pods-MyGallery-MyGalleryUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MyGallery-MyGalleryUITests-frameworks.sh"; sourceTree = "<group>"; };
 		172D12FCDE62599123CF445AF7DB4DD5 /* Pods-MyGallery-MyGalleryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyGallery-MyGalleryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1984DEB01D9FB9A9D8A6029D29EB3C06 /* Controller.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Controller.swift; path = Sources/Loaf/Presenter/Controller.swift; sourceTree = "<group>"; };
 		1E0DAA7549414F0260EAC2B95D0A6254 /* Pods-MyGallery-MyGalleryUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MyGallery-MyGalleryUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2110D946025488BAAD82DCD16602D032 /* Animator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = Sources/Loaf/Presenter/Animator.swift; sourceTree = "<group>"; };
 		218C2A48740F5FB06BB250EDEEDF5525 /* Pods-MyGallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyGallery.debug.xcconfig"; sourceTree = "<group>"; };
-		2F8A529C653A26F8D0B57E1CD7B2B5E6 /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
-		2FCC1AD54C344AFD4E184B9586BFE267 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
 		350893F68C7C7BB6B0A4D83CB436BFD7 /* Pods-MyGalleryTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MyGalleryTests-umbrella.h"; sourceTree = "<group>"; };
-		3761A77A038E79C8451C03293CDA4FC0 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
+		3EABF1672D20BE6F665125B9689D7F08 /* Loaf-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Loaf-prefix.pch"; sourceTree = "<group>"; };
 		4044380AB449A0EB3DFC033F0022C633 /* Pods-MyGalleryTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MyGalleryTests.modulemap"; sourceTree = "<group>"; };
-		451F84589A96D52448FD74E261268404 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		4519B2CBC8510F403FBBD0DB483EEA4F /* Loaf-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Loaf-dummy.m"; sourceTree = "<group>"; };
+		497327AFD408E5EAE89C850D81FB0E56 /* Loaf.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Loaf.modulemap; sourceTree = "<group>"; };
+		4BB02D7D504F21004FDEA2CFED16DF40 /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
+		4BE730510F6EBDAEF7EF02CB99F4B209 /* Loaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Loaf.framework; path = Loaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CA7B130537EB44301564D9854F6D12B /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Sources/Loaf/Extensions.swift; sourceTree = "<group>"; };
+		4F14E4FF42DBEE6BD65E9FAE9772A43C /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
+		546FAB3E4DDD258524C8F9161E086CCB /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
+		5606319FF3C2A6298522EBF94558FB52 /* Icons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Icons.swift; path = Sources/Loaf/Icons.swift; sourceTree = "<group>"; };
+		56A9FDFC5F93BE64DDEA86EE2CEBA272 /* Loaf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Loaf.swift; path = Sources/Loaf/Loaf.swift; sourceTree = "<group>"; };
 		5B550383626215C53387B6A31C75FB4F /* Pods-MyGallery.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MyGallery.modulemap"; sourceTree = "<group>"; };
+		5DBE5E8166B0DC20C35F9792392DBFAA /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
 		622548847A00269ED5ACDF1BCA23371F /* Pods-MyGallery-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MyGallery-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6D2DCC54BA520945A7F6EDC10FA3353B /* Pods_MyGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MyGallery.framework; path = "Pods-MyGallery.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EB58F5A83C06E689CA12715AF27AF36 /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		70B73F62CE13CCF70D827616B94BA571 /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		730D85BE0320FD50EA665A82042E5742 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
 		774C55DEAE59635060BA958CF5684FA6 /* Pods-MyGalleryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyGalleryTests.release.xcconfig"; sourceTree = "<group>"; };
 		7980AC1A8F1B43A526DE9530473E6458 /* Pods-MyGallery-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MyGallery-umbrella.h"; sourceTree = "<group>"; };
-		8DBB2377069976EC65992A59335066D3 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		7D03200674788B8718FE2CBFA5F8F145 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		8157E669F315ABC9DD0B06ED4652CF4D /* Loaf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Loaf.release.xcconfig; sourceTree = "<group>"; };
+		8543352ABB2DADC47B8FAA76AA0CE646 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		8BFCC6905816B846E81D585A4D6B22B6 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
 		92B85B384CFE4E45192FF0986947B9C8 /* Pods-MyGalleryTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MyGalleryTests-Info.plist"; sourceTree = "<group>"; };
-		93EA092CDFBD4C66A29A9CDEA1DE78E1 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
 		97CD6CF81B43599B144DA976DF42514B /* Pods-MyGalleryTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MyGalleryTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		99B9E4A7CE3668E414692DE48EF31030 /* Pods-MyGalleryTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MyGalleryTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9B6725B782188F18CB76A740433F14E4 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C15EB8657063755722D9C7DC8D72885 /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E82D33A603A4B58C31C7FEA7B037F5E /* Pods-MyGallery-MyGalleryUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MyGallery-MyGalleryUITests-umbrella.h"; sourceTree = "<group>"; };
 		A14300F5DABB4391D1F363029A5919C7 /* Pods-MyGallery-MyGalleryUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MyGallery-MyGalleryUITests.modulemap"; sourceTree = "<group>"; };
-		A87586FE2C9DECB6AE7FCA3238E4A1B8 /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
 		ACEE952ABAE05F08C32F810FAFBB1491 /* Pods-MyGalleryTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MyGalleryTests-dummy.m"; sourceTree = "<group>"; };
-		AF17E1BF2597D8F37F69DB34CA024E5C /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
 		B12C102FAA0CF526DE00F494C985A5F0 /* Pods-MyGallery-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MyGallery-acknowledgements.plist"; sourceTree = "<group>"; };
 		B5EF2E19006FB31B113027C5C9F2A0F4 /* Pods-MyGallery-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MyGallery-frameworks.sh"; sourceTree = "<group>"; };
 		BA1154322C7D671B2BE02E0F33710A8B /* Pods-MyGalleryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyGalleryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF47E0F4BA2FDF49D9ABE3AFAA39988E /* Pods-MyGallery-MyGalleryUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MyGallery-MyGalleryUITests-Info.plist"; sourceTree = "<group>"; };
 		C991749DD13D497CB1C3D36BF84E134C /* Pods-MyGallery-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MyGallery-Info.plist"; sourceTree = "<group>"; };
+		C9AACDFC03DF79FECB889FB2B28E4B4B /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		C9AF2E20A1BEE9447617785E4EEBE5B7 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
+		D89400D1B1A59426E75431C97C2AC7BF /* Loaf-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Loaf-Info.plist"; sourceTree = "<group>"; };
 		DC4548BCAC2037172234DF7AEF9CB7F9 /* Pods-MyGallery-MyGalleryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyGallery-MyGalleryUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		DCD9DE78A7260CA1D999340CF0124D1D /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
+		DE62CD02F8AAEE6B854BD1A8818E8C2D /* Loaf-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Loaf-umbrella.h"; sourceTree = "<group>"; };
 		E37AF40C2742D4B71FD51977E0797C99 /* Pods-MyGallery-MyGalleryUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MyGallery-MyGalleryUITests-dummy.m"; sourceTree = "<group>"; };
-		E5834E7BD925BD3ED29331C1938CC0B7 /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
-		EEBC6D732E1B0C41C6A8D03A8C81CF47 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		EA4B4D0B1A8984E6706FD15C38ED0917 /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
+		EB0220F079DDF616EABF1C5EB98EBDF8 /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Sources/Loaf/Presenter/Manager.swift; sourceTree = "<group>"; };
 		F09AC0F5068E24A6C53DA8BD4E0DEDD5 /* Pods_MyGalleryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MyGalleryTests.framework; path = "Pods-MyGalleryTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A43C4D6A3A17F130BE154D471C8E29 /* Pods_MyGallery_MyGalleryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MyGallery_MyGalleryUITests.framework; path = "Pods-MyGallery-MyGalleryUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8F61850F82D6CC477FAF8326336FD5A /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
+		FD9502D06F27CEEABFEBD55C2A95CD79 /* Loaf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Loaf.debug.xcconfig; sourceTree = "<group>"; };
 		FF925D22B0CB7F0E792BEC82B7C422DB /* Pods-MyGallery-MyGalleryUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MyGallery-MyGalleryUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		05E141DF3E652DC2632C8F59E74ED9B9 /* Frameworks */ = {
+		2909161863B5A3EBA975E89A3E71680B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBB8CB322AAA7B959D1DB68DE528D114 /* Foundation.framework in Frameworks */,
+				FF669312E5814ED8250E627796F121D0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		34D248688AF1B2CC598E45F4C57ECB99 /* Frameworks */ = {
+		5B2A2D287AD36D5E67DF112866C02A5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D43217823A1E30354CA8468A10C1B6E /* Foundation.framework in Frameworks */,
+				5B0FEA4538502B596EE0A19AE0159949 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,46 +171,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7F1810D823707BD0AAD3F1AF52EDB96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B9C3192EA6AC3B2FE3F3AB796C975DF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03D114B328A63C934E528549C2DCFE8D /* Support Files */ = {
+		02B728FAB25465E6A34C7FA5BCC421F4 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DCD9DE78A7260CA1D999340CF0124D1D /* DropDown.modulemap */,
-				AF17E1BF2597D8F37F69DB34CA024E5C /* DropDown-dummy.m */,
-				2F8A529C653A26F8D0B57E1CD7B2B5E6 /* DropDown-Info.plist */,
-				730D85BE0320FD50EA665A82042E5742 /* DropDown-prefix.pch */,
-				F8F61850F82D6CC477FAF8326336FD5A /* DropDown-umbrella.h */,
-				E5834E7BD925BD3ED29331C1938CC0B7 /* DropDown.debug.xcconfig */,
-				9C15EB8657063755722D9C7DC8D72885 /* DropDown.release.xcconfig */,
+				497327AFD408E5EAE89C850D81FB0E56 /* Loaf.modulemap */,
+				4519B2CBC8510F403FBBD0DB483EEA4F /* Loaf-dummy.m */,
+				D89400D1B1A59426E75431C97C2AC7BF /* Loaf-Info.plist */,
+				3EABF1672D20BE6F665125B9689D7F08 /* Loaf-prefix.pch */,
+				DE62CD02F8AAEE6B854BD1A8818E8C2D /* Loaf-umbrella.h */,
+				FD9502D06F27CEEABFEBD55C2A95CD79 /* Loaf.debug.xcconfig */,
+				8157E669F315ABC9DD0B06ED4652CF4D /* Loaf.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/DropDown";
-			sourceTree = "<group>";
-		};
-		057ED11B9D5977F85CBBBEF7C3E69DDB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1340602042F82FB2F98974EB1B0C2387 /* DropDown */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		1340602042F82FB2F98974EB1B0C2387 /* DropDown */ = {
-			isa = PBXGroup;
-			children = (
-				3761A77A038E79C8451C03293CDA4FC0 /* DPDConstants.swift */,
-				8DBB2377069976EC65992A59335066D3 /* DPDKeyboardListener.swift */,
-				451F84589A96D52448FD74E261268404 /* DPDUIView+Extension.swift */,
-				2FCC1AD54C344AFD4E184B9586BFE267 /* DropDown.swift */,
-				A87586FE2C9DECB6AE7FCA3238E4A1B8 /* DropDown+Appearance.swift */,
-				93EA092CDFBD4C66A29A9CDEA1DE78E1 /* DropDownCell.swift */,
-				C59647B6F3C67ED72D999C113D892AF0 /* Resources */,
-				03D114B328A63C934E528549C2DCFE8D /* Support Files */,
-			);
-			name = DropDown;
-			path = DropDown;
+			path = "../Target Support Files/Loaf";
 			sourceTree = "<group>";
 		};
 		1421C98BBADF7CDD8ACF2A9600408054 /* Pods-MyGalleryTests */ = {
@@ -192,12 +213,63 @@
 			path = "Target Support Files/Pods-MyGalleryTests";
 			sourceTree = "<group>";
 		};
+		18E6975FDDB558F027FAF08178F17D5B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9B6725B782188F18CB76A740433F14E4 /* DropDown.framework */,
+				4BE730510F6EBDAEF7EF02CB99F4B209 /* Loaf.framework */,
+				6D2DCC54BA520945A7F6EDC10FA3353B /* Pods_MyGallery.framework */,
+				F6A43C4D6A3A17F130BE154D471C8E29 /* Pods_MyGallery_MyGalleryUITests.framework */,
+				F09AC0F5068E24A6C53DA8BD4E0DEDD5 /* Pods_MyGalleryTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FFA190D31D84CAA54C369F0477FA213 /* Loaf */ = {
+			isa = PBXGroup;
+			children = (
+				2110D946025488BAAD82DCD16602D032 /* Animator.swift */,
+				1984DEB01D9FB9A9D8A6029D29EB3C06 /* Controller.swift */,
+				4CA7B130537EB44301564D9854F6D12B /* Extensions.swift */,
+				5606319FF3C2A6298522EBF94558FB52 /* Icons.swift */,
+				56A9FDFC5F93BE64DDEA86EE2CEBA272 /* Loaf.swift */,
+				EB0220F079DDF616EABF1C5EB98EBDF8 /* Manager.swift */,
+				02B728FAB25465E6A34C7FA5BCC421F4 /* Support Files */,
+			);
+			name = Loaf;
+			path = Loaf;
+			sourceTree = "<group>";
+		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		7AF9DBE28B27B1359E0AD917F1C8FFCD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7D03200674788B8718FE2CBFA5F8F145 /* DropDownCell.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7B133F023B3C9CEE05FAFB0240CF1EEB /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				0402F6D856C3730BE226EB187ED0BBA2 /* DPDConstants.swift */,
+				8543352ABB2DADC47B8FAA76AA0CE646 /* DPDKeyboardListener.swift */,
+				C9AACDFC03DF79FECB889FB2B28E4B4B /* DPDUIView+Extension.swift */,
+				8BFCC6905816B846E81D585A4D6B22B6 /* DropDown.swift */,
+				6EB58F5A83C06E689CA12715AF27AF36 /* DropDown+Appearance.swift */,
+				5DBE5E8166B0DC20C35F9792392DBFAA /* DropDownCell.swift */,
+				7AF9DBE28B27B1359E0AD917F1C8FFCD /* Resources */,
+				D38F34C1EC331690F86E8F2FFC41D5EE /* Support Files */,
+			);
+			name = DropDown;
+			path = DropDown;
 			sourceTree = "<group>";
 		};
 		879941400E8075DBB0BF68EB6B11A78F /* Pods-MyGallery */ = {
@@ -217,23 +289,13 @@
 			path = "Target Support Files/Pods-MyGallery";
 			sourceTree = "<group>";
 		};
-		BD3BDF6D73D4C5C7C1C21132191914CD /* Products */ = {
+		90DF2E291AD82E82C0872FA80EBBAC61 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9B6725B782188F18CB76A740433F14E4 /* DropDown.framework */,
-				6D2DCC54BA520945A7F6EDC10FA3353B /* Pods_MyGallery.framework */,
-				F6A43C4D6A3A17F130BE154D471C8E29 /* Pods_MyGallery_MyGalleryUITests.framework */,
-				F09AC0F5068E24A6C53DA8BD4E0DEDD5 /* Pods_MyGalleryTests.framework */,
+				7B133F023B3C9CEE05FAFB0240CF1EEB /* DropDown */,
+				2FFA190D31D84CAA54C369F0477FA213 /* Loaf */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C59647B6F3C67ED72D999C113D892AF0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				EEBC6D732E1B0C41C6A8D03A8C81CF47 /* DropDownCell.xib */,
-			);
-			name = Resources;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -241,8 +303,8 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				057ED11B9D5977F85CBBBEF7C3E69DDB /* Pods */,
-				BD3BDF6D73D4C5C7C1C21132191914CD /* Products */,
+				90DF2E291AD82E82C0872FA80EBBAC61 /* Pods */,
+				18E6975FDDB558F027FAF08178F17D5B /* Products */,
 				F87F32B60F5C74689347C7594C1A8C57 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -253,6 +315,21 @@
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D38F34C1EC331690F86E8F2FFC41D5EE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F14E4FF42DBEE6BD65E9FAE9772A43C /* DropDown.modulemap */,
+				546FAB3E4DDD258524C8F9161E086CCB /* DropDown-dummy.m */,
+				4BB02D7D504F21004FDEA2CFED16DF40 /* DropDown-Info.plist */,
+				C9AF2E20A1BEE9447617785E4EEBE5B7 /* DropDown-prefix.pch */,
+				70B73F62CE13CCF70D827616B94BA571 /* DropDown-umbrella.h */,
+				1230090BF367557DBC09EA6E43D1A2C8 /* DropDown.debug.xcconfig */,
+				EA4B4D0B1A8984E6706FD15C38ED0917 /* DropDown.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DropDown";
 			sourceTree = "<group>";
 		};
 		F87F32B60F5C74689347C7594C1A8C57 /* Targets Support Files */ = {
@@ -293,22 +370,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		143609DA065B2B240BBC58173FBE59E7 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				61EE534EC208C3D01D610F3607A3AA19 /* Pods-MyGallery-MyGalleryUITests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18D7E94A996BC770D5BFD38D2A8AE943 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EB14CCC06DC220A9765AD28B1089E572 /* Pods-MyGallery-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2BB5683F7D1AA8FB2F94DA252A664DB8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,22 +378,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		964A7ADC64DA8EA3D26C89C2AAB36E87 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9B2F2F3DD5180C32939AC32F1B49880 /* Pods-MyGallery-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BE78FB96F035DE0C0351A1C972482C3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF6DDA092BAB26485BEDB22956DA8C85 /* Loaf-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6CA75BD150F462F2448804D11ABFC54 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F1FF9E90CFD474F65925B5A5815F87 /* Pods-MyGallery-MyGalleryUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1CA0FB4645B34FD4920DAB9A544FF3E3 /* Pods-MyGallery-MyGalleryUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 71859BE522441F547DE125F69C4EE44D /* Build configuration list for PBXNativeTarget "Pods-MyGallery-MyGalleryUITests" */;
+			buildConfigurationList = D4310110FAC91FB728DE911B8DCEA166 /* Build configuration list for PBXNativeTarget "Pods-MyGallery-MyGalleryUITests" */;
 			buildPhases = (
-				143609DA065B2B240BBC58173FBE59E7 /* Headers */,
-				B9076883A33F8A8D3F0145F670748BEA /* Sources */,
-				05E141DF3E652DC2632C8F59E74ED9B9 /* Frameworks */,
-				E6EC0206DAA83F6E13412924B4BFC0F2 /* Resources */,
+				E6CA75BD150F462F2448804D11ABFC54 /* Headers */,
+				7A5C2B935BA244505F7D8C9B826E473E /* Sources */,
+				D7F1810D823707BD0AAD3F1AF52EDB96 /* Frameworks */,
+				6F474715809194F1BC2573D65770DA07 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7C3C7529C3F76349910726C1B45F20B6 /* PBXTargetDependency */,
+				098267C36C39150F3CC3ED248B4C8E96 /* PBXTargetDependency */,
+				3055C3D27883E46FAC0AF38A9D06590A /* PBXTargetDependency */,
 			);
 			name = "Pods-MyGallery-MyGalleryUITests";
 			productName = "Pods-MyGallery-MyGalleryUITests";
@@ -351,26 +437,45 @@
 			buildRules = (
 			);
 			dependencies = (
-				2D1CC3C627AE67EE16549A699E2CF3BD /* PBXTargetDependency */,
+				D0990A4F8FA2F7CFD02F34BDBF272308 /* PBXTargetDependency */,
 			);
 			name = "Pods-MyGalleryTests";
 			productName = "Pods-MyGalleryTests";
 			productReference = F09AC0F5068E24A6C53DA8BD4E0DEDD5 /* Pods_MyGalleryTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D440E19013261530D99B247DF5148F98 /* Pods-MyGallery */ = {
+		3E12D5ED3565D8FCC3DD9B9DD89246A9 /* Loaf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7D3F0840611C6A3B4AF7912D95396E68 /* Build configuration list for PBXNativeTarget "Pods-MyGallery" */;
+			buildConfigurationList = 752A8374DEB2DF434B0E8D3E1E372D6B /* Build configuration list for PBXNativeTarget "Loaf" */;
 			buildPhases = (
-				18D7E94A996BC770D5BFD38D2A8AE943 /* Headers */,
-				E54B443B760E80FE0B58F861AECCADB2 /* Sources */,
-				34D248688AF1B2CC598E45F4C57ECB99 /* Frameworks */,
-				3E28B159C9123940A1EC1C231064DE39 /* Resources */,
+				9BE78FB96F035DE0C0351A1C972482C3 /* Headers */,
+				A107DEA09369E00D9478D5E6170D4082 /* Sources */,
+				2909161863B5A3EBA975E89A3E71680B /* Frameworks */,
+				F807AC81FC7886936591DD3443BCBFBD /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				02AE9C6F54113B939B93F74106918022 /* PBXTargetDependency */,
+			);
+			name = Loaf;
+			productName = Loaf;
+			productReference = 4BE730510F6EBDAEF7EF02CB99F4B209 /* Loaf.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D440E19013261530D99B247DF5148F98 /* Pods-MyGallery */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A53C3D18184523FAF668A5BC81CF2CF /* Build configuration list for PBXNativeTarget "Pods-MyGallery" */;
+			buildPhases = (
+				964A7ADC64DA8EA3D26C89C2AAB36E87 /* Headers */,
+				29F4C496E5C326FB0A819523771BDAA2 /* Sources */,
+				5B2A2D287AD36D5E67DF112866C02A5E /* Frameworks */,
+				3709F40E63BC43EB593AA887DABE9621 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5F0CDE7AE2B5B856FA0C598EB9ED318 /* PBXTargetDependency */,
+				AA31A5FC5768AF0DE9778CCB58F5E97D /* PBXTargetDependency */,
 			);
 			name = "Pods-MyGallery";
 			productName = "Pods-MyGallery";
@@ -413,11 +518,12 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = BD3BDF6D73D4C5C7C1C21132191914CD /* Products */;
+			productRefGroup = 18E6975FDDB558F027FAF08178F17D5B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */,
+				3E12D5ED3565D8FCC3DD9B9DD89246A9 /* Loaf */,
 				D440E19013261530D99B247DF5148F98 /* Pods-MyGallery */,
 				1CA0FB4645B34FD4920DAB9A544FF3E3 /* Pods-MyGallery-MyGalleryUITests */,
 				21CB5CD8B8911F9AD91CCB0747047CAF /* Pods-MyGalleryTests */,
@@ -426,7 +532,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3E28B159C9123940A1EC1C231064DE39 /* Resources */ = {
+		3709F40E63BC43EB593AA887DABE9621 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F474715809194F1BC2573D65770DA07 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -448,7 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E6EC0206DAA83F6E13412924B4BFC0F2 /* Resources */ = {
+		F807AC81FC7886936591DD3443BCBFBD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -458,6 +571,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		29F4C496E5C326FB0A819523771BDAA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40B82D14ECD70F12D725437F2D64E55E /* Pods-MyGallery-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C331903533AA0950064AA3847F61FDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -466,19 +587,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9076883A33F8A8D3F0145F670748BEA /* Sources */ = {
+		7A5C2B935BA244505F7D8C9B826E473E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E3428F63513D9DA12D61D194D8A8E8 /* Pods-MyGallery-MyGalleryUITests-dummy.m in Sources */,
+				5225E73324D51CBB026531FF06A77124 /* Pods-MyGallery-MyGalleryUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E54B443B760E80FE0B58F861AECCADB2 /* Sources */ = {
+		A107DEA09369E00D9478D5E6170D4082 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB729F74A16F6A4163B0DEA3284772D /* Pods-MyGallery-dummy.m in Sources */,
+				721A035134E7957C0227E47DCE0270B4 /* Animator.swift in Sources */,
+				905F6C4AE74097C8490206AAF61F1155 /* Controller.swift in Sources */,
+				EC1B62640BFAA43FF93760C93AA0D5E9 /* Extensions.swift in Sources */,
+				3A0FEA1EC8D5F7D4AE6383A1452C4C95 /* Icons.swift in Sources */,
+				7E3D75A8D56AF9B2FBB453CC9E623BAC /* Loaf-dummy.m in Sources */,
+				68291B4CF16255D3A7B0353C0BE2888F /* Loaf.swift in Sources */,
+				6270527753A2A79739ED04A0E7C2996F /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,33 +626,43 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		02AE9C6F54113B939B93F74106918022 /* PBXTargetDependency */ = {
+		098267C36C39150F3CC3ED248B4C8E96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DropDown;
 			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
-			targetProxy = 99415CE8A2A3463F589D13965901C668 /* PBXContainerItemProxy */;
+			targetProxy = 5CD19642C4281A06016073347142EAA5 /* PBXContainerItemProxy */;
 		};
-		2D1CC3C627AE67EE16549A699E2CF3BD /* PBXTargetDependency */ = {
+		3055C3D27883E46FAC0AF38A9D06590A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Loaf;
+			target = 3E12D5ED3565D8FCC3DD9B9DD89246A9 /* Loaf */;
+			targetProxy = B2653962E67A63819581F0160007DEFF /* PBXContainerItemProxy */;
+		};
+		AA31A5FC5768AF0DE9778CCB58F5E97D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Loaf;
+			target = 3E12D5ED3565D8FCC3DD9B9DD89246A9 /* Loaf */;
+			targetProxy = 4FCBD36B91DB9626016C4D27B5DC3DCC /* PBXContainerItemProxy */;
+		};
+		D0990A4F8FA2F7CFD02F34BDBF272308 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-MyGallery";
 			target = D440E19013261530D99B247DF5148F98 /* Pods-MyGallery */;
-			targetProxy = 6F844E9A1710EBD0774096E0BDC2EFF8 /* PBXContainerItemProxy */;
+			targetProxy = 9CEB53D15F78A7DBDFF3635B6BE67202 /* PBXContainerItemProxy */;
 		};
-		7C3C7529C3F76349910726C1B45F20B6 /* PBXTargetDependency */ = {
+		F5F0CDE7AE2B5B856FA0C598EB9ED318 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DropDown;
 			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
-			targetProxy = A5CB82B255F019348A1389088C2E73F2 /* PBXContainerItemProxy */;
+			targetProxy = 4AF1E1B46CB57D04DD92AC8B295165AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		04771F527397ED1EC9DAE4732BD5C9DC /* Debug */ = {
+		470E709B32133213C6175AC854D96834 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC4548BCAC2037172234DF7AEF9CB7F9 /* Pods-MyGallery-MyGalleryUITests.debug.xcconfig */;
+			baseConfigurationReference = FD9502D06F27CEEABFEBD55C2A95CD79 /* Loaf.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -534,23 +671,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Loaf/Loaf-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Loaf/Loaf-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/Loaf/Loaf.modulemap";
+				PRODUCT_MODULE_NAME = Loaf;
+				PRODUCT_NAME = Loaf;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -588,6 +724,41 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6ED1F030DA45C97604A60561E7FFB433 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8157E669F315ABC9DD0B06ED4652CF4D /* Loaf.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Loaf/Loaf-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Loaf/Loaf-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Loaf/Loaf.modulemap";
+				PRODUCT_MODULE_NAME = Loaf;
+				PRODUCT_NAME = Loaf;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -656,9 +827,9 @@
 			};
 			name = Release;
 		};
-		BE74CC6A19E70AF77CB69AC60DBF6F15 /* Debug */ = {
+		9A8223C46471C0B7D4E2991CBBDF650C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA1154322C7D671B2BE02E0F33710A8B /* Pods-MyGalleryTests.debug.xcconfig */;
+			baseConfigurationReference = 218C2A48740F5FB06BB250EDEEDF5525 /* Pods-MyGallery.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -670,7 +841,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -679,7 +850,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -693,7 +864,7 @@
 			};
 			name = Debug;
 		};
-		CD30A524C02493A101F481337A40A2FB /* Release */ = {
+		AD18EC27BFFD17CD9DC80BB4D2170F58 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 172D12FCDE62599123CF445AF7DB4DD5 /* Pods-MyGallery-MyGalleryUITests.release.xcconfig */;
 			buildSettings = {
@@ -731,9 +902,46 @@
 			};
 			name = Release;
 		};
+		BE74CC6A19E70AF77CB69AC60DBF6F15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA1154322C7D671B2BE02E0F33710A8B /* Pods-MyGalleryTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		DC36127A31C915B4B9185F522D17E14A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C15EB8657063755722D9C7DC8D72885 /* DropDown.release.xcconfig */;
+			baseConfigurationReference = EA4B4D0B1A8984E6706FD15C38ED0917 /* DropDown.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -765,47 +973,10 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		DD6CF22DBF1974F1AFE4241183893F42 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 218C2A48740F5FB06BB250EDEEDF5525 /* Pods-MyGallery.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		E5C6D65A51D1A3EE4FC1600265A9BEFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5834E7BD925BD3ED29331C1938CC0B7 /* DropDown.debug.xcconfig */;
+			baseConfigurationReference = 1230090BF367557DBC09EA6E43D1A2C8 /* DropDown.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -836,44 +1007,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		E96B8264B91C497F1C509560452A96A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0521A2CC49E52C972E5FA02BF1D9F868 /* Pods-MyGallery.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		EEF25CDFE5981495667B2EF4925DC0C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -940,6 +1073,81 @@
 			};
 			name = Debug;
 		};
+		F0F9A8E2D03A48321BEF4CFF08A702B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC4548BCAC2037172234DF7AEF9CB7F9 /* Pods-MyGallery-MyGalleryUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F3511261AC7F621FA1B9017A710E6D0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0521A2CC49E52C972E5FA02BF1D9F868 /* Pods-MyGallery.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MyGallery/Pods-MyGallery.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -961,20 +1169,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		71859BE522441F547DE125F69C4EE44D /* Build configuration list for PBXNativeTarget "Pods-MyGallery-MyGalleryUITests" */ = {
+		752A8374DEB2DF434B0E8D3E1E372D6B /* Build configuration list for PBXNativeTarget "Loaf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				04771F527397ED1EC9DAE4732BD5C9DC /* Debug */,
-				CD30A524C02493A101F481337A40A2FB /* Release */,
+				470E709B32133213C6175AC854D96834 /* Debug */,
+				6ED1F030DA45C97604A60561E7FFB433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7D3F0840611C6A3B4AF7912D95396E68 /* Build configuration list for PBXNativeTarget "Pods-MyGallery" */ = {
+		9A53C3D18184523FAF668A5BC81CF2CF /* Build configuration list for PBXNativeTarget "Pods-MyGallery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DD6CF22DBF1974F1AFE4241183893F42 /* Debug */,
-				E96B8264B91C497F1C509560452A96A3 /* Release */,
+				9A8223C46471C0B7D4E2991CBBDF650C /* Debug */,
+				F3511261AC7F621FA1B9017A710E6D0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4310110FAC91FB728DE911B8DCEA166 /* Build configuration list for PBXNativeTarget "Pods-MyGallery-MyGalleryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0F9A8E2D03A48321BEF4CFF08A702B5 /* Debug */,
+				AD18EC27BFFD17CD9DC80BB4D2170F58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

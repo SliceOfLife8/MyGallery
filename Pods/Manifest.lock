@@ -1,16 +1,20 @@
 PODS:
   - DropDown (2.3.12)
+  - Loaf (0.7.0)
 
 DEPENDENCIES:
   - DropDown (= 2.3.12)
+  - Loaf (= 0.7.0)
 
 SPEC REPOS:
   trunk:
     - DropDown
+    - Loaf
 
 SPEC CHECKSUMS:
   DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
+  Loaf: d69937cd00649f3fa260beb8b7aef0a1feb861ef
 
-PODFILE CHECKSUM: 4a244774ce163466d8b1b78baed52506b2b1a83e
+PODFILE CHECKSUM: cd4c1b35d7176f8179529ca87b6b2a007d82cb02
 
 COCOAPODS: 1.9.1
