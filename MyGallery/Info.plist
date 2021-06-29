@@ -6,28 +6,28 @@
 	<array>
         <dict>
             <key>UIApplicationShortcutItemType</key>
+            <string>GalleryAction</string>
+            <key>UIApplicationShortcutItemIconSymbolName</key>
+            <string>photo.on.rectangle</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Gallery</string>
+        </dict>
+        <dict>
+            <key>UIApplicationShortcutItemType</key>
             <string>SearchAction</string>
             <key>UIApplicationShortcutItemIconType</key>
             <string>UIApplicationShortcutIconTypeSearch</string>
             <key>UIApplicationShortcutItemTitle</key>
             <string>Search</string>
         </dict>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>VideosAction</string>
-			<key>UIApplicationShortcutItemIconSymbolName</key>
-			<string>video.fill</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Videos</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>GalleryAction</string>
-			<key>UIApplicationShortcutItemIconSymbolName</key>
-			<string>photo.on.rectangle</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Gallery</string>
-		</dict>
+        <dict>
+            <key>UIApplicationShortcutItemType</key>
+            <string>SettingsAction</string>
+            <key>UIApplicationShortcutItemIconSymbolName</key>
+            <string>gear</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Settings</string>
+        </dict>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>

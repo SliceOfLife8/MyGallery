@@ -12,6 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        /* Increase Engaging Count (incrementAppOpenedCount)
+         You should call this method whenever the user engaging factor of your application is increased */
+        StoreReviewHelper.incrementAppOpenedCount()
         return true
     }
     

@@ -40,6 +40,7 @@ class GalleryVC: UIViewController {
         self.navigationController?.navigationBar.barStyle = .black
         setupCollectionView()
         populateData()
+        StoreReviewHelper.checkAndAskForReview()
     }
     
     private func setupCollectionView() {

@@ -9,16 +9,16 @@ import UIKit
 
 internal enum TabBarValues: String {
     case GalleryAction
-    case VideosAction
     case SearchAction
+    case SettingsAction
     
     var index: Int {
         switch self {
         case .GalleryAction:
             return 0
-        case .VideosAction:
-            return 1
         case .SearchAction:
+            return 1
+        case .SettingsAction:
             return 2
         }
     }
@@ -47,8 +47,8 @@ class TabBar: UITabBarController {
     func setupVCs() {
         viewControllers = [
             createNavController(for: GalleryVC(GalleryViewModel()), title: "Gallery", image: UIImage(systemName: "photo.on.rectangle")),
-            createNavController(for: VideosVC(), title: "Videos", image: UIImage(systemName: "video.fill")),
-            createNavController(for: SearchImagesVC(SearchViewModel()), title: "Search", image: UIImage(systemName: "magnifyingglass"))
+            createNavController(for: SearchImagesVC(SearchViewModel()), title: "Search", image: UIImage(systemName: "magnifyingglass")),
+            createNavController(for: SettingsVC(), title: "Settings", image: UIImage(systemName: "gear")),
         ]
     }
     

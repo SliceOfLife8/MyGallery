@@ -70,7 +70,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func storeTabBarIndexState() {
         if let tabBar = self.window?.rootViewController as? TabBar{
             UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.TabBarIndex.rawValue)
-            let index = (tabBar.selectedIndex == 2) ? 0 : tabBar.selectedIndex
+            let index = (tabBar.selectedIndex == 1) ? 0 : tabBar.selectedIndex
             UserDefaults.standard.setValue(index, forKey: UserDefaultsKeys.TabBarIndex.rawValue)
         }
     }
