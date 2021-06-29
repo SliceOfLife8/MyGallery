@@ -7,7 +7,6 @@
 
 import UIKit
 import LinkPresentation
-import Photos
 
 /*
  UIContextMenuInteraction: Adds a context menu to a view.
@@ -138,56 +137,8 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
     
     func downloadAsset(for image: UIImage?, presentOverModal: Bool = false) {
         guard let asset = image else { return }
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized, .limited:
-            UIImageWriteToSavedPhotosAlbum(asset, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { (newStatus) in
-                DispatchQueue.main.async {
-                    if newStatus == .authorized {
-                        UIImageWriteToSavedPhotosAlbum(asset, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
-                    }
-                }
-            }
-        default:
-            //Create Alert Controller
-            let alert = UIAlertController(title: "Access to photos no granted!", message: nil, preferredStyle: .alert)
-            //Action 1
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            //Action 2
-            alert.addAction(UIAlertAction(title: "Go to Settings", style: .default, handler: { (_) in
-                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: nil)
-                }
-            }))
-            
-            if presentOverModal {
-                UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController?.present(alert, animated: true, completion: nil)
-            } else {
-                self.present(alert, animated: true)
-            }
-        }
-    }
-    
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            showAlertWith(title: "Save error", message: error.localizedDescription)
-        } else {
-            showAlertWith(title: "Image was saved!")
-        }
-    }
-    
-    private func showAlertWith(title: String, message: String? = nil) {
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        if UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController is ImagePreviewVC {
-            UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController?.present(ac, animated: true, completion: nil)
-        } else {
-            present(ac, animated: true)
-        }
+        guard let currentVC = presentOverModal ? UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController : self else { return }
+        CustomPhotoAlbum.shared.save(image: asset, with: currentVC)
     }
     
     func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {

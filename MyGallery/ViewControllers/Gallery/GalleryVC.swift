@@ -119,7 +119,7 @@ extension GalleryVC: GalleryVMDelegate {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             if self.viewModel.page == 2 {
-                Loaf("Photos provided by Pexels", state: .custom(.init(backgroundColor: UIColor(hexString: "#2c3e50"), icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                Loaf("Photos provided by Pexels", state: .custom(.init(backgroundColor: UIColor(hexString: "#2c3e50"), icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
             }
         }
     }
