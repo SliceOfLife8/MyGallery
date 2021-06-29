@@ -52,8 +52,3 @@ struct StoreReviewHelper {
         return sum
     }
 }
-
-extension UserDefaults {
-    static let appOpenedNo = "app_openned"
-    static let reviewRequestNo = "review_requested"
-}

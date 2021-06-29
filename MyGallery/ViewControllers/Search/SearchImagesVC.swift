@@ -16,11 +16,6 @@ class SearchImagesVC: UIViewController {
     var sharedImageInfo: (sizePerMb: String, photographer: String)?
     private var query: String = ""
     var workItem: DispatchWorkItem?
-    private var photoCellPhotographerColor: UIColor {
-        get {
-            (traitCollection.userInterfaceStyle == .dark) ? UIColor(hexString: "#333333") : UIColor(hexString: "#f2f2f2")
-        }
-    }
     
     // MARK: - Outlets
     @IBOutlet weak var searchTF: SearchTextField!
@@ -175,7 +170,7 @@ extension SearchImagesVC: UICollectionViewDataSource, UICollectionViewDelegateFl
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath as IndexPath) as! PhotoCell
         if viewModel.images.count == 0 || viewModel.photos.count == 0 { return cell }
-        cell.setupCell(viewModel.images[indexPath.item], photographerName: viewModel.photos[indexPath.item].photographer, containerBGColor: self.photoCellPhotographerColor)
+        cell.setupCell(viewModel.images[indexPath.item], photographerName: viewModel.photos[indexPath.item].photographer, containerBGColor: UIColor(named: "LightGray"))
         // Create a UIContextMenuInteraction with UIContextMenuInteractionDelegate
         if cell.interactions.isEmpty {
             let interaction = UIContextMenuInteraction(delegate: self)

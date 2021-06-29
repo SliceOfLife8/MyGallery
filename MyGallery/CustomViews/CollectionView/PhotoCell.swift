@@ -29,7 +29,7 @@ class PhotoCell: UICollectionViewCell {
         nameLbl.text = ""
     }
     
-    func setupCell(_ image: UIImage?, photographerName: String, containerBGColor: UIColor = UIColor(hexString: "#999999")) {
+    func setupCell(_ image: UIImage?, photographerName: String, containerBGColor: UIColor? = UIColor(hexString: "#999999")) {
         containerView.backgroundColor = containerBGColor
         imageView.image = image
         photographer.text = "Photographer"

@@ -46,6 +46,9 @@
 		B6AFA767268B047400344FD5 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA766268B047300344FD5 /* SettingsVC.swift */; };
 		B6AFA76A268B0C2E00344FD5 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA769268B0C2E00344FD5 /* SettingsCell.swift */; };
 		B6AFA76D268B271000344FD5 /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */; };
+		B6AFA76F268B32E000344FD5 /* DarkModeSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */; };
+		B6AFA771268B432C00344FD5 /* Ext_UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */; };
+		B6AFA776268B506A00344FD5 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6AFA775268B506A00344FD5 /* Color.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +118,9 @@
 		B6AFA766268B047300344FD5 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		B6AFA769268B0C2E00344FD5 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
+		B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeSelectionVC.swift; sourceTree = "<group>"; };
+		B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UserDefaults.swift; sourceTree = "<group>"; };
+		B6AFA775268B506A00344FD5 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		C155E03FE6508A73A0F1DF41 /* Pods-MyGalleryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGalleryTests.release.xcconfig"; path = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests.release.xcconfig"; sourceTree = "<group>"; };
 		F8646D12B5C26D6D211F4584 /* Pods-MyGallery-MyGalleryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery-MyGalleryUITests.debug.xcconfig"; path = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,6 +210,7 @@
 				B63CEAB72684819E00DC941F /* CustomViews */,
 				B6AFA76B268B26F500344FD5 /* Helpers */,
 				B63CEA7A26845F3D00DC941F /* Assets.xcassets */,
+				B6AFA775268B506A00344FD5 /* Color.xcassets */,
 				B693CC4226861ABD001715AF /* gallery.png */,
 				B63CEA7C26845F3D00DC941F /* LaunchScreen.storyboard */,
 				B63CEA7F26845F3D00DC941F /* Info.plist */,
@@ -258,6 +265,7 @@
 				B693CC382685D718001715AF /* Ext_UIView.swift */,
 				B693CC4026861217001715AF /* Ext_String.swift */,
 				B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */,
+				B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -326,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				B6AFA766268B047300344FD5 /* SettingsVC.swift */,
+				B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -476,6 +485,7 @@
 				B63CEABE2684834000DC941F /* PhotoCell.xib in Resources */,
 				B63CEAC0268485C200DC941F /* GalleryVC.xib in Resources */,
 				B63CEA7E26845F3D00DC941F /* LaunchScreen.storyboard in Resources */,
+				B6AFA776268B506A00344FD5 /* Color.xcassets in Resources */,
 				B63CEA7B26845F3D00DC941F /* Assets.xcassets in Resources */,
 				B693CC352685BD4C001715AF /* SearchImagesVC.xib in Resources */,
 			);
@@ -623,6 +633,8 @@
 				B69A3F2D26872CAC008F16E3 /* GradientView.swift in Sources */,
 				B63CEAB9268481AF00DC941F /* PinterestLayout.swift in Sources */,
 				B6AFA76D268B271000344FD5 /* StoreReviewHelper.swift in Sources */,
+				B6AFA771268B432C00344FD5 /* Ext_UserDefaults.swift in Sources */,
+				B6AFA76F268B32E000344FD5 /* DarkModeSelectionVC.swift in Sources */,
 				B63CEA7426845F3C00DC941F /* SceneDelegate.swift in Sources */,
 				B63CEAAA26846B8000DC941F /* SearchImagesVC.swift in Sources */,
 				B693CC3B2685DB35001715AF /* SearchTextField.swift in Sources */,

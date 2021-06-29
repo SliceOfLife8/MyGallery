@@ -28,4 +28,21 @@ extension UIApplication {
         let version = appVersion, build = appBuild
         return version == build ? "v\(version)" : "v\(version)(\(build))"
     }
+    
+    func override(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if supportsMultipleScenes {
+            for connectedScene in connectedScenes {
+                if let scene = connectedScene as? UIWindowScene {
+                    for window in scene.windows {
+                        window.overrideUserInterfaceStyle = userInterfaceStyle
+                    }
+                }
+            }
+        }
+        else {
+            for window in windows {
+                window.overrideUserInterfaceStyle = userInterfaceStyle
+            }
+        }
+    }
 }

@@ -9,15 +9,16 @@ import UIKit
 import Photos
 
 struct Section {
-    let title: String
+    let title: String?
     let bottomTitle: String?
-    let options: [SettingsOption]
+    var options: [SettingsOption]
 }
 
 struct SettingsOption {
     let title: String
     let icon: UIImage?
-    let iconBackgroundColor: UIColor
+    let iconBackgroundColor: UIColor?
+    var accessoryType: UITableViewCell.AccessoryType
     let handle: (() -> Void)
 }
 
@@ -43,34 +44,45 @@ class SettingsVC: UIViewController {
         tableView.frame = view.bounds
     }
     
+    /// #Detect when darkMode changed
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            self.tableView.reloadData()
+        }
+    }
+    
     /// #Create Setting Options for tableView
     func configure() {
         /// #Apperance
         models.append(Section(title: "Appearance", bottomTitle: nil, options: [
-            SettingsOption(title: "Dark Mode", icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: .black, handle: {
-                print("Tap0")
+            SettingsOption(title: "Dark Mode", icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: UIColor(named: "Black"), accessoryType: .disclosureIndicator, handle: {
+                let darkModeVC = DarkModeSelectionVC()
+                let navigationController = UINavigationController(rootViewController: darkModeVC)
+                darkModeVC.modalPresentationStyle = .popover
+                self.present(navigationController, animated: true)
             })
         ]))
         /// #General
         models.append(Section(title: "General", bottomTitle: nil, options: [
-            SettingsOption(title: "Find me on social", icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(hexString: "#6dd5ed"), handle: {
+            SettingsOption(title: "Find me on social", icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: .disclosureIndicator, handle: {
                 guard let url = URL(string: "https://www.linkedin.com/in/christos-petimezas/") else { return }
                 
                 let webView = WebPreviewVC(with: url)
                 webView.modalPresentationStyle = .popover
                 self.present(webView, animated: true)
             }),
-            SettingsOption(title: "Share app", icon: UIImage(systemName: "square.and.arrow.up"), iconBackgroundColor: .link, handle: {
+            SettingsOption(title: "Share app", icon: UIImage(systemName: "square.and.arrow.up"), iconBackgroundColor: .link, accessoryType: .disclosureIndicator, handle: {
                 self.shareApp()
             }),
-            SettingsOption(title: "Review app", icon: UIImage(systemName: "star.circle.fill"), iconBackgroundColor: UIColor(hexString: "#43cea2"), handle: {
+            SettingsOption(title: "Review app", icon: UIImage(systemName: "star.circle.fill"), iconBackgroundColor: UIColor(hexString: "#43cea2"), accessoryType: .disclosureIndicator, handle: {
                 StoreReviewHelper.requestReview()
             })
         ]))
         /// #Show custom album only if authorizationStatus is authorized.
         if getStatus() {
             models.append(Section(title: "\(albumName) ALBUM", bottomTitle: appVersion, options: [
-                SettingsOption(title: "Edit album", icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(hexString: "#753a88"), handle: {
+                SettingsOption(title: "Edit album", icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "PurpleColor"), accessoryType: .disclosureIndicator, handle: {
                     print("Tap4")
                 })
             ]))

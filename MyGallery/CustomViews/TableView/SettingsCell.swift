@@ -32,6 +32,8 @@ class SettingsCell: UITableViewCell {
         return label
     }()
     
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(label)
@@ -39,7 +41,6 @@ class SettingsCell: UITableViewCell {
         iconContainer.addSubview(iconImageView)
         
         contentView.clipsToBounds = true
-        accessoryType = .disclosureIndicator
     }
     
     required init?(coder: NSCoder) {
@@ -72,6 +73,7 @@ class SettingsCell: UITableViewCell {
         label.text = model.title
         iconImageView.image = model.icon
         iconContainer.backgroundColor = model.iconBackgroundColor
+        accessoryType = model.accessoryType
     }
     
 }
