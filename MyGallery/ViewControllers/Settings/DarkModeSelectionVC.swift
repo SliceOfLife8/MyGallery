@@ -27,8 +27,12 @@ class DarkModeSelectionVC: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.frame = view.bounds
         tableView.allowsMultipleSelection = false
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        tableView.frame = view.bounds
     }
     
     /// #Detect when darkMode changed

@@ -20,7 +20,7 @@ class CustomPhotoAlbum: NSObject {
     private override init() {
         super.init()
         
-        if let assetCollection = fetchAssetCollectionForAlbum() {
+        if let assetCollection = CustomPhotoAlbum.fetchAssetCollectionForAlbum() {
             self.assetCollection = assetCollection
             return
         }
@@ -46,7 +46,7 @@ class CustomPhotoAlbum: NSObject {
         }
     }
     
-    private func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
+    static func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
         let fetchOptions = PHFetchOptions()
         fetchOptions.predicate = NSPredicate(format: "title = %@", CustomPhotoAlbum.albumName)
         let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
@@ -65,7 +65,7 @@ class CustomPhotoAlbum: NSObject {
                 return
             }
             if success {
-                if let assetCollection = self.fetchAssetCollectionForAlbum() {
+                if let assetCollection = CustomPhotoAlbum.fetchAssetCollectionForAlbum() {
                     // Album already exists
                     self.assetCollection = assetCollection
                     PHPhotoLibrary.shared().performChanges({
@@ -82,7 +82,7 @@ class CustomPhotoAlbum: NSObject {
                         PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)   // create an asset collection with the album name
                     }) { success, error in
                         if success {
-                            self.assetCollection = self.fetchAssetCollectionForAlbum()
+                            self.assetCollection = CustomPhotoAlbum.fetchAssetCollectionForAlbum()
                             PHPhotoLibrary.shared().performChanges({
                                 let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
                                 let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset

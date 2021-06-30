@@ -43,6 +43,11 @@
 		B69A3F342687A126008F16E3 /* WebPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F332687A126008F16E3 /* WebPreviewVC.swift */; };
 		B69A3F402689AF6F008F16E3 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F3F2689AF6F008F16E3 /* PhotoManager.swift */; };
 		B6A4CBB72689FE6000E5CA01 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4CBB62689FE6000E5CA01 /* CustomPhotoAlbum.swift */; };
+		B6A9F14D268C52D200D32589 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A9F14C268C52D200D32589 /* GalleryCell.swift */; };
+		B6A9F14F268C5FB300D32589 /* Ext_Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A9F14E268C5FB300D32589 /* Ext_Array.swift */; };
+		B6ABA099268B96A400833E8C /* EditCustomAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABA098268B96A400833E8C /* EditCustomAlbumVC.swift */; };
+		B6ABA09B268B96D000833E8C /* EditCustomAlbumVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6ABA09A268B96D000833E8C /* EditCustomAlbumVC.xib */; };
+		B6ABA09D268B979500833E8C /* EditAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABA09C268B979500833E8C /* EditAlbumViewModel.swift */; };
 		B6AFA767268B047400344FD5 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA766268B047300344FD5 /* SettingsVC.swift */; };
 		B6AFA76A268B0C2E00344FD5 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA769268B0C2E00344FD5 /* SettingsCell.swift */; };
 		B6AFA76D268B271000344FD5 /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */; };
@@ -115,6 +120,11 @@
 		B69A3F332687A126008F16E3 /* WebPreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPreviewVC.swift; sourceTree = "<group>"; };
 		B69A3F3F2689AF6F008F16E3 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		B6A4CBB62689FE6000E5CA01 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
+		B6A9F14C268C52D200D32589 /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		B6A9F14E268C5FB300D32589 /* Ext_Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Array.swift; sourceTree = "<group>"; };
+		B6ABA098268B96A400833E8C /* EditCustomAlbumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomAlbumVC.swift; sourceTree = "<group>"; };
+		B6ABA09A268B96D000833E8C /* EditCustomAlbumVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditCustomAlbumVC.xib; sourceTree = "<group>"; };
+		B6ABA09C268B979500833E8C /* EditAlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumViewModel.swift; sourceTree = "<group>"; };
 		B6AFA766268B047300344FD5 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		B6AFA769268B0C2E00344FD5 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
@@ -266,6 +276,7 @@
 				B693CC4026861217001715AF /* Ext_String.swift */,
 				B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */,
 				B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */,
+				B6A9F14E268C5FB300D32589 /* Ext_Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -304,6 +315,7 @@
 				B63CEAB8268481AF00DC941F /* PinterestLayout.swift */,
 				B63CEABB2684834000DC941F /* PhotoCell.swift */,
 				B63CEABC2684834000DC941F /* PhotoCell.xib */,
+				B6A9F14C268C52D200D32589 /* GalleryCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -333,6 +345,7 @@
 		B69A3F2A26872340008F16E3 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B6ABA097268B968100833E8C /* EditAlbum */,
 				B6AFA766268B047300344FD5 /* SettingsVC.swift */,
 				B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */,
 			);
@@ -354,6 +367,16 @@
 				B69A3F3F2689AF6F008F16E3 /* PhotoManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		B6ABA097268B968100833E8C /* EditAlbum */ = {
+			isa = PBXGroup;
+			children = (
+				B6ABA098268B96A400833E8C /* EditCustomAlbumVC.swift */,
+				B6ABA09A268B96D000833E8C /* EditCustomAlbumVC.xib */,
+				B6ABA09C268B979500833E8C /* EditAlbumViewModel.swift */,
+			);
+			path = EditAlbum;
 			sourceTree = "<group>";
 		};
 		B6AFA768268B0C0600344FD5 /* TableView */ = {
@@ -482,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B693CC4326861ABD001715AF /* gallery.png in Resources */,
+				B6ABA09B268B96D000833E8C /* EditCustomAlbumVC.xib in Resources */,
 				B63CEABE2684834000DC941F /* PhotoCell.xib in Resources */,
 				B63CEAC0268485C200DC941F /* GalleryVC.xib in Resources */,
 				B63CEA7E26845F3D00DC941F /* LaunchScreen.storyboard in Resources */,
@@ -622,6 +646,7 @@
 				B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */,
 				B63CEAB126847C0900DC941F /* MediaContext.swift in Sources */,
 				B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */,
+				B6A9F14F268C5FB300D32589 /* Ext_Array.swift in Sources */,
 				B69A3F342687A126008F16E3 /* WebPreviewVC.swift in Sources */,
 				B693CC3F26860FC9001715AF /* SearchImages+UIContextMenu.swift in Sources */,
 				B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */,
@@ -636,7 +661,10 @@
 				B6AFA771268B432C00344FD5 /* Ext_UserDefaults.swift in Sources */,
 				B6AFA76F268B32E000344FD5 /* DarkModeSelectionVC.swift in Sources */,
 				B63CEA7426845F3C00DC941F /* SceneDelegate.swift in Sources */,
+				B6ABA099268B96A400833E8C /* EditCustomAlbumVC.swift in Sources */,
+				B6ABA09D268B979500833E8C /* EditAlbumViewModel.swift in Sources */,
 				B63CEAAA26846B8000DC941F /* SearchImagesVC.swift in Sources */,
+				B6A9F14D268C52D200D32589 /* GalleryCell.swift in Sources */,
 				B693CC3B2685DB35001715AF /* SearchTextField.swift in Sources */,
 				B6AFA76A268B0C2E00344FD5 /* SettingsCell.swift in Sources */,
 				B63CEAD32684C76500DC941F /* Gallery+UIContextMenu.swift in Sources */,

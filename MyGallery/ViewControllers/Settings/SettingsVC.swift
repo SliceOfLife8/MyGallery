@@ -41,6 +41,10 @@ class SettingsVC: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         tableView.frame = view.bounds
     }
     
@@ -83,7 +87,9 @@ class SettingsVC: UIViewController {
         if getStatus() {
             models.append(Section(title: "\(albumName) ALBUM", bottomTitle: appVersion, options: [
                 SettingsOption(title: "Edit album", icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "PurpleColor"), accessoryType: .disclosureIndicator, handle: {
-                    print("Tap4")
+                    let editAlbumVC = EditCustomAlbumVC(EditAlbumViewModel())
+                    editAlbumVC.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(editAlbumVC, animated: true)
                 })
             ]))
         }
