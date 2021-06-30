@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Photos
+import DropDown
+import Loaf
 
 class EditCustomAlbumVC: UIViewController {
     
@@ -17,9 +20,9 @@ class EditCustomAlbumVC: UIViewController {
     var collectionViewFlowLayout: UICollectionViewFlowLayout? {
         return collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
-    private lazy var numberOfElementsInRow = 3
-    private var minimumItemSpacingAtSameRow: CGFloat = 8
-    private var minimumItemSpacingBetweenGrids: CGFloat = 8
+    internal lazy var numberOfElementsInRow = 3
+    internal var minimumItemSpacingAtSameRow: CGFloat = 8
+    internal var minimumItemSpacingBetweenGrids: CGFloat = 8
     internal lazy var cellIdentifier = "GalleryCell"
     
     let screenWidth: CGFloat = UIScreen.main.bounds.size.width
@@ -27,6 +30,8 @@ class EditCustomAlbumVC: UIViewController {
         return self.estimateSizeOfImages()
     }()
     var selectedIndexPaths: [IndexPath] = [] /// Track selected indexPaths. We need reference to selected cells as we don't have index of them when reuse automatically occrus.
+    let dropDownForDotsView = DropDown()
+    let dropDownForTrashView = DropDown()
     
     // MARK: - Outlets
     @IBOutlet weak var noAssetsView: UIView!
@@ -36,6 +41,10 @@ class EditCustomAlbumVC: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         configure(viewModel: viewModel)
+    }
+    
+    deinit {
+        print("deinit vc")
     }
     
     func configure(viewModel: EditAlbumViewModel) {
@@ -51,114 +60,141 @@ class EditCustomAlbumVC: UIViewController {
         setupNavigationBar()
         setupCollectionView()
         populateData()
+        
+        Loaf("Select images to delete them", state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+        // Observe photo library changes
+        PHPhotoLibrary.shared().register(self)
     }
     
     private func setupNavigationBar() {
         self.navigationItem.title = "Edit album"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "Black")
         self.navigationItem.largeTitleDisplayMode = .never
-        let bar = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: nil, action: nil)
-        self.navigationItem.rightBarButtonItem = bar
+        updateBarRightItem()
     }
     
     private func populateData() {
         viewModel.fetchCustomAlbumPhotos()
     }
     
-    private func setupCollectionView() {
-        let collectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionViewFlowLayout.minimumLineSpacing = minimumItemSpacingAtSameRow
-        collectionViewFlowLayout.minimumInteritemSpacing = minimumItemSpacingBetweenGrids
-        collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: minimumItemSpacingBetweenGrids, left: 0, bottom: 0, right: 16)
-        let itemSize = estimateSizeOfImages()
-        collectionViewFlowLayout.itemSize = CGSize(width: itemSize.width, height: itemSize.height)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-        collectionView.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 24), bottom: (view.bottomAnchor, 0), left: (view.leadingAnchor, 16), right: (view.trailingAnchor, 0))
-        
-        collectionView.register(GalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        collectionView.allowsMultipleSelection = true
-        collectionView.backgroundColor = .clear
-        self.collectionView = collectionView
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-    
-    /// #Estimate size of images depending on default paddings
-    private func estimateSizeOfImages() -> CGSize {
-        let _numberOfElementsInRow = CGFloat(numberOfElementsInRow)
-        let allWidthBetwenCells = _numberOfElementsInRow == 0 ? 0 : minimumItemSpacingAtSameRow * (_numberOfElementsInRow - 1)
-        let standardPaddings: CGFloat = (16 * 2) + allWidthBetwenCells // 16 -> leading & trailing
-        let remainingWidth = screenWidth - standardPaddings
-        let imageSize = CGSize(width: remainingWidth / _numberOfElementsInRow, height: remainingWidth / _numberOfElementsInRow)
-        
-        return imageSize
-    }
-    
-}
-
-// MARK: - UICollectionView Delegates
-extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.images.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! GalleryCell
-        
-        cell.imageView?.image = viewModel.images[indexPath.row]
-        
-        if let index = self.selectedIndexPaths.find(element: { $0 == indexPath }) {
-            cell.createCircle(with: index + 1)
-        }
-        
-        return cell
-    }
-    
-    /*
-     - Deselect items & update datasource of selectedIndexPaths
-     - Reload items when it's necessary. This is important when we have f.e. 3 visible & selected cells ( circle indicators 1, 2, 3) and we decide to deselect cell 2. We have to update indicators, so in order to achieve that we force collectionView to performBatchUpdates to certain indexPaths.
-     */
-    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-        if let selectedItems = collectionView.indexPathsForSelectedItems {
-            if selectedItems.contains(indexPath) {
-                collectionView.deselectItem(at: indexPath, animated: true)
-                selectedIndexPaths = selectedIndexPaths.filter { $0 != indexPath }
-                updateCertainIndexPaths(selectedIndexPaths)
-                //sendBtn?.isHidden = selectedIndexPaths.isEmpty
-                return false
+    func updateBarRightItem() {
+        if selectedIndexPaths.isEmpty {
+            // Create pull-down menu
+            if #available(iOS 14.0, *) {
+                let bar = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: nil)
+                self.navigationItem.rightBarButtonItem = bar
+                self.navigationItem.rightBarButtonItem?.menu = addMenuItemsToDotsView()
+            } else {
+                let bar = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(barLinesTapped))
+                self.navigationItem.rightBarButtonItem = bar
+                addDropDownMenuForDotsView()
+            }
+        } else {
+            if #available(iOS 14.0, *) {
+                let bar = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: nil)
+                self.navigationItem.rightBarButtonItem = bar
+                self.navigationItem.rightBarButtonItem?.menu = addMenuItemsToTrashView()
+            } else {
+                let bar = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(trashTapped))
+                self.navigationItem.rightBarButtonItem = bar
+                addDropDownMenuForTrashView()
             }
         }
-        return true
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if let cell = collectionView.cellForItem(at: indexPath) as? GalleryCell {
-            let selectedItems = collectionView.indexPathsForSelectedItems?.count ?? 0
-            cell.createCircle(with: selectedItems + 1)
-            selectedIndexPaths.append(indexPath)
-            //sendBtn?.isHidden = false
-        }
-        return true
+    // MARK: - Actions
+    @objc func barLinesTapped() {
+        dropDownForDotsMenuTapped()
     }
     
-    func updateCertainIndexPaths(_ indexPaths: [IndexPath]) {
-        for (index, item) in indexPaths.enumerated() {
-            collectionView?.performBatchUpdates({
-                if let myCell = self.collectionView?.cellForItem(at: item) as? GalleryCell {
-                    myCell.createCircle(with: index + 1)
-                }
-            }, completion: nil)
-        }
+    @objc func trashTapped() {
+        dropDownForTrashMenuTapped()
     }
+    
 }
 
 // MARK: - EditAlbumViewModel Delegate
 extension EditCustomAlbumVC: EditAlbumVMDelegate {
     
     func didGetImages() {
-        self.collectionView?.reloadData()
+        if viewModel.images.count == 0 {
+            self.collectionView?.isHidden = true
+            self.noAssetsView.isHidden = false
+        } else {
+            self.collectionView?.reloadData()
+        }
     }
     
+    func didDeleteAlbum(status: Bool) {
+        DispatchQueue.main.async {
+            if status {
+                Loaf("To album \(CustomPhotoAlbum.albumName) διάγραφηκε!", state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                self.collectionView?.isHidden = true
+                self.noAssetsView.isHidden = false
+            } else {
+                Loaf("Φαίνεται ό,τι κάτι πήγε στραβά! Προσπάθησε πάλι!", state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+            }
+        }
+    }
+    
+}
+
+// MARK: - PHPhotoLibraryChangeObserver delegate
+
+extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        print("photoLibraryDidChange")
+        guard let collectionView = self.collectionView else { return }
+        // Change notifications may be made on a background queue.
+        // Re-dispatch to the main queue to update the UI.
+        DispatchQueue.main.sync {
+            // Check for changes to the displayed album itself
+            // (its existence and metadata, not its member assets).
+            if let albumChanges = changeInstance.changeDetails(for: viewModel.assetCollection!) {
+                // If album delete return
+                if albumChanges.objectWasDeleted == true { return }
+                // Fetch the new album and update the UI accordingly.
+                viewModel.assetCollection = albumChanges.objectAfterChanges!
+            }
+            // Check for changes to the list of assets (insertions, deletions, moves, or updates).
+            if let changes = changeInstance.changeDetails(for: viewModel.photoAssets) {
+                // Keep the new fetch result for future use.
+                viewModel.photoAssets = changes.fetchResultAfterChanges
+                // Update datasource of images
+                viewModel.indexPathsToBeDeleted.forEach { indexPath in
+                    viewModel.images.remove(at: indexPath.row)
+                }
+                selectedIndexPaths.removeAll()
+                if changes.hasIncrementalChanges {
+                    // If there are incremental diffs, animate them in the collection view.
+                    collectionView.performBatchUpdates({
+                        // For indexes to make sense, updates must be in this order:
+                        // delete, insert, reload, move
+                        if let removed = changes.removedIndexes, removed.count > 0 {
+                            collectionView.deleteItems(at: removed.map { IndexPath(item: $0, section:0) })
+                        }
+                        if let inserted = changes.insertedIndexes, inserted.count > 0 {
+                            collectionView.insertItems(at: inserted.map { IndexPath(item: $0, section:0) })
+                        }
+                        if let changed = changes.changedIndexes, changed.count > 0 {
+                            collectionView.reloadItems(at: changed.map { IndexPath(item: $0, section:0) })
+                        }
+                        changes.enumerateMoves { fromIndex, toIndex in
+                            collectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),
+                                                    to: IndexPath(item: toIndex, section: 0))
+                        }
+                    })
+                } else {
+                    // Reload the collection view if incremental diffs are not available.
+                    collectionView.reloadData()
+                }
+                updateBarRightItem()
+                Loaf(viewModel.loafTitle.rawValue, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                if self.viewModel.images.count == 0 {
+                    self.collectionView?.isHidden = true
+                    self.noAssetsView.isHidden = false
+                }
+            }
+        }
+    }
 }

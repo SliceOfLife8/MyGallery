@@ -110,7 +110,7 @@ extension GalleryVC: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
         
         //let height = viewModel.images[indexPath.item]?.size.height ?? 250
-        return 400
+        return 350
     }
 }
 

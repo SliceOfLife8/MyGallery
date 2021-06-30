@@ -9,17 +9,28 @@ import Foundation
 import UIKit
 import Photos
 
+enum InfoMessages: String {
+    case deleteAlbum = "'Ολες οι φωτογραφίες διαγράφηκαν από το Album!"
+    case deleteMultipleImages = "Οι φωτογραφίες διαγράφηκαν από τη συλλογή!"
+    case deleteSingleImage = "Η φωτογραφία διαγράφηκε από τη συλλογή!"
+    case deleteMultipleImagesFromAlbum = "Οι φωτογραφίες διαγράφηκαν από το album!"
+    case deleteSingleImageFromAlbum = "Η φωτογραφία διαγράφηκε από το album!"
+}
+
 protocol EditAlbumVMDelegate: AnyObject {
     func didGetImages()
+    func didDeleteAlbum(status: Bool)
 }
 
 class EditAlbumViewModel {
     
     weak var delegate: EditAlbumVMDelegate?
     
-    private var assetCollection: PHAssetCollection?
+    var assetCollection: PHAssetCollection?
     var images: [UIImage] = []
     var photoAssets = PHFetchResult<PHAsset>()
+    var indexPathsToBeDeleted: [IndexPath] = []
+    var loafTitle: InfoMessages = .deleteMultipleImagesFromAlbum
     
     init() {}
     
@@ -29,7 +40,10 @@ class EditAlbumViewModel {
         assetCollection = CustomPhotoAlbum.fetchAssetCollectionForAlbum()
         albumFound = (assetCollection != nil) ? true : false
         
-        guard albumFound == true, let myCollection = assetCollection else { return }
+        guard albumFound == true, let myCollection = assetCollection else {
+            self.delegate?.didGetImages()
+            return
+        }
         photoAssets = PHAsset.fetchAssets(in: myCollection, options: nil)
         let imageManager = PHCachingImageManager()
         photoAssets.enumerateObjects{(object: AnyObject!,
@@ -64,51 +78,51 @@ class EditAlbumViewModel {
     func addImages(uploadImage: UIImage, totalAssets: Int) {
         self.images.append(uploadImage)
         if totalAssets == images.count {
-            print("imagecount: \(images.count)")
             self.delegate?.didGetImages()
         }
     }
     
     // Delete image directly from 'Collection'
-    func deleteImage(index: Int) {
-        let photoAsset = self.photoAssets.object(at: index)
+    func deleteImages(indexPaths: [IndexPath]) {
+        var photoAssets: [PHAsset] = []
+        indexPathsToBeDeleted = indexPaths
+        indexPaths.forEach { indexPath in
+            photoAssets.append(self.photoAssets.object(at: indexPath.row))
+        }
+        loafTitle = (indexPaths.count == 1) ? .deleteSingleImage : .deleteMultipleImages
         
         PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.deleteAssets([photoAsset] as NSArray)
+            PHAssetChangeRequest.deleteAssets(photoAssets as NSArray)
         })
     }
     
     // Delete images only from custom album
-    func deleteImagesFromAlbum(index: Int) {
+    func deleteImagesFromAlbum(indexPaths: [IndexPath]) {
         guard let collection = assetCollection else { return }
-        let photoAsset = self.photoAssets.object(at: index)
-        
+        var photoAssets: [PHAsset] = []
+        indexPathsToBeDeleted = indexPaths
+        indexPaths.forEach { indexPath in
+            photoAssets.append(self.photoAssets.object(at: indexPath.row))
+        }
+        loafTitle = (indexPaths.count == 1) ? .deleteSingleImageFromAlbum : .deleteMultipleImagesFromAlbum
+
         PHPhotoLibrary.shared().performChanges({
             guard let albumChangeRequest = PHAssetCollectionChangeRequest(for: collection) else { return }
-            let fastEnumeration = NSArray(array: [photoAsset])
+            let fastEnumeration = NSArray(array: photoAssets)
             albumChangeRequest.removeAssets(fastEnumeration)
-        }, completionHandler: { success, error in
-            if success {
-                print("removed")
-            } else {
-                print("not removed")
-            }
-        })
+        }, completionHandler: nil)
     }
     
     // Delete entire collection aka Custom album
     func deleteAlbum() {
         guard let collection = assetCollection else { return }
         let fastEnumeration = NSArray(array: [collection])
+        loafTitle = .deleteAlbum
         
         PHPhotoLibrary.shared().performChanges({
             PHAssetCollectionChangeRequest.deleteAssetCollections(fastEnumeration)
         }, completionHandler: { (success, error) in
-            if success {
-                //success
-            } else if let error = error {
-                //failed
-            }
+            self.delegate?.didDeleteAlbum(status: success)
         })
     }
     
