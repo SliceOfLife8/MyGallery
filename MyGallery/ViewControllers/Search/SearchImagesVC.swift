@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchImagesVC: UIViewController {
+class SearchImagesVC: BaseVC {
     
     // MARK: - Vars
     private(set) var viewModel: SearchViewModel

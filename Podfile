@@ -8,6 +8,7 @@ target 'MyGallery' do
   # Pods for MyGallery
   pod 'DropDown', '2.3.12'
   pod 'Loaf', '0.7.0'
+  pod 'ReachabilitySwift', '5.0.0'
   
   target 'MyGalleryTests' do
     inherit! :search_paths

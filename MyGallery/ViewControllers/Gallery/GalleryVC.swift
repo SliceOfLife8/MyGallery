@@ -8,7 +8,7 @@
 import UIKit
 import Loaf
 
-class GalleryVC: UIViewController {
+class GalleryVC: BaseVC {
     
     // MARK: - Vars
     private(set) var viewModel: GalleryViewModel

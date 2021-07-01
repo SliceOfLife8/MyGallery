@@ -14,9 +14,9 @@ enum UserDefaultsKeys: String {
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow? {
-      didSet {
-        window?.overrideUserInterfaceStyle = UserDefaults.standard.overridedUserInterfaceStyle
-      }
+        didSet {
+            window?.overrideUserInterfaceStyle = UserDefaults.standard.overridedUserInterfaceStyle
+        }
     }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -45,6 +45,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        // Starts monitoring network reachability status changes
+        ReachabilityManager.shared.startMonitoring()
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
@@ -55,6 +58,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        
+        // Stops monitoring network reachability status changes
+        ReachabilityManager.shared.stopMonitoring()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

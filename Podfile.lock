@@ -1,20 +1,24 @@
 PODS:
   - DropDown (2.3.12)
   - Loaf (0.7.0)
+  - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
   - DropDown (= 2.3.12)
   - Loaf (= 0.7.0)
+  - ReachabilitySwift (= 5.0.0)
 
 SPEC REPOS:
   trunk:
     - DropDown
     - Loaf
+    - ReachabilitySwift
 
 SPEC CHECKSUMS:
   DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
   Loaf: d69937cd00649f3fa260beb8b7aef0a1feb861ef
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: cd4c1b35d7176f8179529ca87b6b2a007d82cb02
+PODFILE CHECKSUM: 5381f1f006a9ece2aa6919ea1a56630728b01c14
 
 COCOAPODS: 1.9.1
