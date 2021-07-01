@@ -40,6 +40,7 @@
 		B698E30B268DAA1D00AE6FBF /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B698E30A268DAA1D00AE6FBF /* ReachabilityManager.swift */; };
 		B698E30D268DABEE00AE6FBF /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B698E30C268DABEE00AE6FBF /* BaseVC.swift */; };
 		B698E312268DD21B00AE6FBF /* GalleryUIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B698E311268DD21B00AE6FBF /* GalleryUIWindow.swift */; };
+		B698E316268DE2AD00AE6FBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B698E318268DE2AD00AE6FBF /* Localizable.strings */; };
 		B69A3F2D26872CAC008F16E3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2C26872CAC008F16E3 /* GradientView.swift */; };
 		B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */; };
 		B69A3F3226879B0D008F16E3 /* Ext_UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */; };
@@ -122,6 +123,8 @@
 		B698E30A268DAA1D00AE6FBF /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		B698E30C268DABEE00AE6FBF /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		B698E311268DD21B00AE6FBF /* GalleryUIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryUIWindow.swift; sourceTree = "<group>"; };
+		B698E317268DE2AD00AE6FBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B698E319268DE2CD00AE6FBF /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B69A3F2C26872CAC008F16E3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewVC.swift; sourceTree = "<group>"; };
 		B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIApplication.swift; sourceTree = "<group>"; };
@@ -407,6 +410,7 @@
 			children = (
 				B6A4CBB62689FE6000E5CA01 /* CustomPhotoAlbum.swift */,
 				B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */,
+				B698E318268DE2AD00AE6FBF /* Localizable.strings */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -501,6 +505,7 @@
 			knownRegions = (
 				en,
 				Base,
+				el,
 			);
 			mainGroup = B63CEA6526845F3C00DC941F;
 			productRefGroup = B63CEA6F26845F3C00DC941F /* Products */;
@@ -523,6 +528,7 @@
 				B6ABA09B268B96D000833E8C /* EditCustomAlbumVC.xib in Resources */,
 				B63CEABE2684834000DC941F /* PhotoCell.xib in Resources */,
 				B63CEAC0268485C200DC941F /* GalleryVC.xib in Resources */,
+				B698E316268DE2AD00AE6FBF /* Localizable.strings in Resources */,
 				B63CEA7E26845F3D00DC941F /* LaunchScreen.storyboard in Resources */,
 				B6AFA776268B506A00344FD5 /* Color.xcassets in Resources */,
 				B63CEA7B26845F3D00DC941F /* Assets.xcassets in Resources */,
@@ -736,6 +742,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		B698E318268DE2AD00AE6FBF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B698E317268DE2AD00AE6FBF /* en */,
+				B698E319268DE2CD00AE6FBF /* el */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -744,6 +759,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -806,6 +822,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -35,14 +35,14 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
             previewProvider: nil) { _ in
             /// #Create multiple actions with callbacks
             let copyAction = UIAction(
-                title: "Αντιγραφή",
+                title: "copy".localized(),
                 image: UIImage(systemName: "doc.on.doc")) { [weak self] _ in
                 if let image = self?.sharedImage { /// Copy image to clipboard
                     self?.copyImageToClipboard(for: image)
                 }
             }
                 let downloadAction = UIAction(
-                    title: "Αποθήκευση",
+                    title: "download".localized(),
                     image: UIImage(systemName: "square.and.arrow.down")) { [weak self] _ in
                     if let image = self?.sharedImage {
                         self?.downloadAsset(for: image) /// Download image
@@ -50,7 +50,7 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
                 }
                 /// #Share selectedImage to other apps.
             let shareAction = UIAction(
-                title: "Κοινή χρήση",
+                title: "share_image".localized(),
                 image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
                 self?.shareImage()
             }

@@ -8,8 +8,14 @@
 import Foundation
 
 extension String {
+    
     func withReplacedCharacters(_ oldChar: String, by newChar: String) -> String {
         let newStr = self.replacingOccurrences(of: oldChar, with: newChar, options: .literal, range: nil)
         return newStr
     }
+    
+    func localized() -> String {
+        return NSLocalizedString(self, tableName: "Localizable", bundle: .main, value: self, comment: self)
+    }
+    
 }

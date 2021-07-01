@@ -110,7 +110,7 @@ class CustomPhotoAlbum: NSObject {
             if let error = error {
                 Loaf("Error with description: \(error.localizedDescription)", state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self.parentVC).show(.short)
             } else {
-                Loaf("Image was saved!", state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self.parentVC).show(.short)
+                Loaf("image_saved".localized(), state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self.parentVC).show(.short)
             }
         }
     }

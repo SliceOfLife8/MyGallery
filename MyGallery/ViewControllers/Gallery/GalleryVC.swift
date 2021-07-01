@@ -36,6 +36,8 @@ class GalleryVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
+        //UserDefaults.standard.synchronize()
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .black
         setupCollectionView()
@@ -120,7 +122,7 @@ extension GalleryVC: GalleryVMDelegate {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             if self.viewModel.page == 2 {
-                Loaf("Photos provided by Pexels", state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                Loaf("photos_by_pexels".localized(), state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
             }
         }
     }

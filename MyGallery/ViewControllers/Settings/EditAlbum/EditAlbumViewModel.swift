@@ -10,11 +10,26 @@ import UIKit
 import Photos
 
 enum InfoMessages: String {
-    case deleteAlbum = "To album διάγραφηκε!"
-    case deleteMultipleImages = "Οι φωτογραφίες διαγράφηκαν από τη συλλογή!"
-    case deleteSingleImage = "Η φωτογραφία διαγράφηκε από τη συλλογή!"
-    case deleteMultipleImagesFromAlbum = "Οι φωτογραφίες διαγράφηκαν από το album!"
-    case deleteSingleImageFromAlbum = "Η φωτογραφία διαγράφηκε από το album!"
+    case deleteAlbum
+    case deleteMultipleImages
+    case deleteSingleImage
+    case deleteMultipleImagesFromAlbum
+    case deleteSingleImageFromAlbum
+    
+    var raw: String {
+        switch self {
+        case .deleteAlbum:
+           return "album_deleted".localized()
+        case .deleteMultipleImages:
+            return "delete_multiple_images".localized()
+        case .deleteSingleImage:
+            return "delete_single_image".localized()
+        case .deleteMultipleImagesFromAlbum:
+            return "delete_multiple_images_fr_album".localized()
+        case .deleteSingleImageFromAlbum:
+            return "delete_single_image_fr_album".localized()
+        }
+    }
 }
 
 protocol EditAlbumVMDelegate: AnyObject {

@@ -59,13 +59,13 @@ class EditCustomAlbumVC: UIViewController {
         populateData()
         setupNoAssetsView()
         
-        Loaf("Select images to delete them", state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+        Loaf("select_images".localized(), state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
         // Observe photo library changes
         PHPhotoLibrary.shared().register(self)
     }
     
     private func setupNavigationBar() {
-        self.navigationItem.title = "Edit album"
+        self.navigationItem.title = "edit_album".localized()
         self.navigationController?.navigationBar.tintColor = UIColor(named: "Black")
         self.navigationItem.largeTitleDisplayMode = .never
         updateBarRightItem()
@@ -108,6 +108,7 @@ class EditCustomAlbumVC: UIViewController {
             noAssetsView.topGradientColor = UIColor(hexString: "#d7e1ec") // Sweet Airan
             noAssetsView.bottomGradientColor = UIColor(hexString: "#ffffff")
         }
+        noAssetsLbl.text = "no_album_found".localized()
         noAssetsLbl.textColor = UIColor(named: "Black")
     }
     
@@ -137,11 +138,11 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
     func didDeleteAlbum(status: Bool) {
         DispatchQueue.main.async {
             if status {
-                Loaf(self.viewModel.loafTitle.rawValue, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                Loaf(self.viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
                 self.collectionView?.isHidden = true
                 self.noAssetsView.isHidden = false
             } else {
-                Loaf("Φαίνεται ό,τι κάτι πήγε στραβά! Προσπάθησε πάλι!", state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                Loaf("something_went_wrong".localized(), state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
             }
         }
     }
@@ -198,7 +199,7 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                     collectionView.reloadData()
                 }
                 updateBarRightItem()
-                Loaf(viewModel.loafTitle.rawValue, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                Loaf(viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
                 if self.viewModel.images.count == 0 {
                     self.collectionView?.isHidden = true
                     self.noAssetsView.isHidden = false

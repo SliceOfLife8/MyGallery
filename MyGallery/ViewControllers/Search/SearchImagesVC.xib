@@ -14,7 +14,10 @@
             <connections>
                 <outlet property="cancelBtn" destination="Inp-Mj-b0f" id="5SB-mn-wAN"/>
                 <outlet property="collectionView" destination="0Wf-fv-wch" id="5O2-IB-Kbn"/>
+                <outlet property="discoverImagesLbl" destination="HxM-mZ-hVS" id="NLK-ei-pad"/>
                 <outlet property="failureView" destination="hox-qt-0M2" id="lP0-vS-7xi"/>
+                <outlet property="noResultsLbl" destination="vfb-wk-zJu" id="ERp-W3-ukf"/>
+                <outlet property="onlyEnCharsLbl" destination="fNy-QN-OAA" id="Qek-eW-R61"/>
                 <outlet property="searchTF" destination="paa-AL-hQT" id="eDA-o7-eNP"/>
                 <outlet property="searchView" destination="Wcu-Ed-9x9" id="76Z-jZ-3X8"/>
                 <outlet property="stackView" destination="QnN-a1-LzM" id="SGK-Eh-7Uc"/>
@@ -29,7 +32,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QnN-a1-LzM">
                     <rect key="frame" x="16" y="44" width="382" height="34"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for images" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="paa-AL-hQT" userLabel="Search Text Field" customClass="SearchTextField" customModule="MyGallery" customModuleProvider="target">
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="paa-AL-hQT" userLabel="Search Text Field" customClass="SearchTextField" customModule="MyGallery" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="318" height="34"/>
                             <color key="textColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -65,8 +68,8 @@
                                 <constraint firstAttribute="width" constant="100" id="hCM-59-DfI"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Δε βρέθηκαν αποτελέσματα γι' αυτό που ψάχνεις. Μη τα παρατάς, δοκίμασε κάτι άλλο!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfb-wk-zJu">
-                            <rect key="frame" x="24" y="216" width="366" height="72"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfb-wk-zJu">
+                            <rect key="frame" x="24" y="216" width="366" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <nil key="textColor"/>
                             <color key="highlightedColor" systemColor="systemGray2Color"/>
@@ -101,14 +104,14 @@
                                 <constraint firstAttribute="width" constant="100" id="GBU-Qs-gPK"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ανακάλυψε φωτογραφίες με μια λέξη!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxM-mZ-hVS">
-                            <rect key="frame" x="24" y="216" width="366" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxM-mZ-hVS">
+                            <rect key="frame" x="24" y="216" width="366" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <nil key="textColor"/>
                             <color key="highlightedColor" systemColor="systemGray2Color"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(υποστηρίζονται μόνο αγγλικοί όροι)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNy-QN-OAA" userLabel="only-en chars">
-                            <rect key="frame" x="24" y="248" width="366" height="14.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNy-QN-OAA" userLabel="only-en chars">
+                            <rect key="frame" x="24" y="224" width="366" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" systemColor="systemGray2Color"/>
                             <color key="highlightedColor" systemColor="labelColor"/>
@@ -151,7 +154,7 @@
     </objects>
     <designables>
         <designable name="paa-AL-hQT">
-            <size key="intrinsicContentSize" width="177" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
     </designables>
     <resources>

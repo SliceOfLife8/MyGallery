@@ -12,11 +12,11 @@ extension EditCustomAlbumVC {
     @available(iOS 14.0, *)
     func addMenuItemsToDotsView() -> UIMenu {
         // Create actions
-        let deleteAlbum = UIAction(title: "Delete album", image: UIImage(systemName: "photo"), handler: { [weak self] _ in
+        let deleteAlbum = UIAction(title: "delete_album".localized(), image: UIImage(systemName: "photo"), handler: { [weak self] _ in
             self?.viewModel.deleteAlbum()
         })
         
-        let deleteAlbumAndCollection = UIAction(title: "Delete all assets from collection", image: UIImage(systemName: "cube"), handler: { [weak self] _ in
+        let deleteAlbumAndCollection = UIAction(title: "delete_all_assets".localized(), image: UIImage(systemName: "cube"), handler: { [weak self] _ in
             guard let indexPaths = self?.getAllIndexPaths() else { return }
             self?.viewModel.deleteImages(indexPaths: indexPaths)
         })
@@ -31,12 +31,12 @@ extension EditCustomAlbumVC {
     @available(iOS 14.0, *)
     func addMenuItemsToTrashView() -> UIMenu {
         // Create actions
-        let deleteAlbum = UIAction(title: "Delete assets from album", image: UIImage(systemName: "photo"), handler: { [weak self] _ in
+        let deleteAlbum = UIAction(title: "delete_assets_album".localized(), image: UIImage(systemName: "photo"), handler: { [weak self] _ in
             guard let indexPaths = self?.selectedIndexPaths else { return }
             self?.viewModel.deleteImagesFromAlbum(indexPaths: indexPaths)
         })
         
-        let deleteAlbumAndCollection = UIAction(title: "Delete assets from collection", image: UIImage(systemName: "cube"), handler: { [weak self] _ in
+        let deleteAlbumAndCollection = UIAction(title: "delete_assets".localized(), image: UIImage(systemName: "cube"), handler: { [weak self] _ in
             guard let indexPaths = self?.selectedIndexPaths else { return }
             self?.viewModel.deleteImages(indexPaths: indexPaths)
         })
@@ -50,14 +50,14 @@ extension EditCustomAlbumVC {
     
     func addDropDownMenuForDotsView() {
         dropDownForDotsView.anchorView = self.navigationItem.rightBarButtonItem
-        dropDownForDotsView.dataSource = ["Delete album", "Delete all assets from collection"]
+        dropDownForDotsView.dataSource = ["delete_album".localized(), "delete_all_assets".localized()]
         dropDownForDotsView.cellConfiguration = { (index, item) in return "\(item)"}
         dropDownForDotsView.selectionBackgroundColor = .clear
     }
     
     func addDropDownMenuForTrashView() {
         dropDownForTrashView.anchorView = self.navigationItem.rightBarButtonItem
-        dropDownForTrashView.dataSource = ["Delete assets from album", "Delete assets from collection"]
+        dropDownForTrashView.dataSource = ["delete_assets_album".localized(), "delete_assets".localized()]
         dropDownForTrashView.cellConfiguration = { (index, item) in return "\(item)"}
         dropDownForTrashView.selectionBackgroundColor = .clear
     }
@@ -89,9 +89,5 @@ extension EditCustomAlbumVC {
         dropDownForTrashView.width = 230
         dropDownForTrashView.bottomOffset = CGPoint(x: 0, y: self.navigationController?.navigationBar.bounds.height ?? UIApplication.topSafeAreaHeight)
         dropDownForTrashView.show()
-    }
-    
-    @objc func willShowMenu() {
-        print("kati")
     }
 }

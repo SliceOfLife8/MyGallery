@@ -32,7 +32,7 @@ class PhotoCell: UICollectionViewCell {
     func setupCell(_ image: UIImage?, photographerName: String, containerBGColor: UIColor? = UIColor(hexString: "#999999")) {
         containerView.backgroundColor = containerBGColor
         imageView.image = image
-        photographer.text = "Photographer"
+        photographer.text = "photographer".localized()
         photographer.font = UIFont.systemFontItalic(size: 14.0, fontWeight: .black)
         nameLbl.text = photographerName
     }

@@ -54,9 +54,9 @@ class TabBar: UITabBarController {
     
     func setupVCs() {
         viewControllers = [
-            createNavController(for: GalleryVC(GalleryViewModel()), title: "Gallery", image: UIImage(systemName: "photo.on.rectangle")),
-            createNavController(for: SearchImagesVC(SearchViewModel()), title: "Search", image: UIImage(systemName: "magnifyingglass")),
-            createNavController(for: SettingsVC(), title: "Settings", image: UIImage(systemName: "gear")),
+            createNavController(for: GalleryVC(GalleryViewModel()), title: "gallery".localized(), image: UIImage(systemName: "photo.on.rectangle")),
+            createNavController(for: SearchImagesVC(SearchViewModel()), title: "search".localized(), image: UIImage(systemName: "magnifyingglass")),
+            createNavController(for: SettingsVC(), title: "settings".localized(), image: UIImage(systemName: "gear")),
         ]
     }
     

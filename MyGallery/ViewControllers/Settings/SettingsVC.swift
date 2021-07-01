@@ -32,7 +32,7 @@ class SettingsVC: UIViewController {
     
     var models = [Section]()
     let albumName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
-    private let appVersion = "Current version: \(UIApplication.appVersion)"
+    private let appVersion = "version".localized() + " \(UIApplication.appVersion)"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +64,8 @@ class SettingsVC: UIViewController {
     /// #Create Setting Options for tableView
     func configure() {
         /// #Apperance
-        models.append(Section(title: "Appearance", bottomTitle: nil, options: [
-            SettingsOption(title: "Dark Mode", icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: UIColor(named: "Black"), accessoryType: .disclosureIndicator, handle: {
+        models.append(Section(title: "appearance".localized(), bottomTitle: nil, options: [
+            SettingsOption(title: "dark_mode".localized(), icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: UIColor(named: "Black"), accessoryType: .disclosureIndicator, handle: {
                 let darkModeVC = DarkModeSelectionVC()
                 let navigationController = UINavigationController(rootViewController: darkModeVC)
                 darkModeVC.modalPresentationStyle = .popover
@@ -73,25 +73,25 @@ class SettingsVC: UIViewController {
             })
         ]))
         /// #General
-        models.append(Section(title: "General", bottomTitle: nil, options: [
-            SettingsOption(title: "Find me on social", icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: .disclosureIndicator, handle: {
+        models.append(Section(title: "general".localized(), bottomTitle: nil, options: [
+            SettingsOption(title: "find_me_on_social".localized(), icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: .disclosureIndicator, handle: {
                 guard let url = URL(string: "https://www.linkedin.com/in/christos-petimezas/") else { return }
                 
                 let webView = WebPreviewVC(with: url)
                 webView.modalPresentationStyle = .popover
                 self.present(webView, animated: true)
             }),
-            SettingsOption(title: "Share app", icon: UIImage(systemName: "square.and.arrow.up"), iconBackgroundColor: .link, accessoryType: .disclosureIndicator, handle: {
+            SettingsOption(title: "share_app".localized(), icon: UIImage(systemName: "square.and.arrow.up"), iconBackgroundColor: .link, accessoryType: .disclosureIndicator, handle: {
                 self.shareApp()
             }),
-            SettingsOption(title: "Review app", icon: UIImage(systemName: "star.circle.fill"), iconBackgroundColor: UIColor(hexString: "#43cea2"), accessoryType: .disclosureIndicator, handle: {
+            SettingsOption(title: "review_app".localized(), icon: UIImage(systemName: "star.circle.fill"), iconBackgroundColor: UIColor(hexString: "#43cea2"), accessoryType: .disclosureIndicator, handle: {
                 StoreReviewHelper.requestReview()
             })
         ]))
         /// #Show custom album only if authorizationStatus is authorized.
         if getStatus() {
-            models.append(Section(title: "\(albumName) ALBUM", bottomTitle: appVersion, options: [
-                SettingsOption(title: "Edit album", icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "PurpleColor"), accessoryType: .disclosureIndicator, handle: {
+            models.append(Section(title: "\(albumName) " + "album".localized(), bottomTitle: appVersion, options: [
+                SettingsOption(title: "edit_album".localized(), icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "PurpleColor"), accessoryType: .disclosureIndicator, handle: {
                     let editAlbumVC = EditCustomAlbumVC(EditAlbumViewModel())
                     editAlbumVC.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(editAlbumVC, animated: true)

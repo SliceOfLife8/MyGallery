@@ -20,7 +20,7 @@ class DarkModeSelectionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Dark Mode"
+        self.title = "dark_mode".localized()
         let backButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back))
         self.navigationItem.leftBarButtonItem = backButton
         configure()
@@ -49,14 +49,14 @@ class DarkModeSelectionVC: UIViewController {
     
     func configure() {
         let status = getDarkModeStatus()
-        models.append(Section(title: nil, bottomTitle: "Αν επιλέξετε \"Σύστημα\", το \(appName) θα προσαρμόσει αυτόματα την εμφάνιση με βάση τις ρυθμίσεις συστήματος της συσκευής σας.", options: [
-            SettingsOption(title: "Ενεργοποίηση", icon: UIImage(systemName: "moon.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 2) ? .checkmark : .none, handle: { [weak self] in
+        models.append(Section(title: nil, bottomTitle: "choose_system".localized() + "\(appName)" + "device_settings".localized(), options: [
+            SettingsOption(title: "activation".localized(), icon: UIImage(systemName: "moon.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 2) ? .checkmark : .none, handle: { [weak self] in
                 self?.updateDarkMode(.dark)
             }),
-            SettingsOption(title: "Απενεργοποίηση", icon: UIImage(systemName: "sun.min.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 1) ? .checkmark : .none, handle: { [weak self] in
+            SettingsOption(title: "deactivation".localized(), icon: UIImage(systemName: "sun.min.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 1) ? .checkmark : .none, handle: { [weak self] in
                 self?.updateDarkMode(.light)
             }),
-            SettingsOption(title: "Σύστημα", icon: UIImage(systemName: "circle.lefthalf.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 0) ? .checkmark : .none, handle: { [weak self] in
+            SettingsOption(title: "system".localized(), icon: UIImage(systemName: "circle.lefthalf.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 0) ? .checkmark : .none, handle: { [weak self] in
                 self?.updateDarkMode(.unspecified)
             })
         ]))

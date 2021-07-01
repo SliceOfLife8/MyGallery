@@ -24,6 +24,9 @@ class SearchImagesVC: BaseVC {
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var noResultsLbl: UILabel!
+    @IBOutlet weak var discoverImagesLbl: UILabel!
+    @IBOutlet weak var onlyEnCharsLbl: UILabel!
     
     // MARK: - Init
     init(_ viewModel: SearchViewModel) {
@@ -63,14 +66,19 @@ class SearchImagesVC: BaseVC {
     
     private func setupViews() {
         applyGradients()
+        cancelBtn.setTitle("cancel".localized(), for: .normal)
         searchTF.keyboardType = .asciiCapable
         searchTF.returnKeyType = .search
         searchTF.enablesReturnKeyAutomatically = true
         searchTF.backgroundColor = UIColor(hexString: "#cccccc")
         searchTF.textColor = UIColor(hexString: "#734b6d")
+        searchTF.placeholder = "search_images".localized()
         searchTF.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         searchTF.delegate = self
         searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchViewTapped)))
+        noResultsLbl.text = "no_results".localized()
+        discoverImagesLbl.text = "discover_images".localized()
+        onlyEnCharsLbl.text = "only_en_chars".localized()
     }
     
     private func setupCollectionView() {

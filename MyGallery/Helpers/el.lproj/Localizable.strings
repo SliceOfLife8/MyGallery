@@ -1,0 +1,52 @@
+/* 
+ Localizable.strings
+ MyGallery
+ 
+ Created by Christos Petimezas on 1/7/21.
+ Greek Localizable
+ */
+
+"photographer" = "Φωτογράφος";
+"gallery" = "Συλλογή";
+"search" = "Αναζήτηση";
+"settings" = "Ρυθμίσεις";
+"network_fail" = "Φαίνεται πως υπάρχει πρόβλημα με το δίκτυο σου!";
+"network_is_back" = "Επανήλθε το δίκτυο!";
+"photos_by_pexels" = "Photos provided by Pexels";
+"copy" = "Αντιγραφή";
+"download" = "Αποθήκευση";
+"share_image" = "Κοινή χρήση";
+"cancel" = "Ακύρωση";
+"no_results" = "Δε βρέθηκαν αποτελέσματα γι' αυτό που ψάχνεις. Μη τα παρατάς, δοκίμασε κάτι άλλο!";
+"discover_images" = "Ανακάλυψε φωτογραφίες με μια λέξη!";
+"only_en_chars" = "(υποστηρίζονται μόνο αγγλικοί όροι)";
+"select_images" = "Επέλεξε φωτογραφίες για να τις διαγράψεις";
+"search_images" = "Αναζήτηση για εικόνες";
+"edit_album" = "Επεξεργασία album";
+"something_went_wrong" = "Φαίνεται ό,τι κάτι πήγε στραβά! Προσπάθησε πάλι!";
+"no_album_found" = "Δεν υπάρχουν διαθέσιμες φωτογραφίες στο Album.\nΜπορείς να προσθέσεις από τη συλλογή ή την αναζήτηση!";
+"album_deleted" = "To album διάγραφηκε!";
+"delete_multiple_images" = "Οι φωτογραφίες διαγράφηκαν από τη συλλογή!";
+"delete_single_image" = "Η φωτογραφία διαγράφηκε από τη συλλογή!";
+"delete_multiple_images_fr_album" = "Οι φωτογραφίες διαγράφηκαν από το album!";
+"delete_single_image_fr_album" = "Η φωτογραφία διαγράφηκε από το album!";
+"delete_album" = "Διαγραφή album";
+"delete_all_assets" = "Διαγραφή όλων των εικόνων από τη συλλογή";
+"delete_assets_album" = "Διαγραφή εικόνων από το album";
+"delete_assets" = "Διαγραφή εικόνων από τη συλλογή";
+"version" = "Τελευταία έκδοση:";
+"appearance" = "Εμφάνιση";
+"dark_mode" = "Νυχτερινή λειτουργία";
+"general" = "Γενικά";
+"find_me_on_social" = "Βρες με στα social";
+"share_app" = "Μοιράσου το app";
+"review_app" = "Αξιολόγησε το app";
+"album" = "ALBUM";
+"choose_system" = "Αν επιλέξετε \"Σύστημα\", το ";
+"device_settings" = " θα προσαρμόσει αυτόματα την εμφάνιση με βάση τις ρυθμίσεις συστήματος της συσκευής σας.";
+"activation" = "Ενεργοποίηση";
+"deactivation" = "Απενεργοποίηση";
+"system" = "Σύστημα";
+"hq_loading" = "HQ φορτώνει...";
+"hq_available" = "HQ διαθέσιμη ✔️";
+"image_saved" = "Η εικόνα αποθηκεύτηκε!";

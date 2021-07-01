@@ -1,0 +1,52 @@
+/* 
+ Localizable.strings
+ MyGallery
+ 
+ Created by Christos Petimezas on 1/7/21.
+ English
+ */
+
+"photographer" = "Photographer";
+"gallery" = "Gallery";
+"search" = "Search";
+"settings" = "Settings";
+"network_fail" = "Whoops! There seems to be a problem with your network connection";
+"network_is_back" = "Network connection restored!";
+"photos_by_pexels" = "Photos provided by Pexels";
+"copy" = "Copy";
+"download" = "Download";
+"share_image" = "Share image";
+"cancel" = "Cancel";
+"no_results" = "No results were found for what you are looking for. Do not give up, give another shot!";
+"discover_images" = "Discover images with one word";
+"only_en_chars" = "(Only english terms are supported)";
+"select_images" = "Select images to delete them";
+"search_images" = "Search for images";
+"edit_album" = "Edit album";
+"something_went_wrong" = "It seems that something went wrong! Try again!";
+"no_album_found" = "There are no photos available in the Album.\nYou can add from the gallery or search tab!";
+"album_deleted" = "The album has been deleted!";
+"delete_multiple_images" = "The photos were deleted from the collection!";
+"delete_single_image" = "The photo was deleted from the collection!";
+"delete_multiple_images_fr_album" = "The photos were deleted from the album!";
+"delete_single_image_fr_album" = "The photo was deleted from the album";
+"delete_album" = "Delete album";
+"delete_all_assets" = "Delete all assets from collection";
+"delete_assets_album" = "Delete assets from album";
+"delete_assets" = "Delete assets from collection";
+"version" = "Current version:";
+"appearance" = "Appearance";
+"dark_mode" = "Dark Mode";
+"general" = "General";
+"find_me_on_social" = "Find me on social";
+"share_app" = "Share app";
+"review_app" = "Review app";
+"album" = "ALBUM";
+"choose_system" = "If you select \"System\", ";
+"device_settings" = " will automatically adjust the appearance based on the system settings of your device.";
+"activation" = "Activation";
+"deactivation" = "Deactivation";
+"system" = "System";
+"hq_loading" = "HQ Loading...";
+"hq_available" = "HQ available ✔️";
+"image_saved" = "Image was saved!";

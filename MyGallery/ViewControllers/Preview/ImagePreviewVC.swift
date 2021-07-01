@@ -237,7 +237,7 @@ open class ImagePreviewVC: UIViewController {
     
     fileprivate func addDropDownMenu() {
         dropDown.anchorView = dotsView
-        dropDown.dataSource = ["Αποθήκευση", "Κοινή χρήση", imageInfo.authorName ?? ""]
+        dropDown.dataSource = ["download".localized(), "share_image".localized(), imageInfo.authorName ?? ""]
         dropDown.cellConfiguration = { (index, item) in return "\(item)"}
         dropDown.selectionBackgroundColor = .clear
     }
@@ -246,10 +246,10 @@ open class ImagePreviewVC: UIViewController {
         if let imageKey = imageInfo.imageHD?.absoluteString, let cachedImage = PhotoManager.shared.retrieveImage(with: imageKey)  {
             self.imageView.image = cachedImage
             self.view.layoutIfNeeded()
-            hqLabel.text = "HQ available ✔️"
+            hqLabel.text = "hq_available".localized()
         } else {
             setupImageHD()
-            hqLabel.text = "HQ Loading..."
+            hqLabel.text = "hq_loading".localized()
         }
         hqLabel.gradientColors = [UIColor(hexString: "#141e30").cgColor, UIColor(hexString: "#243b55").cgColor] /// Royal gradient Color
         hqLabel.sizeToFit()
@@ -277,11 +277,10 @@ open class ImagePreviewVC: UIViewController {
         
         let request = URLRequest(url: imageHD, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
-            print("fetch HQ image!")
             guard let data = data else { return }
             guard let image = UIImage(data: data) else { return }
             self.imageView.image = image
-            self.hqLabel.text = "HQ available ✔️"
+            self.hqLabel.text = "hq_available".localized()
             self.view.layoutIfNeeded()
             PhotoManager.shared.storeImage(image, for: imageHD.absoluteString)
         })
@@ -539,11 +538,11 @@ extension ImagePreviewVC {
     @available(iOS 14.0, *)
     fileprivate func addMenuItems() -> UIMenu {
         // Create actions
-        let storeAction = UIAction(title: "Αποθήκευση", image: UIImage(systemName: "square.and.arrow.down"), handler: { _ in
+        let storeAction = UIAction(title: "download".localized(), image: UIImage(systemName: "square.and.arrow.down"), handler: { _ in
             self.delegate?.didStoreImage(for: self.imageView.image)
         })
         
-        let shareAction = UIAction(title: "Κοινή χρήση", image: UIImage(systemName: "square.and.arrow.up"), handler: { _ in
+        let shareAction = UIAction(title: "share_image".localized(), image: UIImage(systemName: "square.and.arrow.up"), handler: { _ in
             self.delegate?.didShareImage(with: self.imageView.image, size: self.imageView.image?.getSizeIn(.megabyte) ?? "", photographer: self.imageInfo.authorName ?? "")
         })
         
@@ -565,7 +564,6 @@ extension ImagePreviewVC {
     /// #Drop down menu for iOS 13
     func dropDownMenuTapped() {
         dropDown.selectionAction = { (index: Int, item: String) in
-            print("Selected item: \(item) at index: \(index)")
             if index == 0 {
                 self.delegate?.didStoreImage(for: self.imageView.image)
             } else if index == 1 {
