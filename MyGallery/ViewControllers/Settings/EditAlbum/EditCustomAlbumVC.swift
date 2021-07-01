@@ -151,13 +151,13 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
 // MARK: - PHPhotoLibraryChangeObserver delegate
 extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
-        guard let collectionView = self.collectionView else { return }
+        guard let collectionView = self.collectionView, let assetCollection = viewModel.assetCollection else { return }
         // Change notifications may be made on a background queue.
         // Re-dispatch to the main queue to update the UI.
         DispatchQueue.main.sync {
             // Check for changes to the displayed album itself
             // (its existence and metadata, not its member assets).
-            if let albumChanges = changeInstance.changeDetails(for: viewModel.assetCollection!) {
+            if let albumChanges = changeInstance.changeDetails(for: assetCollection) {
                 // If album delete return
                 if albumChanges.objectWasDeleted == true { return }
                 // Fetch the new album and update the UI accordingly.

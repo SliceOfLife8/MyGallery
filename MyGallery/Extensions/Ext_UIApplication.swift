@@ -83,4 +83,8 @@ extension UIApplication {
             UIApplication.shared.windows[0].rootViewController?.presentedViewController?.dismiss(animated: false)
         }
     }
+    
+    class func editAlbumAsCurrentVC() -> Bool {
+        return (UIApplication.shared.windows[0].rootViewController?.children.last as? UINavigationController)?.viewControllers.last is EditCustomAlbumVC
+    }
 }
