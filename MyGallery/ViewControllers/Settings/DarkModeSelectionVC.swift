@@ -50,14 +50,14 @@ class DarkModeSelectionVC: UIViewController {
     func configure() {
         let status = getDarkModeStatus()
         models.append(Section(title: nil, bottomTitle: "Αν επιλέξετε \"Σύστημα\", το \(appName) θα προσαρμόσει αυτόματα την εμφάνιση με βάση τις ρυθμίσεις συστήματος της συσκευής σας.", options: [
-            SettingsOption(title: "Ενεργοποίηση", icon: UIImage(systemName: "moon.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 2) ? .checkmark : .none, handle: {
-                self.updateDarkMode(.dark)
+            SettingsOption(title: "Ενεργοποίηση", icon: UIImage(systemName: "moon.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 2) ? .checkmark : .none, handle: { [weak self] in
+                self?.updateDarkMode(.dark)
             }),
-            SettingsOption(title: "Απενεργοποίηση", icon: UIImage(systemName: "sun.min.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 1) ? .checkmark : .none, handle: {
-                self.updateDarkMode(.light)
+            SettingsOption(title: "Απενεργοποίηση", icon: UIImage(systemName: "sun.min.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 1) ? .checkmark : .none, handle: { [weak self] in
+                self?.updateDarkMode(.light)
             }),
-            SettingsOption(title: "Σύστημα", icon: UIImage(systemName: "circle.lefthalf.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 0) ? .checkmark : .none, handle: {
-                self.updateDarkMode(.unspecified)
+            SettingsOption(title: "Σύστημα", icon: UIImage(systemName: "circle.lefthalf.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 0) ? .checkmark : .none, handle: { [weak self] in
+                self?.updateDarkMode(.unspecified)
             })
         ]))
     }

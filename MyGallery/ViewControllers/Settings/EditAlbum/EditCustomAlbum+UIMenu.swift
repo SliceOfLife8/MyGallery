@@ -12,12 +12,13 @@ extension EditCustomAlbumVC {
     @available(iOS 14.0, *)
     func addMenuItemsToDotsView() -> UIMenu {
         // Create actions
-        let deleteAlbum = UIAction(title: "Delete album", image: UIImage(systemName: "photo"), handler: { _ in
-            self.viewModel.deleteAlbum()
+        let deleteAlbum = UIAction(title: "Delete album", image: UIImage(systemName: "photo"), handler: { [weak self] _ in
+            self?.viewModel.deleteAlbum()
         })
         
-        let deleteAlbumAndCollection = UIAction(title: "Delete all assets from collection", image: UIImage(systemName: "cube"), handler: { _ in
-            self.viewModel.deleteImages(indexPaths: self.getAllIndexPaths())
+        let deleteAlbumAndCollection = UIAction(title: "Delete all assets from collection", image: UIImage(systemName: "cube"), handler: { [weak self] _ in
+            guard let indexPaths = self?.getAllIndexPaths() else { return }
+            self?.viewModel.deleteImages(indexPaths: indexPaths)
         })
         
         // Use the .displayInline option to avoid displaying the menu as a submenu,
@@ -30,12 +31,14 @@ extension EditCustomAlbumVC {
     @available(iOS 14.0, *)
     func addMenuItemsToTrashView() -> UIMenu {
         // Create actions
-        let deleteAlbum = UIAction(title: "Delete assets from album", image: UIImage(systemName: "photo"), handler: { _ in
-            self.viewModel.deleteImagesFromAlbum(indexPaths: self.selectedIndexPaths)
+        let deleteAlbum = UIAction(title: "Delete assets from album", image: UIImage(systemName: "photo"), handler: { [weak self] _ in
+            guard let indexPaths = self?.selectedIndexPaths else { return }
+            self?.viewModel.deleteImagesFromAlbum(indexPaths: indexPaths)
         })
         
-        let deleteAlbumAndCollection = UIAction(title: "Delete assets from collection", image: UIImage(systemName: "cube"), handler: { _ in
-            self.viewModel.deleteImages(indexPaths: self.selectedIndexPaths)
+        let deleteAlbumAndCollection = UIAction(title: "Delete assets from collection", image: UIImage(systemName: "cube"), handler: { [weak self] _ in
+            guard let indexPaths = self?.selectedIndexPaths else { return }
+            self?.viewModel.deleteImages(indexPaths: indexPaths)
         })
         
         // Use the .displayInline option to avoid displaying the menu as a submenu,
@@ -86,5 +89,9 @@ extension EditCustomAlbumVC {
         dropDownForTrashView.width = 230
         dropDownForTrashView.bottomOffset = CGPoint(x: 0, y: self.navigationController?.navigationBar.bounds.height ?? UIApplication.topSafeAreaHeight)
         dropDownForTrashView.show()
+    }
+    
+    @objc func willShowMenu() {
+        print("kati")
     }
 }

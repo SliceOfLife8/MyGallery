@@ -34,17 +34,14 @@ class EditCustomAlbumVC: UIViewController {
     let dropDownForTrashView = DropDown()
     
     // MARK: - Outlets
-    @IBOutlet weak var noAssetsView: UIView!
+    @IBOutlet weak var noAssetsView: GradientView!
+    @IBOutlet weak var noAssetsLbl: UILabel!
     
     // MARK: - Init
     init(_ viewModel: EditAlbumViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         configure(viewModel: viewModel)
-    }
-    
-    deinit {
-        print("deinit vc")
     }
     
     func configure(viewModel: EditAlbumViewModel) {
@@ -60,6 +57,7 @@ class EditCustomAlbumVC: UIViewController {
         setupNavigationBar()
         setupCollectionView()
         populateData()
+        setupNoAssetsView()
         
         Loaf("Select images to delete them", state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
         // Observe photo library changes
@@ -102,6 +100,17 @@ class EditCustomAlbumVC: UIViewController {
         }
     }
     
+    private func setupNoAssetsView() {
+        if self.traitCollection.userInterfaceStyle == .dark {
+            noAssetsView.topGradientColor = UIColor(hexString: "#000000") //Labor Worker
+            noAssetsView.bottomGradientColor = UIColor(hexString: "#2c3e50")
+        } else {
+            noAssetsView.topGradientColor = UIColor(hexString: "#d7e1ec") // Sweet Airan
+            noAssetsView.bottomGradientColor = UIColor(hexString: "#ffffff")
+        }
+        noAssetsLbl.textColor = UIColor(named: "Black")
+    }
+    
     // MARK: - Actions
     @objc func barLinesTapped() {
         dropDownForDotsMenuTapped()
@@ -128,11 +137,11 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
     func didDeleteAlbum(status: Bool) {
         DispatchQueue.main.async {
             if status {
-                Loaf("To album \(CustomPhotoAlbum.albumName) διάγραφηκε!", state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                Loaf(self.viewModel.loafTitle.rawValue, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
                 self.collectionView?.isHidden = true
                 self.noAssetsView.isHidden = false
             } else {
-                Loaf("Φαίνεται ό,τι κάτι πήγε στραβά! Προσπάθησε πάλι!", state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                Loaf("Φαίνεται ό,τι κάτι πήγε στραβά! Προσπάθησε πάλι!", state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
             }
         }
     }
@@ -140,10 +149,8 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
 }
 
 // MARK: - PHPhotoLibraryChangeObserver delegate
-
 extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
-        print("photoLibraryDidChange")
         guard let collectionView = self.collectionView else { return }
         // Change notifications may be made on a background queue.
         // Re-dispatch to the main queue to update the UI.
@@ -161,9 +168,11 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                 // Keep the new fetch result for future use.
                 viewModel.photoAssets = changes.fetchResultAfterChanges
                 // Update datasource of images
-                viewModel.indexPathsToBeDeleted.forEach { indexPath in
+                let sortedIndices = viewModel.indexPathsToBeDeleted.sorted { $0.row > $1.row }
+                sortedIndices.forEach { indexPath in
                     viewModel.images.remove(at: indexPath.row)
                 }
+                viewModel.indexPathsToBeDeleted.removeAll()
                 selectedIndexPaths.removeAll()
                 if changes.hasIncrementalChanges {
                     // If there are incremental diffs, animate them in the collection view.

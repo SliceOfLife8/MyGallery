@@ -32,6 +32,7 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
             previewProvider: nil, /// pass nil, if custom preview not needed
             actionProvider: { _ in
                 let children: [UIMenuElement] = []
+                UIApplication.deleteLoafView()
                 return UIMenu(title: "", children: children)
             })
     }
@@ -55,21 +56,23 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
             /// #Create multiple actions with callbacks
             let copyAction = UIAction(
                 title: "Αντιγραφή",
-                image: UIImage(systemName: "doc.on.doc")) { _ in
-                if let image = self.sharedImage { /// Copy image to clipboard
-                    self.copyImageToClipboard(for: image)
+                image: UIImage(systemName: "doc.on.doc")) { [weak self] _ in
+                if let image = self?.sharedImage { /// Copy image to clipboard
+                    self?.copyImageToClipboard(for: image)
                 }
             }
                 let downloadAction = UIAction(
                     title: "Αποθήκευση",
-                    image: UIImage(systemName: "square.and.arrow.down")) { _ in
-                    self.downloadAsset(for: self.sharedImage) /// Download image
+                    image: UIImage(systemName: "square.and.arrow.down")) { [weak self] _ in
+                    if let image = self?.sharedImage {
+                        self?.downloadAsset(for: image) /// Download image
+                    }
                 }
                 /// #Share selectedImage to other apps.
             let shareAction = UIAction(
                 title: "Κοινή χρήση",
-                image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                self.shareImage()
+                image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+                self?.shareImage()
             }
                 
                 return UIMenu(title: "", image: nil, children: [copyAction, downloadAction, shareAction])

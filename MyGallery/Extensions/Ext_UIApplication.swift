@@ -53,4 +53,34 @@ extension UIApplication {
         topSafeAreaHeight = safeFrame.minY
         return topSafeAreaHeight
     }
+    
+    class func topViewController(base: UIViewController? = UIApplication.shared.windows[0].rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        
+        if let tab = base as? UITabBarController {
+            let moreNavigationController = tab.moreNavigationController
+            
+            if let top = moreNavigationController.topViewController, top.view.window != nil {
+                return topViewController(base: top)
+            } else if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        
+        return base
+    }
+    
+    /// #Delete Loaf VC otherwise we have issue when we are trying to show a UIContextMenu due to fact that menu is presented also.
+    class func deleteLoafView() {
+        guard let topVC = topViewController()?.classForCoder else { return }
+        if NSStringFromClass(topVC) == "Loaf.LoafViewController" {
+            UIApplication.shared.windows[0].rootViewController?.presentedViewController?.dismiss(animated: false)
+        }
+    }
 }

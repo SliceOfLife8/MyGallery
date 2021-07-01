@@ -7,6 +7,15 @@
 
 import UIKit
 
+/* TODO: Last steps for production:
+ 1) Add localization & add item to settings for user to change language.
+ 2) Change appIcon
+ 3) Add Unit & UI Tests
+ 4) Add internet connection handler
+ 5) Add Firebase Crashlytics
+ 6) Edit album bug with Loaf view when UIMenu opens at the same time
+ */
+
 internal enum TabBarValues: String {
     case GalleryAction
     case SearchAction

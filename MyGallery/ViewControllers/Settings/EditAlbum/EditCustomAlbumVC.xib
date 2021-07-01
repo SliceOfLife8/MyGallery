@@ -11,7 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCustomAlbumVC" customModule="MyGallery" customModuleProvider="target">
             <connections>
-                <outlet property="noAssetsView" destination="XxZ-88-UfZ" id="jJk-IK-wcU"/>
+                <outlet property="noAssetsLbl" destination="gnp-co-ECC" id="aKj-26-BSB"/>
+                <outlet property="noAssetsView" destination="XxZ-88-UfZ" id="NFn-XW-zrt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UWb-9V-Lv1"/>
             </connections>
         </placeholder>
@@ -20,20 +21,21 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XxZ-88-UfZ" userLabel="No Assets">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XxZ-88-UfZ" userLabel="No Assets" customClass="GradientView" customModule="MyGallery" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnp-co-ECC">
-                            <rect key="frame" x="170" y="398.5" width="74.5" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Δεν υπάρχουν διαθέσιμες φωτογραφίες στο Album. Μπορείς να προσθέσεις από τη συλλογή ή την αναζήτηση!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnp-co-ECC">
+                            <rect key="frame" x="32" y="383" width="350" height="86"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="gnp-co-ECC" firstAttribute="centerY" secondItem="XxZ-88-UfZ" secondAttribute="centerY" id="1XS-Ht-QGf"/>
-                        <constraint firstItem="gnp-co-ECC" firstAttribute="centerX" secondItem="XxZ-88-UfZ" secondAttribute="centerX" id="xNt-0p-bW0"/>
+                        <constraint firstItem="gnp-co-ECC" firstAttribute="leading" secondItem="XxZ-88-UfZ" secondAttribute="leading" constant="32" id="7Dj-Bm-X18"/>
+                        <constraint firstAttribute="trailing" secondItem="gnp-co-ECC" secondAttribute="trailing" constant="32" id="P1A-tu-XOG"/>
                     </constraints>
                 </view>
             </subviews>
@@ -41,7 +43,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="XxZ-88-UfZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="18B-Uc-fLC"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="XxZ-88-UfZ" secondAttribute="bottom" id="ICA-HC-zq1"/>
+                <constraint firstAttribute="bottom" secondItem="XxZ-88-UfZ" secondAttribute="bottom" id="ICA-HC-zq1"/>
                 <constraint firstItem="XxZ-88-UfZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Mpz-IY-pJD"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XxZ-88-UfZ" secondAttribute="trailing" id="Zpz-Iw-aux"/>
             </constraints>
