@@ -8,13 +8,22 @@
 import Foundation
 import Reachability
 import Loaf
+import FirebaseCrashlytics
 
 class BaseVC: UIViewController {
     
     private var connectionStatusUnvailable: Bool = false
+    private var deviceID = UIDevice.current.identifierForVendor?.uuidString ?? "Not available"
     
     deinit{
         print("\(String(describing: type(of: self))) deinitialized")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        /// #Setup unique keys for crashlytics reports
+        Crashlytics.crashlytics().log("View Controller: \(String(describing: type(of: self)))")
+        Crashlytics.crashlytics().setUserID(deviceID)
     }
     
     override func viewWillAppear(_ animated: Bool) {

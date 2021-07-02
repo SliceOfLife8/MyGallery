@@ -22,7 +22,7 @@ struct SettingsOption {
     let handle: (() -> Void)
 }
 
-class SettingsVC: UIViewController {
+class SettingsVC: BaseVC {
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)

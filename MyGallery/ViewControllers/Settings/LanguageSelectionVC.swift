@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LanguageSelectionVC: UIViewController {
+class LanguageSelectionVC: BaseVC {
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)

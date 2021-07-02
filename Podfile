@@ -9,6 +9,8 @@ target 'MyGallery' do
   pod 'DropDown', '2.3.12'
   pod 'Loaf', '0.7.0'
   pod 'ReachabilitySwift', '5.0.0'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
   
   target 'MyGalleryTests' do
     inherit! :search_paths

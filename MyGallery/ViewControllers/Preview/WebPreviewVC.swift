@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class WebPreviewVC: UIViewController {
+class WebPreviewVC: BaseVC {
     
     private(set) var publicURL: URL
     private var webView = WKWebView()

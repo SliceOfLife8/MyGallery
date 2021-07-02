@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         /* Increase Engaging Count (incrementAppOpenedCount)
          You should call this method whenever the user engaging factor of your application is increased */
+        FirebaseApp.configure()
         StoreReviewHelper.incrementAppOpenedCount()
         return true
     }

@@ -9,8 +9,7 @@ import UIKit
 
 /* TODO: Last steps for production:
  1) Add Unit & UI Tests
- 2) Add Firebase Crashlytics
- 3) Encryption of apiKey
+ 2) Encryption of apiKey
  */
 
 internal enum TabBarValues: String {

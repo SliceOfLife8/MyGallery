@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DarkModeSelectionVC: UIViewController {
+class DarkModeSelectionVC: BaseVC {
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)

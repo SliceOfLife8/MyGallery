@@ -61,6 +61,7 @@
 		B6AFA771268B432C00344FD5 /* Ext_UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */; };
 		B6AFA776268B506A00344FD5 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6AFA775268B506A00344FD5 /* Color.xcassets */; };
 		B6B6C7ED268F04CF00F1A4E8 /* gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B6C7EC268F04CF00F1A4E8 /* gallery.png */; };
+		B6B6C7F2268F159D00F1A4E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6B6C7F1268F159D00F1A4E8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UserDefaults.swift; sourceTree = "<group>"; };
 		B6AFA775268B506A00344FD5 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		B6B6C7EC268F04CF00F1A4E8 /* gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery.png; sourceTree = "<group>"; };
+		B6B6C7F1268F159D00F1A4E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C155E03FE6508A73A0F1DF41 /* Pods-MyGalleryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGalleryTests.release.xcconfig"; path = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests.release.xcconfig"; sourceTree = "<group>"; };
 		F8646D12B5C26D6D211F4584 /* Pods-MyGallery-MyGalleryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery-MyGalleryUITests.debug.xcconfig"; path = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -239,6 +241,7 @@
 				B6B6C7EC268F04CF00F1A4E8 /* gallery.png */,
 				B63CEA7C26845F3D00DC941F /* LaunchScreen.storyboard */,
 				B63CEA7F26845F3D00DC941F /* Info.plist */,
+				B6B6C7F1268F159D00F1A4E8 /* GoogleService-Info.plist */,
 			);
 			path = MyGallery;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				B63CEA6B26845F3C00DC941F /* Frameworks */,
 				B63CEA6C26845F3C00DC941F /* Resources */,
 				8B97B3B1713A0F1C72D98D23 /* [CP] Embed Pods Frameworks */,
+				B6B6C7F0268F10E400F1A4E8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -534,6 +538,7 @@
 				B698E316268DE2AD00AE6FBF /* Localizable.strings in Resources */,
 				B63CEA7E26845F3D00DC941F /* LaunchScreen.storyboard in Resources */,
 				B6AFA776268B506A00344FD5 /* Color.xcassets in Resources */,
+				B6B6C7F2268F159D00F1A4E8 /* GoogleService-Info.plist in Resources */,
 				B63CEA7B26845F3D00DC941F /* Assets.xcassets in Resources */,
 				B693CC352685BD4C001715AF /* SearchImagesVC.xib in Resources */,
 			);
@@ -638,6 +643,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B6B6C7F0268F10E400F1A4E8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		D71D485D5E994E3D0FDC65F7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -794,7 +818,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -886,6 +910,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8QYX9VGMBQ;
 				INFOPLIST_FILE = MyGallery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -907,6 +932,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8QYX9VGMBQ;
 				INFOPLIST_FILE = MyGallery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -10,7 +10,7 @@ import Photos
 import DropDown
 import Loaf
 
-class EditCustomAlbumVC: UIViewController {
+class EditCustomAlbumVC: BaseVC {
     
     // MARK: - Vars
     private(set) var viewModel: EditAlbumViewModel
