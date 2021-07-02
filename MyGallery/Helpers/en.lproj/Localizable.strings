@@ -54,4 +54,4 @@
 "choose_language" = "Choose language";
 "english" = "English";
 "greek" = "Greek";
-"change_language_desc" = "If you select another language, the application will change all the words according to your preference.";
+"change_language_desc" = "If you select another language, the application will change all the words according to your preference. You need to restart the app to see the changes";

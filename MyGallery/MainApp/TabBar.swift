@@ -8,11 +8,9 @@
 import UIKit
 
 /* TODO: Last steps for production:
- 1) Add localization & add item to settings for user to change language.
- 2) Change appIcon
- 3) Add Unit & UI Tests
- 4) Add Firebase Crashlytics
- 5) Encryption of apiKey
+ 1) Add Unit & UI Tests
+ 2) Add Firebase Crashlytics
+ 3) Encryption of apiKey
  */
 
 internal enum TabBarValues: String {

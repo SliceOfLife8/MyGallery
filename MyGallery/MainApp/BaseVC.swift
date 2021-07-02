@@ -13,6 +13,10 @@ class BaseVC: UIViewController {
     
     private var connectionStatusUnvailable: Bool = false
     
+    deinit{
+        print("\(String(describing: type(of: self))) deinitialized")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ReachabilityManager.shared.addListener(listener: self)
