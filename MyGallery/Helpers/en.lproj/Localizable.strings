@@ -50,3 +50,8 @@
 "hq_loading" = "HQ Loading...";
 "hq_available" = "HQ available ✔️";
 "image_saved" = "Image was saved!";
+"languages" = "Languages";
+"choose_language" = "Choose language";
+"english" = "English";
+"greek" = "Greek";
+"change_language_desc" = "If you select another language, the application will change all the words according to your preference.";

@@ -41,6 +41,7 @@
 		B698E30D268DABEE00AE6FBF /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B698E30C268DABEE00AE6FBF /* BaseVC.swift */; };
 		B698E312268DD21B00AE6FBF /* GalleryUIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B698E311268DD21B00AE6FBF /* GalleryUIWindow.swift */; };
 		B698E316268DE2AD00AE6FBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B698E318268DE2AD00AE6FBF /* Localizable.strings */; };
+		B698E31B268E208400AE6FBF /* LanguageSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B698E31A268E208400AE6FBF /* LanguageSelectionVC.swift */; };
 		B69A3F2D26872CAC008F16E3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2C26872CAC008F16E3 /* GradientView.swift */; };
 		B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */; };
 		B69A3F3226879B0D008F16E3 /* Ext_UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */; };
@@ -125,6 +126,7 @@
 		B698E311268DD21B00AE6FBF /* GalleryUIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryUIWindow.swift; sourceTree = "<group>"; };
 		B698E317268DE2AD00AE6FBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B698E319268DE2CD00AE6FBF /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B698E31A268E208400AE6FBF /* LanguageSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionVC.swift; sourceTree = "<group>"; };
 		B69A3F2C26872CAC008F16E3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B69A3F2F26872F41008F16E3 /* ImagePreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewVC.swift; sourceTree = "<group>"; };
 		B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIApplication.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				B6ABA097268B968100833E8C /* EditAlbum */,
 				B6AFA766268B047300344FD5 /* SettingsVC.swift */,
 				B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */,
+				B698E31A268E208400AE6FBF /* LanguageSelectionVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */,
 				B63CEAB126847C0900DC941F /* MediaContext.swift in Sources */,
 				B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */,
+				B698E31B268E208400AE6FBF /* LanguageSelectionVC.swift in Sources */,
 				B6A9F153268C857800D32589 /* EditCustomAlbum+UIMenu.swift in Sources */,
 				B6A9F14F268C5FB300D32589 /* Ext_Array.swift in Sources */,
 				B69A3F342687A126008F16E3 /* WebPreviewVC.swift in Sources */,

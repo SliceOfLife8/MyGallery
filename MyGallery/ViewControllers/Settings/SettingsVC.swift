@@ -33,6 +33,11 @@ class SettingsVC: UIViewController {
     var models = [Section]()
     let albumName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
     private let appVersion = "version".localized() + " \(UIApplication.appVersion)"
+    private var greekSupported: Bool {
+        get {
+            Locale.current.regionCode == "GR"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +69,21 @@ class SettingsVC: UIViewController {
     /// #Create Setting Options for tableView
     func configure() {
         /// #Apperance
-        models.append(Section(title: "appearance".localized(), bottomTitle: nil, options: [
-            SettingsOption(title: "dark_mode".localized(), icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: UIColor(named: "Black"), accessoryType: .disclosureIndicator, handle: {
-                let darkModeVC = DarkModeSelectionVC()
-                let navigationController = UINavigationController(rootViewController: darkModeVC)
-                darkModeVC.modalPresentationStyle = .popover
+        var apperanceOptions: [SettingsOption] = [SettingsOption(title: "dark_mode".localized(), icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: UIColor(named: "Black"), accessoryType: .disclosureIndicator, handle: {
+            let darkModeVC = DarkModeSelectionVC()
+            let navigationController = UINavigationController(rootViewController: darkModeVC)
+            darkModeVC.modalPresentationStyle = .popover
+            self.present(navigationController, animated: true)
+        })]
+        if greekSupported {
+            apperanceOptions.append(SettingsOption(title: "languages".localized(), icon: UIImage(systemName: "globe"), iconBackgroundColor: UIColor(named: "DarkBlue"), accessoryType: .disclosureIndicator, handle: {
+                let languageVC = LanguageSelectionVC()
+                let navigationController = UINavigationController(rootViewController: languageVC)
+                languageVC.modalPresentationStyle = .popover
                 self.present(navigationController, animated: true)
-            })
-        ]))
+            }))
+        }
+        models.append(Section(title: "appearance".localized(), bottomTitle: nil, options: apperanceOptions))
         /// #General
         models.append(Section(title: "general".localized(), bottomTitle: nil, options: [
             SettingsOption(title: "find_me_on_social".localized(), icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: .disclosureIndicator, handle: {

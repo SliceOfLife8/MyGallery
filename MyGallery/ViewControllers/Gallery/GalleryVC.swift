@@ -36,8 +36,6 @@ class GalleryVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
-        //UserDefaults.standard.synchronize()
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .black
         setupCollectionView()
