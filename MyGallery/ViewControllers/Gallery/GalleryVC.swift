@@ -98,7 +98,7 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard collectionViewIsUpdating == false && viewModel.hasNext == true else { return }
         
-        if targetContentOffset.pointee.y >= (collectionView.contentSize.height - collectionView.frame.size.height) - 100 {
+        if targetContentOffset.pointee.y >= (collectionView.contentSize.height - collectionView.frame.size.height) - 350*2 {
             collectionViewIsUpdating = true
             viewModel.getImages()
         }

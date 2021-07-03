@@ -11,7 +11,6 @@ import Loaf
 
 class CustomPhotoAlbum: NSObject {
     
-    static let albumName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
     static let shared = CustomPhotoAlbum()
     
     private var assetCollection: PHAssetCollection!
@@ -48,7 +47,7 @@ class CustomPhotoAlbum: NSObject {
     
     static func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
         let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title = %@", CustomPhotoAlbum.albumName)
+        fetchOptions.predicate = NSPredicate(format: "title = %@", AppConfig.albumName)
         let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
         
         if let _: AnyObject = collection.firstObject {
@@ -79,7 +78,7 @@ class CustomPhotoAlbum: NSObject {
                     self.showInfoMessages(with: nil)
                 } else {
                     PHPhotoLibrary.shared().performChanges({
-                        PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)   // create an asset collection with the album name
+                        PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: AppConfig.albumName)   // create an asset collection with the album name
                     }) { success, error in
                         if success {
                             self.assetCollection = CustomPhotoAlbum.fetchAssetCollectionForAlbum()

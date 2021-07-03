@@ -49,7 +49,7 @@ class DarkModeSelectionVC: BaseVC {
     
     func configure() {
         let status = getDarkModeStatus()
-        models.append(Section(title: nil, bottomTitle: "choose_system".localized() + "\(appName)" + "device_settings".localized(), options: [
+        models.append(Section(title: nil, bottomTitle: "choose_system".localized() + "\(AppConfig.albumName)" + "device_settings".localized(), options: [
             SettingsOption(title: "activation".localized(), icon: UIImage(systemName: "moon.fill"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: (status == 2) ? .checkmark : .none, handle: { [weak self] in
                 self?.updateDarkMode(.dark)
             }),

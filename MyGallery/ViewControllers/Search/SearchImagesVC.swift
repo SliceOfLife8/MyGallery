@@ -202,7 +202,7 @@ extension SearchImagesVC: UICollectionViewDataSource, UICollectionViewDelegateFl
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard collectionViewIsUpdating == false && viewModel.hasNext == true, let query = searchTF.text?.trimmingCharacters(in: .whitespaces) else { return }
         
-        if targetContentOffset.pointee.y >= (collectionView.contentSize.height - collectionView.frame.size.height) - 100 {
+        if targetContentOffset.pointee.y >= (collectionView.contentSize.height - collectionView.frame.size.height) - 300*2 {
             collectionViewIsUpdating = true
             viewModel.getImages(query: query)
         }

@@ -23,10 +23,6 @@ enum Result<T> {
 
 struct MediaContext {
     
-    static var apiKEY: String {
-        return Bundle.main.infoDictionary?["Pexels Key"] as! String
-    }
-    
     //dataRequest which sends request to given URL and convert to Decodable Object
     static func dataRequest<T: Decodable>(with url: String, objectType: T.Type, completion: @escaping (Result<T>) -> Void) {
         
@@ -39,7 +35,7 @@ struct MediaContext {
         //now create the URLRequest object using the url object
         var request = URLRequest(url: dataURL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30)
         
-        request.setValue(apiKEY, forHTTPHeaderField: "Authorization")
+        request.setValue(AppConfig.apiKey, forHTTPHeaderField: "Authorization")
         
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request, completionHandler: { data, response, error in

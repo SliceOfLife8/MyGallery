@@ -31,8 +31,7 @@ class SettingsVC: BaseVC {
     }()
     
     var models = [Section]()
-    let albumName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
-    private let appVersion = "version".localized() + " \(UIApplication.appVersion)"
+    private let appVersion = "version".localized() + " \(AppConfig.appVersion)"
     private var greekSupported: Bool {
         get {
             Locale.current.regionCode == "GR"
@@ -102,7 +101,7 @@ class SettingsVC: BaseVC {
         ]))
         /// #Show custom album only if authorizationStatus is authorized.
         if getStatus() {
-            models.append(Section(title: "\(albumName) " + "album".localized(), bottomTitle: appVersion, options: [
+            models.append(Section(title: "\(AppConfig.albumName) " + "album".localized(), bottomTitle: appVersion, options: [
                 SettingsOption(title: "edit_album".localized(), icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "PurpleColor"), accessoryType: .disclosureIndicator, handle: {
                     let editAlbumVC = EditCustomAlbumVC(EditAlbumViewModel())
                     editAlbumVC.hidesBottomBarWhenPushed = true
