@@ -30,6 +30,7 @@
 		B63CEAC62684A68400DC941F /* Ext_UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAC52684A68400DC941F /* Ext_UIColor.swift */; };
 		B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAC82684B11D00DC941F /* GalleryViewModel.swift */; };
 		B63CEAD32684C76500DC941F /* Gallery+UIContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAD22684C76500DC941F /* Gallery+UIContextMenu.swift */; };
+		B673A2312690E41B0098CE10 /* Ext_Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673A2302690E41B0098CE10 /* Ext_Collection.swift */; };
 		B693CC352685BD4C001715AF /* SearchImagesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B693CC342685BD4C001715AF /* SearchImagesVC.xib */; };
 		B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CC362685BD57001715AF /* SearchViewModel.swift */; };
 		B693CC392685D718001715AF /* Ext_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CC382685D718001715AF /* Ext_UIView.swift */; };
@@ -91,7 +92,7 @@
 		4582F299ED9F991FE2EBAE41 /* Pods-MyGallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery.release.xcconfig"; path = "Target Support Files/Pods-MyGallery/Pods-MyGallery.release.xcconfig"; sourceTree = "<group>"; };
 		9D43A017DEEBA084387D3F6E /* Pods-MyGalleryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGalleryTests.debug.xcconfig"; path = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B209B7C1220E6244FF7007FB /* Pods_MyGallery_MyGalleryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGallery_MyGalleryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B63CEA6E26845F3C00DC941F /* MyGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B63CEA6E26845F3C00DC941F /* PicsWall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicsWall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63CEA7126845F3C00DC941F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B63CEA7326845F3C00DC941F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B63CEA7A26845F3D00DC941F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		B63CEAC52684A68400DC941F /* Ext_UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIColor.swift; sourceTree = "<group>"; };
 		B63CEAC82684B11D00DC941F /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		B63CEAD22684C76500DC941F /* Gallery+UIContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gallery+UIContextMenu.swift"; sourceTree = "<group>"; };
+		B673A2302690E41B0098CE10 /* Ext_Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Collection.swift; sourceTree = "<group>"; };
 		B693CC342685BD4C001715AF /* SearchImagesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchImagesVC.xib; sourceTree = "<group>"; };
 		B693CC362685BD57001715AF /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B693CC382685D718001715AF /* Ext_UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIView.swift; sourceTree = "<group>"; };
@@ -222,7 +224,7 @@
 		B63CEA6F26845F3C00DC941F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B63CEA6E26845F3C00DC941F /* MyGallery.app */,
+				B63CEA6E26845F3C00DC941F /* PicsWall.app */,
 				B63CEA8426845F3D00DC941F /* MyGalleryTests.xctest */,
 				B63CEA8F26845F3D00DC941F /* MyGalleryUITests.xctest */,
 			);
@@ -301,6 +303,7 @@
 				B69A3F3126879B0D008F16E3 /* Ext_UIApplication.swift */,
 				B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */,
 				B6A9F14E268C5FB300D32589 /* Ext_Array.swift */,
+				B673A2302690E41B0098CE10 /* Ext_Collection.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,7 +466,7 @@
 			);
 			name = MyGallery;
 			productName = MyGallery;
-			productReference = B63CEA6E26845F3C00DC941F /* MyGallery.app */;
+			productReference = B63CEA6E26845F3C00DC941F /* PicsWall.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B63CEA8326845F3D00DC941F /* MyGalleryTests */ = {
@@ -729,6 +732,7 @@
 				B63CEABD2684834000DC941F /* PhotoCell.swift in Sources */,
 				B693CC392685D718001715AF /* Ext_UIView.swift in Sources */,
 				B63CEAB62684807B00DC941F /* CuratedModel.swift in Sources */,
+				B673A2312690E41B0098CE10 /* Ext_Collection.swift in Sources */,
 				B6AFA767268B047400344FD5 /* SettingsVC.swift in Sources */,
 				B69A3F402689AF6F008F16E3 /* PhotoManager.swift in Sources */,
 				B69A3F2D26872CAC008F16E3 /* GradientView.swift in Sources */,
@@ -942,7 +946,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MyGallery.MyGallery;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PicsWall;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -964,7 +968,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MyGallery.MyGallery;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PicsWall;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

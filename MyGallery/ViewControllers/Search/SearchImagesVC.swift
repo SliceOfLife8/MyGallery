@@ -159,6 +159,7 @@ extension SearchImagesVC: SearchVMDelegate {
             }
             self.collectionView.isHidden = (status) ? false : true
             self.failureView.isHidden = (status) ? true : false
+            self.searchView.isHidden = (!status && paginationJustReset) ? true : false
             if status {
                 self.searchView.isHidden = true
                 self.collectionViewIsUpdating = false

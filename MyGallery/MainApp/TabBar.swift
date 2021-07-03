@@ -9,7 +9,6 @@ import UIKit
 
 /* TODO: Last steps for production:
  1) Add Unit & UI Tests
- 2) Encryption of apiKey
  */
 
 internal enum TabBarValues: String {
