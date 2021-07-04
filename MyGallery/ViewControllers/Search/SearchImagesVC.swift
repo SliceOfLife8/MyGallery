@@ -178,8 +178,8 @@ extension SearchImagesVC: UICollectionViewDataSource, UICollectionViewDelegateFl
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath as IndexPath) as! PhotoCell
-        if viewModel.images.count == 0 || viewModel.photos.count == 0 { return cell }
-        cell.setupCell(viewModel.images[indexPath.item], photographerName: viewModel.photos[indexPath.item].photographer, containerBGColor: UIColor(named: "LightGray"))
+        guard let photographer = viewModel.photos[safe: indexPath.item]?.photographer, viewModel.photos.count != 0, viewModel.images.count != 0 else { return cell }
+        cell.setupCell(viewModel.images[indexPath.item], photographerName: photographer, containerBGColor: UIColor(named: "LightGray"))
         // Create a UIContextMenuInteraction with UIContextMenuInteractionDelegate
         if cell.interactions.isEmpty {
             let interaction = UIContextMenuInteraction(delegate: self)

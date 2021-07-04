@@ -16,7 +16,6 @@ class DarkModeSelectionVC: BaseVC {
     }()
     
     var models = [Section]()
-    let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +61,7 @@ class DarkModeSelectionVC: BaseVC {
         ]))
     }
     
-    private func getDarkModeStatus() -> Int{
+    private func getDarkModeStatus() -> Int {
         // unspecified = 0, light = 1, dark = 2
         let style = UserDefaults.standard.overridedUserInterfaceStyle
         return style.rawValue
