@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MyGallery
+@testable import PicsWall
 
 class MyGalleryTests: XCTestCase {
 

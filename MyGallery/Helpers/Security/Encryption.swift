@@ -46,50 +46,50 @@ struct Encryption {
         var outLength = Int(0)
         var outBytes = [UInt8](repeating: 0, count: input.count + kCCBlockSizeAES128)
         var status: CCCryptorStatus = CCCryptorStatus(kCCSuccess)
-        input.withUnsafeBytes { (encryptedBytes: UnsafePointer<UInt8>!) -> () in
-            iv.withUnsafeBytes { (ivBytes: UnsafePointer<UInt8>!) in
-                key.withUnsafeBytes { (keyBytes: UnsafePointer<UInt8>!) -> () in
+        input.withUnsafeBytes { (encryptedBytes: UnsafeRawBufferPointer!) -> () in
+            iv.withUnsafeBytes { (ivBytes: UnsafeRawBufferPointer!) in
+                key.withUnsafeBytes { (keyBytes: UnsafeRawBufferPointer!) -> () in
                     status = CCCrypt(operation,
-                                     CCAlgorithm(kCCAlgorithmAES128),            // algorithm
-                                     CCOptions(kCCOptionPKCS7Padding),           // options
-                                     keyBytes,                                   // key
-                                     key.count,                                  // keylength
-                                     ivBytes,                                    // iv
-                                     encryptedBytes,                             // dataIn
-                                     input.count,                                // dataInLength
-                                     &outBytes,                                  // dataOut
-                                     outBytes.count,                             // dataOutAvailable
-                                     &outLength)                                 // dataOutMoved
+                                     CCAlgorithm(kCCAlgorithmAES128),                       // algorithm
+                                     CCOptions(kCCOptionPKCS7Padding),                      // options
+                                     keyBytes.bindMemory(to: UInt8.self).baseAddress,       // key
+                                     key.count,                                             // keylength
+                                     ivBytes.bindMemory(to: UInt8.self).baseAddress,        // iv
+                                     encryptedBytes.bindMemory(to: UInt8.self).baseAddress, // dataIn
+                                     input.count,                                           // dataInLength
+                                     &outBytes,                                             // dataOut
+                                     outBytes.count,                                        // dataOutAvailable
+                                     &outLength)                                            // dataOutMoved
                 }
             }
         }
         guard status == kCCSuccess else {
             throw Error.cryptoFailed(status: status)
         }
-        return Data(bytes: UnsafePointer<UInt8>(outBytes), count: outLength)
+        return Data(bytes: outBytes, count: outLength)
     }
     
     static func createKey(password: Data, salt: Data) throws -> Data {
         let length = kCCKeySizeAES256
         var status = Int32(0)
         var derivedBytes = [UInt8](repeating: 0, count: length)
-        password.withUnsafeBytes { (passwordBytes: UnsafePointer<Int8>!) in
-            salt.withUnsafeBytes { (saltBytes: UnsafePointer<UInt8>!) in
-                status = CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2),                  // algorithm
-                                              passwordBytes,                                // password
-                                              password.count,                               // passwordLen
-                                              saltBytes,                                    // salt
-                                              salt.count,                                   // saltLen
-                                              CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA1),   // prf
-                                              10000,                                        // rounds
-                                              &derivedBytes,                                // derivedKey
-                                              length)                                       // derivedKeyLen
+        password.withUnsafeBytes { (passwordBytes: UnsafeRawBufferPointer!) in
+            salt.withUnsafeBytes { (saltBytes: UnsafeRawBufferPointer!) in
+                status = CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2),                          // algorithm
+                                              passwordBytes.bindMemory(to: CChar.self).baseAddress, // password
+                                              password.count,                                       // passwordLen
+                                              saltBytes.bindMemory(to: UInt8.self).baseAddress,     // salt
+                                              salt.count,                                           // saltLen
+                                              CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA1),           // prf
+                                              10000,                                                // rounds
+                                              &derivedBytes,                                        // derivedKey
+                                              length)                                               // derivedKeyLen
             }
         }
         guard status == 0 else {
             throw Error.keyGeneration(status: Int(status))
         }
-        return Data(bytes: UnsafePointer<UInt8>(derivedBytes), count: length)
+        return Data(bytes: derivedBytes, count: length)
     }
     
 }

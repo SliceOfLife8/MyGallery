@@ -13,6 +13,10 @@ class PhotoManager {
     
     var nsCache = NSCache<NSString, UIImage>()
     
+    init() {
+        self.nsCache.totalCostLimit = 100 * 1024 * 1024 // Here the size in bytes of data is used as the cost, here 100 MB limit
+    }
+    
     func storeImage(_ image: UIImage?, for key: String) {
         let formattedKey = key as NSString
         guard let storedImage = image, nsCache.object(forKey: formattedKey) == nil else { return }
