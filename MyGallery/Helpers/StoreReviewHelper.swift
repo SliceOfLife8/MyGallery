@@ -36,9 +36,7 @@ struct StoreReviewHelper {
     }
     
     static func requestReview() {
-        if #available(iOS 10.3, *) {
-            SKStoreReviewController.requestReview()
-        }
+        SKStoreReviewController.requestReview()
     }
     
     static func factorial(_ number: Int) -> Int {

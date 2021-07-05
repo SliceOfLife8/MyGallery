@@ -86,6 +86,12 @@ class SettingsVC: BaseVC {
         /// #General
         models.append(Section(title: "general".localized(), bottomTitle: nil, options: [
             SettingsOption(title: "find_me_on_social".localized(), icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: .disclosureIndicator, handle: {
+                /// #Open linkedinApp if it's available on phone. Otherwise open custom webView.
+                if let url = URL(string: "linkedin://profile/christos-petimezas"), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    return
+                }
+                
                 guard let url = URL(string: "https://www.linkedin.com/in/christos-petimezas/") else { return }
                 
                 let webView = WebPreviewVC(with: url)
