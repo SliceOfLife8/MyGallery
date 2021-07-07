@@ -51,6 +51,17 @@ class SearchImagesVC: BaseVC {
         setupCollectionView()
     }
     
+    /// #This func usage is about localization & observe language changes.
+    override func languageDidChange() {
+        super.languageDidChange()
+        cancelBtn.setTitle("cancel".localized(), for: .normal)
+        searchTF.placeholder = "search_images".localized()
+        noResultsLbl.text = "no_results".localized()
+        discoverImagesLbl.text = "discover_images".localized()
+        onlyEnCharsLbl.text = "only_en_chars".localized()
+        self.collectionView.reloadData() /// If needed
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchTF.becomeFirstResponder()
@@ -66,19 +77,14 @@ class SearchImagesVC: BaseVC {
     
     private func setupViews() {
         applyGradients()
-        cancelBtn.setTitle("cancel".localized(), for: .normal)
         searchTF.keyboardType = .asciiCapable
         searchTF.returnKeyType = .search
         searchTF.enablesReturnKeyAutomatically = true
         searchTF.backgroundColor = UIColor(hexString: "#cccccc")
         searchTF.textColor = UIColor(hexString: "#734b6d")
-        searchTF.placeholder = "search_images".localized()
         searchTF.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         searchTF.delegate = self
         searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchViewTapped)))
-        noResultsLbl.text = "no_results".localized()
-        discoverImagesLbl.text = "discover_images".localized()
-        onlyEnCharsLbl.text = "only_en_chars".localized()
     }
     
     private func setupCollectionView() {

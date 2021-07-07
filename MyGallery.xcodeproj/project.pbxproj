@@ -31,6 +31,7 @@
 		B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAC82684B11D00DC941F /* GalleryViewModel.swift */; };
 		B63CEAD32684C76500DC941F /* Gallery+UIContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEAD22684C76500DC941F /* Gallery+UIContextMenu.swift */; };
 		B673A2312690E41B0098CE10 /* Ext_Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673A2302690E41B0098CE10 /* Ext_Collection.swift */; };
+		B67594C32695947600EBE36A /* PrivateBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67594C22695947600EBE36A /* PrivateBundle.swift */; };
 		B693CC352685BD4C001715AF /* SearchImagesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B693CC342685BD4C001715AF /* SearchImagesVC.xib */; };
 		B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CC362685BD57001715AF /* SearchViewModel.swift */; };
 		B693CC392685D718001715AF /* Ext_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CC382685D718001715AF /* Ext_UIView.swift */; };
@@ -68,6 +69,7 @@
 		B6AFA776268B506A00344FD5 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6AFA775268B506A00344FD5 /* Color.xcassets */; };
 		B6B6C7ED268F04CF00F1A4E8 /* gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B6C7EC268F04CF00F1A4E8 /* gallery.png */; };
 		B6B6C7F2268F159D00F1A4E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6B6C7F1268F159D00F1A4E8 /* GoogleService-Info.plist */; };
+		B6D012072695D97C009F51AB /* Ext_NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D012062695D97C009F51AB /* Ext_NotificationName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,7 @@
 		B63CEAC82684B11D00DC941F /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		B63CEAD22684C76500DC941F /* Gallery+UIContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gallery+UIContextMenu.swift"; sourceTree = "<group>"; };
 		B673A2302690E41B0098CE10 /* Ext_Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Collection.swift; sourceTree = "<group>"; };
+		B67594C22695947600EBE36A /* PrivateBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateBundle.swift; sourceTree = "<group>"; };
 		B693CC342685BD4C001715AF /* SearchImagesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchImagesVC.xib; sourceTree = "<group>"; };
 		B693CC362685BD57001715AF /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B693CC382685D718001715AF /* Ext_UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIView.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 		B6AFA775268B506A00344FD5 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		B6B6C7EC268F04CF00F1A4E8 /* gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery.png; sourceTree = "<group>"; };
 		B6B6C7F1268F159D00F1A4E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B6D012062695D97C009F51AB /* Ext_NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_NotificationName.swift; sourceTree = "<group>"; };
 		C155E03FE6508A73A0F1DF41 /* Pods-MyGalleryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGalleryTests.release.xcconfig"; path = "Target Support Files/Pods-MyGalleryTests/Pods-MyGalleryTests.release.xcconfig"; sourceTree = "<group>"; };
 		F8646D12B5C26D6D211F4584 /* Pods-MyGallery-MyGalleryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery-MyGalleryUITests.debug.xcconfig"; path = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -313,6 +317,7 @@
 				B6AFA770268B432C00344FD5 /* Ext_UserDefaults.swift */,
 				B6A9F14E268C5FB300D32589 /* Ext_Array.swift */,
 				B673A2302690E41B0098CE10 /* Ext_Collection.swift */,
+				B6D012062695D97C009F51AB /* Ext_NotificationName.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				B698E318268DE2AD00AE6FBF /* Localizable.strings */,
+				B67594C22695947600EBE36A /* PrivateBundle.swift */,
 			);
 			path = Localize;
 			sourceTree = "<group>";
@@ -745,6 +751,7 @@
 				B6A3E409268F367C003684B3 /* Encryption.swift in Sources */,
 				B698E312268DD21B00AE6FBF /* GalleryUIWindow.swift in Sources */,
 				B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */,
+				B6D012072695D97C009F51AB /* Ext_NotificationName.swift in Sources */,
 				B698E30B268DAA1D00AE6FBF /* ReachabilityManager.swift in Sources */,
 				B63CEABD2684834000DC941F /* PhotoCell.swift in Sources */,
 				B693CC392685D718001715AF /* Ext_UIView.swift in Sources */,
@@ -768,6 +775,7 @@
 				B6AFA76A268B0C2E00344FD5 /* SettingsCell.swift in Sources */,
 				B63CEAD32684C76500DC941F /* Gallery+UIContextMenu.swift in Sources */,
 				B69A3F3226879B0D008F16E3 /* Ext_UIApplication.swift in Sources */,
+				B67594C32695947600EBE36A /* PrivateBundle.swift in Sources */,
 				B693CC4126861217001715AF /* Ext_String.swift in Sources */,
 				B63CEAC62684A68400DC941F /* Ext_UIColor.swift in Sources */,
 				B63CEAC42684A55E00DC941F /* GradientLabel.swift in Sources */,

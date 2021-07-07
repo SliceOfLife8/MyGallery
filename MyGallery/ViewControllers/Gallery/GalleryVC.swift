@@ -43,6 +43,11 @@ class GalleryVC: BaseVC {
         StoreReviewHelper.checkAndAskForReview()
     }
     
+    override func languageDidChange() {
+        super.languageDidChange()
+        self.collectionView.reloadData()
+    }
+    
     private func setupCollectionView() {
         let layout = PinterestLayout()
         collectionView.collectionViewLayout = layout

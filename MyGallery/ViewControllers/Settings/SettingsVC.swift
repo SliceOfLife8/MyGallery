@@ -31,7 +31,11 @@ class SettingsVC: BaseVC {
     }()
     
     var models = [Section]()
-    private let appVersion = "version".localized() + " \(AppConfig.appVersion)"
+    private var appVersion: String {
+        get {
+            "version".localized() + " \(AppConfig.appVersion)"
+        }
+    }
     private var greekSupported: Bool {
         get {
             Locale.current.regionCode == "GR"
@@ -40,11 +44,16 @@ class SettingsVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.tabBarController?.tabBar.selectedItem?.title
-        configure()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func languageDidChange() {
+        super.languageDidChange()
+        self.title = self.tabBarController?.tabBar.selectedItem?.title
+        configure()
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +76,7 @@ class SettingsVC: BaseVC {
     
     /// #Create Setting Options for tableView
     func configure() {
+        models.removeAll()
         /// #Apperance
         var apperanceOptions: [SettingsOption] = [SettingsOption(title: "dark_mode".localized(), icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: UIColor(named: "Black"), accessoryType: .disclosureIndicator, handle: {
             let darkModeVC = DarkModeSelectionVC()

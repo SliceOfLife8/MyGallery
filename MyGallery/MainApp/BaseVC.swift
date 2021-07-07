@@ -17,6 +17,7 @@ class BaseVC: UIViewController {
     private var deviceID = UIDevice.current.identifierForVendor?.uuidString ?? "Not available"
     
     deinit{
+        NotificationCenter.default.removeObserver(self)
         print("\(String(describing: type(of: self))) deinitialized")
     }
     
@@ -25,6 +26,8 @@ class BaseVC: UIViewController {
         /// #Setup unique keys for crashlytics reports
         Crashlytics.crashlytics().log("View Controller: \(String(describing: type(of: self)))")
         Crashlytics.crashlytics().setUserID(deviceID)
+        NotificationCenter.default.addObserver(self, selector: #selector(languageDidChangeNotification), name: .didChangeLanguage, object: nil)
+        languageDidChange()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +48,13 @@ class BaseVC: UIViewController {
             "user_device_id" : deviceID
         ])
     }
+    
+    @objc func languageDidChangeNotification(notification: Notification) {
+        languageDidChange()
+    }
+    
+    /// #Override this method in order to receive language real-time changes.
+    func languageDidChange(){}
     
 }
 
