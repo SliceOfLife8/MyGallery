@@ -163,6 +163,7 @@ extension SearchImagesVC: SearchVMDelegate {
             if status {
                 self.searchView.isHidden = true
                 self.collectionViewIsUpdating = false
+                self.sendAnalytics()
                 self.collectionView.reloadData()
             }
         }

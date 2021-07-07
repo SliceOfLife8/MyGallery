@@ -9,6 +9,7 @@ import Foundation
 import Reachability
 import Loaf
 import FirebaseCrashlytics
+import FirebaseAnalytics
 
 class BaseVC: UIViewController {
     
@@ -34,6 +35,15 @@ class BaseVC: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         ReachabilityManager.shared.removeListener(listener: self)
+    }
+    
+    /// #Send Firebase analytics when an api connection occured
+    func sendAnalytics() {
+        let currentVC = String(describing: type(of: self)) as NSString
+        FirebaseAnalytics.Analytics.logEvent("api_call", parameters: [
+            AnalyticsParameterScreenClass: currentVC,
+            "user_device_id" : deviceID
+        ])
     }
     
 }

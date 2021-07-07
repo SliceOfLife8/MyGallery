@@ -118,9 +118,16 @@ extension Encryption: Randomizer {
     
     static func randomData(length: Int) -> Data {
         var data = Data(count: length)
-        let status = data.withUnsafeMutableBytes { mutableBytes in
-            SecRandomCopyBytes(kSecRandomDefault, length, mutableBytes)
+        let status = data.withUnsafeMutableBytes { (rawMutableBufferPointer: UnsafeMutableRawBufferPointer) -> Int32 in
+            guard let rawBytes = rawMutableBufferPointer.bindMemory(to: UInt8.self).baseAddress else {
+                return Int32(kCCMemoryFailure)
+            }
+            return SecRandomCopyBytes(kSecRandomDefault, length, rawBytes)
         }
+        /// #Deprecated way
+        //let status = data.withUnsafeMutableBytes { mutableBytes in
+        //SecRandomCopyBytes(kSecRandomDefault, length, mutableBytes)
+        //}
         assert(status == Int32(0))
         return data
     }

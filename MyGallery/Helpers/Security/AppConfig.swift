@@ -52,6 +52,7 @@ final class AppConfig {
         options.apiKey = decryptGoogleApiKey()
         options.projectID = "mygallery-5b7f1"
         FirebaseApp.configure(options: options)
+        FirebaseAnalytics.Analytics.setAnalyticsCollectionEnabled(true)
     }
     
     static private func decryptGoogleApiKey() -> String? {

@@ -118,6 +118,7 @@ extension GalleryVC: GalleryVMDelegate {
     func didGetImages() {
         collectionViewIsUpdating = false
         DispatchQueue.main.async {
+            self.sendAnalytics()
             self.collectionView.reloadData()
             if self.viewModel.page == 2 {
                 Loaf("photos_by_pexels".localized(), state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
