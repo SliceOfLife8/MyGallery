@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol GalleryVMDelegate: AnyObject {
     func didGetImages()
@@ -17,7 +16,7 @@ class GalleryViewModel {
     weak var delegate: GalleryVMDelegate?
     
     var photos: [Photo] = []
-    var images: [Int:UIImage] = [:]
+    var images: [URL?] = []
     var page: Int = 1
     var hasNext: Bool = false
     var numberOfImagesBatch: Int = 10
@@ -34,27 +33,19 @@ class GalleryViewModel {
                 if self.hasNext == false { return }
                 self.photos.append(contentsOf: object.photos)
                 self.page += 1
-                self.addImagesURL { [weak self] in
-                    self?.delegate?.didGetImages()
-                }
+                self.addImagesURL(object.photos)
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    /// #Retrieve images from public urls
-    private func addImagesURL(_ completion: @escaping () -> Void) {
-        for (index, element) in photos.enumerated() {
-            if let url = URL(string: element.src.large) {
-                UIImage.loadFrom(url: url) { image in
-                    self.images[index] = image
-                    if self.images.count == self.photos.count {
-                        completion()
-                    }
-                }
-            }
+    /// #Retrieve public URLs
+    private func addImagesURL(_ photos: [Photo]) {
+        photos.forEach { element in
+            self.images.append(URL(string: element.src.large))
         }
+        self.delegate?.didGetImages()
     }
     
 }

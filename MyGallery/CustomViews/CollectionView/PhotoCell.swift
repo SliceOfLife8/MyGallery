@@ -7,6 +7,7 @@
 // Check this website for gradientColor combinations -> https://digitalsynopsis.com/design/beautiful-color-ui-gradients-backgrounds/
 
 import UIKit
+import Nuke
 
 class PhotoCell: UICollectionViewCell {
     
@@ -29,11 +30,20 @@ class PhotoCell: UICollectionViewCell {
         photographer.text = nil
     }
     
-    func setupCell(_ image: UIImage?, photographerName: String, containerBGColor: UIColor? = UIColor(hexString: "#999999")) {
+    func setupCell(_ url: URL?, photographerName: String, containerBGColor: UIColor? = UIColor(hexString: "#999999")) {
         containerView.backgroundColor = containerBGColor
-        imageView.image = image
         nameLbl.text = photographerName
         photographer.text = "photographer".localized()
+        loadImage(with: url)
+    }
+
+    private func loadImage(with url: URL?) {
+        let options = ImageLoadingOptions(
+            placeholder: UIImage(named: "placeholder"),
+          transition: .fadeIn(duration: 0.3)
+        )
+
+        Nuke.loadImage(with: url, options: options, into: imageView)
     }
     
 }

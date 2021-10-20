@@ -146,9 +146,11 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         guard let identifier = configuration.identifier as? String,
-              let index = Int(identifier), let selectedImage = viewModel.images[index], let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0))
+              let index = Int(identifier),
+              let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? PhotoCell,
+              let selectedImage = cell.imageView.image
         else { return }
-        
+
         let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit, imageHD: URL(string: viewModel.photos[index].src.original), authorName: viewModel.photos[index].photographer, authorURL: URL(string: viewModel.photos[index].photographerURL))
         let transitionInfo = TransitionInfo(fromView: cell)
         let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)

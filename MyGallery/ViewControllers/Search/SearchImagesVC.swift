@@ -197,7 +197,9 @@ extension SearchImagesVC: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedImage = viewModel.images[indexPath.item], let cell = collectionView.cellForItem(at: indexPath) else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell,
+              let selectedImage = cell.imageView.image
+        else { return }
         /// #Custom transition to ImagePreview
         let imageInfo = ImageInfo(image: selectedImage, imageMode: .aspectFit, imageHD: URL(string: viewModel.photos[indexPath.item].src.original), authorName: viewModel.photos[indexPath.item].photographer, authorURL: URL(string: viewModel.photos[indexPath.item].photographerURL))
         let transitionInfo = TransitionInfo(fromView: cell)

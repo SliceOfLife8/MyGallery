@@ -17,7 +17,7 @@ class SearchViewModel {
     weak var delegate: SearchVMDelegate?
     
     var photos: [Photo] = []
-    var images: [Int:UIImage] = [:]
+    var images: [URL?] = []
     var page: Int = 1
     var hasNext: Bool = false
     var numberOfImagesBatch: Int = 10
@@ -43,27 +43,19 @@ class SearchViewModel {
                 }
                 self.photos.append(contentsOf: object.photos)
                 self.page += 1
-                self.addImagesURL { [weak self] in
-                    self?.delegate?.didGetImages(true, paginationJustReset: reset)
-                }
+                self.addImagesURL(object.photos, reset: reset)
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    // #Retrieve images from public urls
-    private func addImagesURL(_ completion: @escaping () -> Void) {
-        for (index, element) in photos.enumerated() {
-            if let url = URL(string: element.src.large) {
-                UIImage.loadFrom(url: url) { image in
-                    self.images[index] = image
-                    if self.images.count == self.photos.count {
-                        completion()
-                    }
-                }
-            }
+    /// #Retrieve public URLs
+    private func addImagesURL(_ photos: [Photo], reset: Bool) {
+        photos.forEach { element in
+            self.images.append(URL(string: element.src.large))
         }
+        self.delegate?.didGetImages(true, paginationJustReset: reset)
     }
     
     private func clearData() {

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '14.1'
 
 target 'MyGallery' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -8,6 +8,7 @@ target 'MyGallery' do
   # Pods for MyGallery
   pod 'Loaf', '0.7.0'
   pod 'ReachabilitySwift', '5.0.0'
+  pod 'Nuke', '~> 10.4.1'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
   
