@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0E4B84C92AFD2CCC07EF0372 /* Pods_MyGallery_MyGalleryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B209B7C1220E6244FF7007FB /* Pods_MyGallery_MyGalleryUITests.framework */; };
+		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
+		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
 		72903F6466BF0FEDB2BB1422 /* Pods_MyGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6D983956FA00554009C224 /* Pods_MyGallery.framework */; };
 		9ECF64570C8ECFC91CB087D0 /* Pods_MyGalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457D2F4C469DEB1460EB7D74 /* Pods_MyGalleryTests.framework */; };
 		B63CEA7226845F3C00DC941F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEA7126845F3C00DC941F /* AppDelegate.swift */; };
@@ -91,6 +93,8 @@
 
 /* Begin PBXFileReference section */
 		14C6A59D525E7025D6ABE050 /* Pods-MyGallery-MyGalleryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery-MyGalleryUITests.release.xcconfig"; path = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		2F6D983956FA00554009C224 /* Pods_MyGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EBA529B9DB630D7B09534F /* Pods-MyGallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery.debug.xcconfig"; path = "Target Support Files/Pods-MyGallery/Pods-MyGallery.debug.xcconfig"; sourceTree = "<group>"; };
 		457D2F4C469DEB1460EB7D74 /* Pods_MyGalleryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGalleryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +262,7 @@
 				B63CEA7C26845F3D00DC941F /* LaunchScreen.storyboard */,
 				B63CEA7F26845F3D00DC941F /* Info.plist */,
 				B6B6C7F1268F159D00F1A4E8 /* GoogleService-Info.plist */,
+				1B2D4821272067AF00A973CE /* Settings.bundle */,
 			);
 			path = MyGallery;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 				B6A3E406268F3608003684B3 /* Localize */,
 				B6A4CBB62689FE6000E5CA01 /* CustomPhotoAlbum.swift */,
 				B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */,
+				1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -588,6 +594,7 @@
 				B6AFA776268B506A00344FD5 /* Color.xcassets in Resources */,
 				B6B6C7F2268F159D00F1A4E8 /* GoogleService-Info.plist in Resources */,
 				B63CEA7B26845F3D00DC941F /* Assets.xcassets in Resources */,
+				1B2D4822272067AF00A973CE /* Settings.bundle in Resources */,
 				B693CC352685BD4C001715AF /* SearchImagesVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -767,6 +774,7 @@
 				B698E30D268DABEE00AE6FBF /* BaseVC.swift in Sources */,
 				B6AFA76F268B32E000344FD5 /* DarkModeSelectionVC.swift in Sources */,
 				B63CEA7426845F3C00DC941F /* SceneDelegate.swift in Sources */,
+				1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */,
 				B6ABA099268B96A400833E8C /* EditCustomAlbumVC.swift in Sources */,
 				B6ABA09D268B979500833E8C /* EditAlbumViewModel.swift in Sources */,
 				B63CEAAA26846B8000DC941F /* SearchImagesVC.swift in Sources */,

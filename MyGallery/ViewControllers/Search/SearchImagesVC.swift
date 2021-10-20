@@ -222,7 +222,6 @@ extension SearchImagesVC: UICollectionViewDataSource, UICollectionViewDelegateFl
 
 extension SearchImagesVC: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
-        
         //let height = viewModel.images[indexPath.item]?.size.height ?? 250
         return 300
     }
