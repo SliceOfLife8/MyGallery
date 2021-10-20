@@ -1,5 +1,4 @@
 PODS:
-  - DropDown (2.3.12)
   - Firebase/Analytics (8.0.0):
     - Firebase/Core
   - Firebase/Core (8.0.0):
@@ -103,7 +102,6 @@ PODS:
   - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
-  - DropDown (= 2.3.12)
   - Firebase/Analytics
   - Firebase/Crashlytics
   - Loaf (= 0.7.0)
@@ -111,7 +109,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - DropDown
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -127,7 +124,6 @@ SPEC REPOS:
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
-  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   FirebaseAnalytics: dcb92c7c9ef4fa7ffac276e8f87bd4fc8c97f1b8
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
@@ -142,6 +138,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: c84a194fc8baeb7072dd8f96a7a061d731691e01
+PODFILE CHECKSUM: 8fe91781aced95edae1d4e27d796a59e41df3439
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

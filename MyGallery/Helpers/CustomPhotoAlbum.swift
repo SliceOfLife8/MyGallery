@@ -26,13 +26,7 @@ class CustomPhotoAlbum: NSObject {
     }
     
     private func checkAuthorizationWithHandler(completion: @escaping ((_ success: Bool, _ status: PHAuthorizationStatus) -> Void)) {
-        var status: PHAuthorizationStatus
-        if #available(iOS 14, *) {
-            status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        } else {
-            // Fallback on earlier versions
-            status = PHPhotoLibrary.authorizationStatus()
-        }
+        let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         if status == .notDetermined {
             PHPhotoLibrary.requestAuthorization({ (status) in
                 self.checkAuthorizationWithHandler(completion: completion)
@@ -59,7 +53,7 @@ class CustomPhotoAlbum: NSObject {
     func save(image: UIImage, with parentViewController: UIViewController) {
         self.parentVC = parentViewController
         self.checkAuthorizationWithHandler { (success, status) in
-            if #available(iOS 14, *), status == .limited  {
+            if status == .limited  {
                 UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 return
             }

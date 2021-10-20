@@ -128,12 +128,8 @@ class SettingsVC: BaseVC {
     }
     
     private func getStatus() -> Bool {
-        var status: PHAuthorizationStatus
-        if #available(iOS 14, *) {
-            status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        } else { // Fallback on earlier versions
-            status = PHPhotoLibrary.authorizationStatus()
-        }
+        let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+
         return (status == .authorized) ? true : false
     }
     

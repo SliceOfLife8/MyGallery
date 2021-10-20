@@ -7,7 +7,6 @@
 
 import UIKit
 import Photos
-import DropDown
 import Loaf
 
 class EditCustomAlbumVC: BaseVC {
@@ -30,8 +29,6 @@ class EditCustomAlbumVC: BaseVC {
         return self.estimateSizeOfImages()
     }()
     var selectedIndexPaths: [IndexPath] = [] /// Track selected indexPaths. We need reference to selected cells as we don't have index of them when reuse automatically occrus.
-    let dropDownForDotsView = DropDown()
-    let dropDownForTrashView = DropDown()
     
     // MARK: - Outlets
     @IBOutlet weak var noAssetsView: GradientView!
@@ -78,25 +75,14 @@ class EditCustomAlbumVC: BaseVC {
     func updateBarRightItem() {
         if selectedIndexPaths.isEmpty {
             // Create pull-down menu
-            if #available(iOS 14.0, *) {
-                let bar = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: nil)
-                self.navigationItem.rightBarButtonItem = bar
-                self.navigationItem.rightBarButtonItem?.menu = addMenuItemsToDotsView()
-            } else {
-                let bar = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(barLinesTapped))
-                self.navigationItem.rightBarButtonItem = bar
-                addDropDownMenuForDotsView()
-            }
+            let bar = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: nil)
+            self.navigationItem.rightBarButtonItem = bar
+            self.navigationItem.rightBarButtonItem?.menu = addMenuItemsToDotsView()
+
         } else {
-            if #available(iOS 14.0, *) {
-                let bar = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: nil)
-                self.navigationItem.rightBarButtonItem = bar
-                self.navigationItem.rightBarButtonItem?.menu = addMenuItemsToTrashView()
-            } else {
-                let bar = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(trashTapped))
-                self.navigationItem.rightBarButtonItem = bar
-                addDropDownMenuForTrashView()
-            }
+            let bar = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: nil)
+            self.navigationItem.rightBarButtonItem = bar
+            self.navigationItem.rightBarButtonItem?.menu = addMenuItemsToTrashView()
         }
     }
     
@@ -110,15 +96,6 @@ class EditCustomAlbumVC: BaseVC {
         }
         noAssetsLbl.text = "no_album_found".localized()
         noAssetsLbl.textColor = UIColor(named: "Black")
-    }
-    
-    // MARK: - Actions
-    @objc func barLinesTapped() {
-        dropDownForDotsMenuTapped()
-    }
-    
-    @objc func trashTapped() {
-        dropDownForTrashMenuTapped()
     }
     
 }

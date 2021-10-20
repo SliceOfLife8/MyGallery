@@ -8,7 +8,7 @@
 import Foundation
 import StoreKit
 
-let defaults = UserDefaults.standard
+private let defaults = UserDefaults.standard
 
 struct StoreReviewHelper {
     
@@ -29,14 +29,14 @@ struct StoreReviewHelper {
         /// By the default setting, it will be called firstly after 10 times (or more) engaging of the user with the app. The next time would be after 20, 60, 240 times and so on.
         let nextlevel = 10 * (StoreReviewHelper.factorial(reviewRequestCount + 1))
         if appOpenCount > nextlevel {
-            requestReview()
+            SKStoreReviewController.requestReviewInCurrentScene()
             defaults.set(reviewRequestCount + 1, forKey: UserDefaults.reviewRequestNo)
             defaults.set(0, forKey: UserDefaults.appOpenedNo)
         }
     }
     
     static func requestReview() {
-        SKStoreReviewController.requestReview()
+        SKStoreReviewController.requestReviewInCurrentScene()
     }
     
     static func factorial(_ number: Int) -> Int {
@@ -48,5 +48,13 @@ struct StoreReviewHelper {
             sum *= index
         }
         return sum
+    }
+}
+
+extension SKStoreReviewController {
+    public static func requestReviewInCurrentScene() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            requestReview(in: scene)
+        }
     }
 }

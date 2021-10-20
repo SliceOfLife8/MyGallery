@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DropDown
 
 protocol ImagePreviewDelegate: AnyObject {
     func didShareImage(with image: UIImage?, size: String, photographer: String)
@@ -105,7 +104,6 @@ open class ImagePreviewVC: UIViewController {
     let scrollView = UIScrollView()
     let dotsView: UIButton = UIButton()
     let backBtn: UIButton = UIButton()
-    let dropDown = DropDown()
     var hqLabel = GradientLabel()
     
     public let imageInfo: ImageInfo
@@ -181,7 +179,6 @@ open class ImagePreviewVC: UIViewController {
         setupImageView()
         addDotsBtn()
         addBackBtn()
-        addDropDownMenu()
         addHQLabel()
         setupGesture()
         
@@ -221,25 +218,14 @@ open class ImagePreviewVC: UIViewController {
         dotsView.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
         dotsView.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 16), right: (view.trailingAnchor, 16), width: 32, height: 32)
         // Create pull-down menu
-        if #available(iOS 14.0, *) {
-            dotsView.showsMenuAsPrimaryAction = true
-            dotsView.menu = addMenuItems()
-        } else { // Fallback to earlier versions
-            dotsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dotsViewTapped)))
-        }
+        dotsView.showsMenuAsPrimaryAction = true
+        dotsView.menu = addMenuItems()
     }
     
     fileprivate func addBackBtn() {
         backBtn.setImage(UIImage(systemName: "arrow.down.backward"), for: .normal)
         backBtn.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 16), left: (view.leadingAnchor, 16), width: 32, height: 32)
         backBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnTapped)))
-    }
-    
-    fileprivate func addDropDownMenu() {
-        dropDown.anchorView = dotsView
-        dropDown.dataSource = ["download".localized(), "share_image".localized(), imageInfo.authorName ?? ""]
-        dropDown.cellConfiguration = { (index, item) in return "\(item)"}
-        dropDown.selectionBackgroundColor = .clear
     }
     
     fileprivate func addHQLabel() {
@@ -526,16 +512,11 @@ extension ImagePreviewVC: UIGestureRecognizerDelegate {
         self.singleTap()
     }
     
-    @objc func dotsViewTapped() {
-        dropDownMenuTapped()
-    }
-    
 }
 
 // MARK: - UIMenu methods for showing menu with actions. This refers as an action on dotsView.
 extension ImagePreviewVC {
-    
-    @available(iOS 14.0, *)
+
     fileprivate func addMenuItems() -> UIMenu {
         // Create actions
         let storeAction = UIAction(title: "download".localized(), image: UIImage(systemName: "square.and.arrow.down"), handler: { _ in
@@ -559,25 +540,6 @@ extension ImagePreviewVC {
         let menu = UIMenu(title: "", options: .displayInline, children: [storeAction, shareAction, authorLink])
         
         return menu
-    }
-    
-    /// #Drop down menu for iOS 13
-    func dropDownMenuTapped() {
-        dropDown.selectionAction = { (index: Int, item: String) in
-            if index == 0 {
-                self.delegate?.didStoreImage(for: self.imageView.image)
-            } else if index == 1 {
-                self.delegate?.didShareImage(with: self.imageView.image, size: self.imageView.image?.getSizeIn(.megabyte) ?? "", photographer: self.imageInfo.authorName ?? "")
-            } else {
-                guard let url = self.imageInfo.authorURL else { return }
-                let webView = WebPreviewVC(with: url)
-                webView.modalPresentationStyle = .popover
-                self.present(webView, animated: true)
-            }}
-        
-        dropDown.width = 140
-        dropDown.bottomOffset = CGPoint(x: 0, y: dotsView.bounds.height)
-        dropDown.show()
     }
     
 }
