@@ -12,4 +12,4 @@ simply run pod install from the directory containing the Podfile:
 
 **Requirements**
 - Swift 5
-- iOS 13.0+
+- iOS 14.1+
