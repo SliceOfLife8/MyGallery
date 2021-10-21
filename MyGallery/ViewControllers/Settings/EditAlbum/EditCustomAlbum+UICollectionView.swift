@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Lightbox
+import Imaginary
 
 // MARK: - UICollectionView Delegates
-extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func setupCollectionView() {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -22,6 +24,7 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
         collectionView.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 24), bottom: (view.bottomAnchor, 0), left: (view.leadingAnchor, 16), right: (view.trailingAnchor, 0))
         
         collectionView.register(GalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(AlbumFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AlbumFooterView.identifier)
         collectionView.allowsMultipleSelection = true
         collectionView.backgroundColor = .clear
         self.collectionView = collectionView
@@ -42,6 +45,20 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.images.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footerView =  collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: AlbumFooterView.identifier,
+            for: indexPath) as! AlbumFooterView
+        footerView.delegate = self
+
+        return footerView
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.size.width, height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -104,4 +121,30 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
         }
         return indexPaths
     }
+}
+
+extension EditCustomAlbumVC: AlbumFooterViewDelegate {
+
+    func footerDidTapped() {
+        var images: [LightboxImage] = []
+
+        for (index, element) in viewModel.images.enumerated() {
+            var date = String()
+            if let assetDate = viewModel.photoAssets[index].creationDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd/MM/YYYY"
+                // Convert Date to String
+                date = dateFormatter.string(from: assetDate)
+            }
+
+            images.append(LightboxImage(image: element, text: date))
+        }
+
+        // Create an instance of LightboxController.
+        let controller = LightboxController(images: images)
+        controller.dynamicBackground = true
+        // Present your controller.
+        present(controller, animated: true, completion: nil)
+    }
+
 }

@@ -80,12 +80,7 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath as IndexPath) as! PhotoCell
         if viewModel.images.count == 0 || viewModel.photos.count == 0 { return cell }
         cell.setupCell(viewModel.images[indexPath.item], photographerName: viewModel.photos[indexPath.item].photographer)
-        // Create a UIContextMenuInteraction with UIContextMenuInteractionDelegate
-        if cell.interactions.isEmpty {
-            let interaction = UIContextMenuInteraction(delegate: self)
-            // Attach It to Our View
-            cell.addInteraction(interaction)
-        }
+
         return cell
     }
     

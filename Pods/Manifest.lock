@@ -1,4 +1,5 @@
 PODS:
+  - Cache (6.0.0)
   - Firebase/Analytics (8.0.0):
     - Firebase/Core
   - Firebase/Core (8.0.0):
@@ -92,6 +93,10 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.4.1):
     - GoogleUtilities/Logger
+  - Imaginary (5.0.0):
+    - Cache (~> 6.0.0)
+  - Lightbox (2.5.0):
+    - Imaginary (~> 5.0.0)
   - Loaf (0.7.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -105,12 +110,14 @@ PODS:
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Crashlytics
+  - Lightbox (= 2.5.0)
   - Loaf (= 0.7.0)
   - Nuke (~> 10.4.1)
   - ReachabilitySwift (= 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - Cache
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -120,6 +127,8 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - Imaginary
+    - Lightbox
     - Loaf
     - nanopb
     - Nuke
@@ -127,6 +136,7 @@ SPEC REPOS:
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
+  Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   FirebaseAnalytics: dcb92c7c9ef4fa7ffac276e8f87bd4fc8c97f1b8
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
@@ -136,12 +146,14 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: c6bbc9753d046b5456dd4f940057fbad2c28419e
   GoogleDataTransport: 11e3a5f2c190327df1a4a5d7e7ae3d4d5b9c9e4c
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
+  Imaginary: cf5e3a7dd6ab1dcbd47ba8ce5edf2307c4e99eb3
+  Lightbox: cc3d5124f024fa8197fd23f913160db1c61a1852
   Loaf: d69937cd00649f3fa260beb8b7aef0a1feb861ef
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   Nuke: fa2d83b3ee99bb88eccc62ab6c7590e207b50096
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: 4a849c9d3164ab123d4c8527dad13d14b78247d8
+PODFILE CHECKSUM: ef43534d26c56d0625d40d817296fd019dc9e822
 
 COCOAPODS: 1.10.0

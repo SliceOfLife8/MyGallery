@@ -11,6 +11,7 @@
 		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
 		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
 		1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF1272197DB00303050 /* Images.xcdatamodeld */; };
+		1B50EBF52721C63200303050 /* AlbumFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF42721C63200303050 /* AlbumFooterView.swift */; };
 		72903F6466BF0FEDB2BB1422 /* Pods_MyGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6D983956FA00554009C224 /* Pods_MyGallery.framework */; };
 		9ECF64570C8ECFC91CB087D0 /* Pods_MyGalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457D2F4C469DEB1460EB7D74 /* Pods_MyGalleryTests.framework */; };
 		B63CEA7226845F3C00DC941F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEA7126845F3C00DC941F /* AppDelegate.swift */; };
@@ -97,6 +98,7 @@
 		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		1B50EBF2272197DB00303050 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
+		1B50EBF42721C63200303050 /* AlbumFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFooterView.swift; sourceTree = "<group>"; };
 		2F6D983956FA00554009C224 /* Pods_MyGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EBA529B9DB630D7B09534F /* Pods-MyGallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery.debug.xcconfig"; path = "Target Support Files/Pods-MyGallery/Pods-MyGallery.debug.xcconfig"; sourceTree = "<group>"; };
 		457D2F4C469DEB1460EB7D74 /* Pods_MyGalleryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGalleryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -365,6 +367,7 @@
 				B63CEABB2684834000DC941F /* PhotoCell.swift */,
 				B63CEABC2684834000DC941F /* PhotoCell.xib */,
 				B6A9F14C268C52D200D32589 /* GalleryCell.swift */,
+				1B50EBF42721C63200303050 /* AlbumFooterView.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				B698E31B268E208400AE6FBF /* LanguageSelectionVC.swift in Sources */,
 				B6A9F153268C857800D32589 /* EditCustomAlbum+UIMenu.swift in Sources */,
 				B6A9F14F268C5FB300D32589 /* Ext_Array.swift in Sources */,
+				1B50EBF52721C63200303050 /* AlbumFooterView.swift in Sources */,
 				B69A3F342687A126008F16E3 /* WebPreviewVC.swift in Sources */,
 				B693CC3F26860FC9001715AF /* SearchImages+UIContextMenu.swift in Sources */,
 				B6A3E409268F367C003684B3 /* Encryption.swift in Sources */,

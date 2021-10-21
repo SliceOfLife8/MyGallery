@@ -151,6 +151,8 @@ open class ImagePreviewVC: UIViewController {
             self.transitioningDelegate = self
             self.modalPresentationStyle = .overFullScreen
         }
+        // Delete Loaf when it's necessary
+        UIApplication.deleteLoafView()
     }
     
     public convenience init(image: UIImage, imageMode: UIView.ContentMode, imageHD: URL?, authorName: String?, authorURL: URL?, fromView: UIView?) {

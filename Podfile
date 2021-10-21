@@ -9,6 +9,7 @@ target 'MyGallery' do
   pod 'Loaf', '0.7.0'
   pod 'ReachabilitySwift', '5.0.0'
   pod 'Nuke', '~> 10.4.1'
+  pod 'Lightbox', '2.5.0'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
   
