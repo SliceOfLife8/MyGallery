@@ -10,6 +10,7 @@
 		0E4B84C92AFD2CCC07EF0372 /* Pods_MyGallery_MyGalleryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B209B7C1220E6244FF7007FB /* Pods_MyGallery_MyGalleryUITests.framework */; };
 		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
 		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
+		1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF1272197DB00303050 /* Images.xcdatamodeld */; };
 		72903F6466BF0FEDB2BB1422 /* Pods_MyGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6D983956FA00554009C224 /* Pods_MyGallery.framework */; };
 		9ECF64570C8ECFC91CB087D0 /* Pods_MyGalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457D2F4C469DEB1460EB7D74 /* Pods_MyGalleryTests.framework */; };
 		B63CEA7226845F3C00DC941F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CEA7126845F3C00DC941F /* AppDelegate.swift */; };
@@ -95,6 +96,7 @@
 		14C6A59D525E7025D6ABE050 /* Pods-MyGallery-MyGalleryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery-MyGalleryUITests.release.xcconfig"; path = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
+		1B50EBF2272197DB00303050 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
 		2F6D983956FA00554009C224 /* Pods_MyGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EBA529B9DB630D7B09534F /* Pods-MyGallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery.debug.xcconfig"; path = "Target Support Files/Pods-MyGallery/Pods-MyGallery.debug.xcconfig"; sourceTree = "<group>"; };
 		457D2F4C469DEB1460EB7D74 /* Pods_MyGalleryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyGalleryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,6 +265,7 @@
 				B63CEA7F26845F3D00DC941F /* Info.plist */,
 				B6B6C7F1268F159D00F1A4E8 /* GoogleService-Info.plist */,
 				1B2D4821272067AF00A973CE /* Settings.bundle */,
+				1B50EBF1272197DB00303050 /* Images.xcdatamodeld */,
 			);
 			path = MyGallery;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				B693CC3B2685DB35001715AF /* SearchTextField.swift in Sources */,
 				B6AFA76A268B0C2E00344FD5 /* SettingsCell.swift in Sources */,
 				B63CEAD32684C76500DC941F /* Gallery+UIContextMenu.swift in Sources */,
+				1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */,
 				B69A3F3226879B0D008F16E3 /* Ext_UIApplication.swift in Sources */,
 				B67594C32695947600EBE36A /* PrivateBundle.swift in Sources */,
 				B693CC4126861217001715AF /* Ext_String.swift in Sources */,
@@ -1138,6 +1142,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1B50EBF1272197DB00303050 /* Images.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1B50EBF2272197DB00303050 /* Images.xcdatamodel */,
+			);
+			currentVersion = 1B50EBF2272197DB00303050 /* Images.xcdatamodel */;
+			path = Images.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B63CEA6626845F3C00DC941F /* Project object */;
 }

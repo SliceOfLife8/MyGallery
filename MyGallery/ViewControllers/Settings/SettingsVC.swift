@@ -47,6 +47,7 @@ class SettingsVC: BaseVC {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(albumCreatedNotification), name: .didAlbumCreated, object: nil)
     }
     
     override func languageDidChange() {
@@ -94,7 +95,7 @@ class SettingsVC: BaseVC {
         }
         models.append(Section(title: "appearance".localized(), bottomTitle: nil, options: apperanceOptions))
         /// #General
-        models.append(Section(title: "general".localized(), bottomTitle: nil, options: [
+        models.append(Section(title: "general".localized(), bottomTitle: (getStatus() ? nil : appVersion), options: [
             SettingsOption(title: "find_me_on_social".localized(), icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: .disclosureIndicator, handle: {
                 /// #Open linkedinApp if it's available on phone. Otherwise open custom webView.
                 if let url = URL(string: "linkedin://profile/christos-petimezas"), UIApplication.shared.canOpenURL(url) {
@@ -140,6 +141,13 @@ class SettingsVC: BaseVC {
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
             self.present(activityVC, animated: true, completion: nil)
+        }
+    }
+
+    @objc func albumCreatedNotification() {
+        configure()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     

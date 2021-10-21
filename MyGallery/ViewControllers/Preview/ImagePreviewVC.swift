@@ -9,7 +9,7 @@ import UIKit
 
 protocol ImagePreviewDelegate: AnyObject {
     func didShareImage(with image: UIImage?, size: String, photographer: String)
-    func didStoreImage(for image: UIImage?)
+    func didStoreImage(for image: UIImage?, attribute: String?)
 }
 
 public struct ImageInfo {
@@ -549,17 +549,17 @@ extension ImagePreviewVC {
         if SettingsBundleHelper.hqEnabled() && ReachabilityManager.shared.checkWifi(), let imageHD = imageInfo.imageHD {
             // Check if image is already downloaded
             if let imageKey = imageInfo.imageHD?.absoluteString, let cachedImage = PhotoManager.shared.retrieveImage(with: imageKey) {
-                self.delegate?.didStoreImage(for: cachedImage)
+                self.delegate?.didStoreImage(for: cachedImage, attribute: imageInfo.imageHD?.absoluteString)
             } else {
                 let request = URLRequest(url: imageHD, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
                 let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
                     guard let imageData = data, let image = UIImage(data: imageData) else { return }
-                    self.delegate?.didStoreImage(for: image)
+                    self.delegate?.didStoreImage(for: image, attribute: self.imageInfo.imageHD?.absoluteString)
                 })
                 task.resume()
             }
         } else { // Send normal quality image
-            self.delegate?.didStoreImage(for: initialImageView.image)
+            self.delegate?.didStoreImage(for: initialImageView.image, attribute: imageInfo.imageHD?.absoluteString)
         }
     }
     

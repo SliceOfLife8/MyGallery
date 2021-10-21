@@ -65,7 +65,7 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
                     title: "download".localized(),
                     image: UIImage(systemName: "square.and.arrow.down")) { [weak self] _ in
                     if let image = self?.sharedImage {
-                        self?.downloadAsset(for: image) /// Download image
+                        self?.downloadAsset(for: image, attribute: self?.viewModel.photos[index].src.original) /// Download image
                     }
                 }
                 /// #Share selectedImage to other apps.
@@ -138,10 +138,10 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
         }
     }
     
-    func downloadAsset(for image: UIImage?, presentOverModal: Bool = false) {
+    func downloadAsset(for image: UIImage?, presentOverModal: Bool = false, attribute: String?) {
         guard let asset = image else { return }
         guard let currentVC = presentOverModal ? UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController : self else { return }
-        CustomPhotoAlbum.shared.save(image: asset, with: currentVC)
+        CustomPhotoAlbum.shared.save(image: asset, with: currentVC, identifier: attribute)
     }
     
     func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {

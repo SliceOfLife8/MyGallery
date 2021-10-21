@@ -140,8 +140,8 @@ extension GalleryVC: ImagePreviewDelegate {
         self.shareImage(presentOverModal: true)
     }
     
-    func didStoreImage(for image: UIImage?) {
+    func didStoreImage(for image: UIImage?, attribute: String?) {
         self.sharedImage = image
-        self.downloadAsset(for: image, presentOverModal: true)
+        self.downloadAsset(for: image, presentOverModal: true, attribute: attribute)
     }
 }
