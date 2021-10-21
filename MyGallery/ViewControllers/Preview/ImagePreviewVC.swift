@@ -101,6 +101,7 @@ open class ImagePreviewVC: UIViewController {
     weak var delegate: ImagePreviewDelegate?
     
     let imageView  = UIImageView()
+    let initialImageView = UIImageView()
     let scrollView = UIScrollView()
     let dotsView: UIButton = UIButton()
     let backBtn: UIButton = UIButton()
@@ -210,6 +211,7 @@ open class ImagePreviewVC: UIViewController {
     
     fileprivate func setupImageView() {
         imageView.image = imageInfo.image
+        initialImageView.image = imageInfo.image
         imageView.contentMode = .scaleAspectFit
         scrollView.addSubview(imageView)
     }
@@ -520,7 +522,7 @@ extension ImagePreviewVC {
     fileprivate func addMenuItems() -> UIMenu {
         // Create actions
         let storeAction = UIAction(title: "download".localized(), image: UIImage(systemName: "square.and.arrow.down"), handler: { _ in
-            self.delegate?.didStoreImage(for: self.imageView.image)
+            self.storeImage()
         })
         
         let shareAction = UIAction(title: "share_image".localized(), image: UIImage(systemName: "square.and.arrow.up"), handler: { _ in
@@ -540,6 +542,25 @@ extension ImagePreviewVC {
         let menu = UIMenu(title: "", options: .displayInline, children: [storeAction, shareAction, authorLink])
         
         return menu
+    }
+    
+    private func storeImage() {
+        // Check if user's device settings for HQ switch is on & network is wifi
+        if SettingsBundleHelper.hqEnabled() && ReachabilityManager.shared.checkWifi(), let imageHD = imageInfo.imageHD {
+            // Check if image is already downloaded
+            if let imageKey = imageInfo.imageHD?.absoluteString, let cachedImage = PhotoManager.shared.retrieveImage(with: imageKey) {
+                self.delegate?.didStoreImage(for: cachedImage)
+            } else {
+                let request = URLRequest(url: imageHD, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
+                let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+                    guard let imageData = data, let image = UIImage(data: imageData) else { return }
+                    self.delegate?.didStoreImage(for: image)
+                })
+                task.resume()
+            }
+        } else { // Send normal quality image
+            self.delegate?.didStoreImage(for: initialImageView.image)
+        }
     }
     
 }

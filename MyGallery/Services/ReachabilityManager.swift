@@ -71,5 +71,11 @@ class ReachabilityManager: NSObject {
     func removeListener(listener: NetworkStatusListener){
         listeners = listeners.filter{ $0 !== listener}
     }
+
+    func checkWifi() -> Bool {
+        let connection = try? Reachability().connection
+
+        return connection == .wifi
+    }
     
 }
