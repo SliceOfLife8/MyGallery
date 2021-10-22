@@ -104,6 +104,9 @@ class EditAlbumViewModel {
     // Delete image directly from 'Collection'
     func deleteImages(indexPaths: [IndexPath]?) {
         guard let paths = indexPaths else { return }
+        if paths.count == photoAssets.count {
+            cleanData()
+        }
         var photoAssets: [PHAsset] = []
         indexPathsToBeDeleted = paths
         paths.forEach { indexPath in
@@ -119,6 +122,9 @@ class EditAlbumViewModel {
     // Delete images only from custom album
     func deleteImagesFromAlbum(indexPaths: [IndexPath]?) {
         guard let collection = assetCollection, let paths = indexPaths else { return }
+        if paths.count == photoAssets.count {
+            cleanData()
+        }
         var photoAssets: [PHAsset] = []
         indexPathsToBeDeleted = paths
         paths.forEach { indexPath in
@@ -133,8 +139,9 @@ class EditAlbumViewModel {
         }, completionHandler: nil)
     }
     
-    // Delete entire collection aka Custom album
+    // Delete entire collection aka Custom album & delete coreData
     func deleteAlbum() {
+        cleanData()
         guard let collection = assetCollection else { return }
         let fastEnumeration = NSArray(array: [collection])
         loafTitle = .deleteAlbum
@@ -144,6 +151,12 @@ class EditAlbumViewModel {
         }, completionHandler: { (success, error) in
             self.delegate?.didDeleteAlbum(status: success)
         })
+    }
+
+    private func cleanData() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.deleteCoreData()
+        }
     }
     
 }
