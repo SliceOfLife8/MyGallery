@@ -84,6 +84,7 @@ class CustomPhotoAlbum: NSObject {
                         
                     }, completionHandler: nil)
                     self.showInfoMessages(with: nil)
+                    NotificationCenter.default.post(name: .didAlbumCreated, object: nil)
                     DispatchQueue.main.async {
                         self.saveContext(attribute: identifier)
                     }
@@ -108,7 +109,9 @@ class CustomPhotoAlbum: NSObject {
                     }
                 }
             } else {
-                self.showDeniedAccessAlert(parentVC)
+                DispatchQueue.main.async {
+                    self.showDeniedAccessAlert(parentVC)
+                }
             }
         }
     }

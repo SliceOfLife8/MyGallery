@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Nuke
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -61,6 +62,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+
+    // MARK: - Core Data Delete data
+    func deleteCoreData() {
+        let entityNames = self.persistentContainer.managedObjectModel.entities.compactMap({ $0.name })
+        entityNames.forEach { [weak self] entityName in
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+
+            do {
+                try self?.persistentContainer.viewContext.execute(deleteRequest)
+                try self?.persistentContainer.viewContext.save()
+            } catch let error {
+                print("Detele all data in \(entityName) error :", error)
+            }
+        }
+    }
+
+    /// Currently we don't use this func. Maybe we need to add somewhere a button.
+    func deleteAllData() {
+        Nuke.ImageCache.shared.removeAll() // clear memory cache
+        Nuke.DataLoader.sharedUrlCache.removeAllCachedResponses() // clear disk cache
+        deleteCoreData()
     }
     
 }
