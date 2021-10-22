@@ -8,7 +8,6 @@
 import UIKit
 
 class SettingsCell: UITableViewCell {
-    
     static let identifier = "SettingsCell"
     
     private let iconContainer: UIView = {
@@ -31,9 +30,7 @@ class SettingsCell: UITableViewCell {
         label.numberOfLines = 1
         return label
     }()
-    
-    
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(label)

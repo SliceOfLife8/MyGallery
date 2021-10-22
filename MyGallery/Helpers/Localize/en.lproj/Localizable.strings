@@ -56,3 +56,4 @@
 "greek" = "Greek";
 "change_language_desc" = "If you select another language, the application will change all the words according to your preference.";
 "already_fetched" = "Image has been already taken!";
+"album_footer" = "Click here to view the entire album!";

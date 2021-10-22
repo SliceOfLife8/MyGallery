@@ -8,6 +8,7 @@
 import UIKit
 import Lightbox
 import Imaginary
+import LinkPresentation
 
 // MARK: - UICollectionView Delegates
 extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -133,7 +134,6 @@ extension EditCustomAlbumVC: AlbumFooterViewDelegate {
             if let assetDate = viewModel.photoAssets[index].creationDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "dd/MM/YYYY"
-                // Convert Date to String
                 date = dateFormatter.string(from: assetDate)
             }
 
@@ -142,9 +142,71 @@ extension EditCustomAlbumVC: AlbumFooterViewDelegate {
 
         // Create an instance of LightboxController.
         let controller = LightboxController(images: images)
+        // Configuration
+        LightboxConfig.DeleteButton.enabled = true
+        LightboxConfig.DeleteButton.text = "Share"
+        LightboxConfig.DeleteButton.textAttributes = [
+            .font: UIFont.boldSystemFont(ofSize: 16),
+            .foregroundColor: UIColor.white,
+            .paragraphStyle: {
+              let style = NSMutableParagraphStyle()
+              style.alignment = .center
+              return style
+            }()
+          ]
+
+        controller.headerView.deleteButton.removeTarget(nil, action: nil, for: .touchUpInside)
+        controller.headerView.deleteButton.addTarget(self, action: #selector(shareDidPress(_:)),
+          for: .touchUpInside)
         controller.dynamicBackground = true
         // Present your controller.
         present(controller, animated: true, completion: nil)
+    }
+
+    @objc func shareDidPress(_ button: UIButton) {
+        let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
+        //Excluded Activities
+        activityViewController.excludedActivityTypes = [
+            .saveToCameraRoll,
+            .addToReadingList,
+            .openInIBooks,
+            .markupAsPDF
+        ]
+        activityViewController.popoverPresentationController?.sourceView = self.view
+
+        UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController?.present(activityViewController, animated: true, completion: nil)
+    }
+
+}
+
+// MARK: - UIActivityItemSource delegate methods
+extension EditCustomAlbumVC: UIActivityItemSource {
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return UIImage() // an empty UIImage is sufficient to ensure share sheet shows right actions
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        var currentImage = self.viewModel.images.first
+        if let lightBox = navigationController?.visibleViewController as? LightboxController {
+            currentImage = lightBox.images[safe: lightBox.currentPage]?.image
+        }
+
+        return currentImage
+    }
+
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        var currentImage = self.viewModel.images.first
+        if let lightBox = navigationController?.visibleViewController as? LightboxController {
+            currentImage = lightBox.images[safe: lightBox.currentPage]?.image
+        }
+        guard let selectedImage = currentImage, let info = currentImage?.getSizeIn(.megabyte) else { return nil }
+
+        let linkMetaData = LPLinkMetadata()
+        linkMetaData.iconProvider = NSItemProvider(object: selectedImage)
+        linkMetaData.originalURL = URL(fileURLWithPath: "Size: \(info) Mb")
+
+        return linkMetaData
     }
 
 }

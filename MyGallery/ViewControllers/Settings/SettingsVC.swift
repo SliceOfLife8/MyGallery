@@ -8,20 +8,6 @@
 import UIKit
 import Photos
 
-struct Section {
-    let title: String?
-    let bottomTitle: String?
-    var options: [SettingsOption]
-}
-
-struct SettingsOption {
-    let title: String
-    let icon: UIImage?
-    let iconBackgroundColor: UIColor?
-    var accessoryType: UITableViewCell.AccessoryType
-    let handle: (() -> Void)
-}
-
 class SettingsVC: BaseVC {
     
     private let tableView: UITableView = {

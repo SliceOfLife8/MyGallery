@@ -119,4 +119,3 @@ extension LanguageSelectionVC: UITableViewDelegate, UITableViewDataSource {
         model.handle()
     }
 }
-

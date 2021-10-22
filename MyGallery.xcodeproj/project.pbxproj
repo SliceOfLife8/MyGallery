@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0E4B84C92AFD2CCC07EF0372 /* Pods_MyGallery_MyGalleryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B209B7C1220E6244FF7007FB /* Pods_MyGallery_MyGalleryUITests.framework */; };
+		1B13D7FC27228F460059324C /* Ext_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FB27228F460059324C /* Ext_Equatable.swift */; };
+		1B13D7FE272291A00059324C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FD272291A00059324C /* Settings.swift */; };
+		1B13D800272292670059324C /* Ext_UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FF272292670059324C /* Ext_UIFont.swift */; };
 		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
 		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
 		1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF1272197DB00303050 /* Images.xcdatamodeld */; };
@@ -95,6 +98,9 @@
 
 /* Begin PBXFileReference section */
 		14C6A59D525E7025D6ABE050 /* Pods-MyGallery-MyGalleryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery-MyGalleryUITests.release.xcconfig"; path = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1B13D7FB27228F460059324C /* Ext_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Equatable.swift; sourceTree = "<group>"; };
+		1B13D7FD272291A00059324C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1B13D7FF272292670059324C /* Ext_UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIFont.swift; sourceTree = "<group>"; };
 		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		1B50EBF2272197DB00303050 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
@@ -328,6 +334,8 @@
 				B6A9F14E268C5FB300D32589 /* Ext_Array.swift */,
 				B673A2302690E41B0098CE10 /* Ext_Collection.swift */,
 				B6D012062695D97C009F51AB /* Ext_NotificationName.swift */,
+				1B13D7FB27228F460059324C /* Ext_Equatable.swift */,
+				1B13D7FF272292670059324C /* Ext_UIFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -344,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				B63CEAB52684807B00DC941F /* CuratedModel.swift */,
+				1B13D7FD272291A00059324C /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -753,6 +762,7 @@
 				B63CEAA626846B2800DC941F /* GalleryVC.swift in Sources */,
 				B6A3E40B268F36C7003684B3 /* AppConfig.swift in Sources */,
 				B63CEA7226845F3C00DC941F /* AppDelegate.swift in Sources */,
+				1B13D800272292670059324C /* Ext_UIFont.swift in Sources */,
 				B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */,
 				B63CEAB126847C0900DC941F /* MediaContext.swift in Sources */,
 				B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */,
@@ -782,12 +792,14 @@
 				B6AFA76F268B32E000344FD5 /* DarkModeSelectionVC.swift in Sources */,
 				B63CEA7426845F3C00DC941F /* SceneDelegate.swift in Sources */,
 				1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */,
+				1B13D7FE272291A00059324C /* Settings.swift in Sources */,
 				B6ABA099268B96A400833E8C /* EditCustomAlbumVC.swift in Sources */,
 				B6ABA09D268B979500833E8C /* EditAlbumViewModel.swift in Sources */,
 				B63CEAAA26846B8000DC941F /* SearchImagesVC.swift in Sources */,
 				B6A9F14D268C52D200D32589 /* GalleryCell.swift in Sources */,
 				B693CC3B2685DB35001715AF /* SearchTextField.swift in Sources */,
 				B6AFA76A268B0C2E00344FD5 /* SettingsCell.swift in Sources */,
+				1B13D7FC27228F460059324C /* Ext_Equatable.swift in Sources */,
 				B63CEAD32684C76500DC941F /* Gallery+UIContextMenu.swift in Sources */,
 				1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */,
 				B69A3F3226879B0D008F16E3 /* Ext_UIApplication.swift in Sources */,
@@ -1025,7 +1037,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8QYX9VGMBQ;
+				DEVELOPMENT_TEAM = VLPM2772QL;
 				INFOPLIST_FILE = MyGalleryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1048,7 +1060,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8QYX9VGMBQ;
+				DEVELOPMENT_TEAM = VLPM2772QL;
 				INFOPLIST_FILE = MyGalleryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1070,7 +1082,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8QYX9VGMBQ;
+				DEVELOPMENT_TEAM = VLPM2772QL;
 				INFOPLIST_FILE = MyGalleryUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1091,7 +1103,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8QYX9VGMBQ;
+				DEVELOPMENT_TEAM = VLPM2772QL;
 				INFOPLIST_FILE = MyGalleryUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

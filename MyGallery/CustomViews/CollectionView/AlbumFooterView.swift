@@ -19,7 +19,7 @@ class AlbumFooterView: UICollectionReusableView {
         let label = GradientLabel()
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
-        label.text = "Πατήστε εδώ για προβολή όλου του album!"
+        label.text = "album_footer".localized()
         label.textAlignment = .center
         return label
     }()

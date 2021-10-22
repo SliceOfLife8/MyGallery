@@ -22,7 +22,6 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
      - Parameter previewProvider: A closure that returns a UIViewController. If you set this to nil, the default preview will display for your menu, which is just the view you tapped. You’ll use this later to show a preview that’s more appealing to the eye.
      - Parameter actionProvider: Each item in a context menu is an action. This closure is where you actually build your menu. You can build a UIMenu with UIActions and nested UIMenus. The closure takes an array of suggested actions provided by UIKit as an argument. This time, you’ll ignore it as your menu will have your own custom items.
      */
-    
     func contextMenuInteraction(
         _ interaction: UIContextMenuInteraction,
         configurationForMenuAtLocation location: CGPoint)

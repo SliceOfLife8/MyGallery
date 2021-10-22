@@ -59,7 +59,6 @@ class BaseVC: UIViewController {
 }
 
 extension BaseVC: NetworkStatusListener {
-    
     func networkStatusDidChange(status: Reachability.Connection) {
         if status == .unavailable && !connectionStatusUnvailable {
             connectionStatusUnvailable = true
@@ -68,11 +67,5 @@ extension BaseVC: NetworkStatusListener {
             connectionStatusUnvailable = false
             Loaf("network_is_back".localized(), state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
         }
-    }
-}
-
-extension Equatable {
-    func oneOf(other: Self...) -> Bool {
-        return other.contains(self)
     }
 }

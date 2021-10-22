@@ -7,10 +7,6 @@
 
 import UIKit
 
-/* TODO: Last steps for production:
- 1) Add Unit & UI Tests
- */
-
 internal enum TabBarValues: String {
     case GalleryAction
     case SearchAction
@@ -33,7 +29,6 @@ class TabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        //UITabBar.appearance().barTintColor = .systemBackground
         tabBar.tintColor = .label
         setupVCs()
     }

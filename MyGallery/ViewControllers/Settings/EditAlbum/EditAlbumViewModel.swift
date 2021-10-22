@@ -19,7 +19,7 @@ enum InfoMessages: String {
     var raw: String {
         switch self {
         case .deleteAlbum:
-           return "album_deleted".localized()
+            return "album_deleted".localized()
         case .deleteMultipleImages:
             return "delete_multiple_images".localized()
         case .deleteSingleImage:

@@ -16,9 +16,6 @@ class EditCustomAlbumVC: BaseVC {
     
     // MARK: - Vars about collectionView
     internal weak var collectionView: UICollectionView?
-    var collectionViewFlowLayout: UICollectionViewFlowLayout? {
-        return collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
-    }
     internal lazy var numberOfElementsInRow = 3
     internal var minimumItemSpacingAtSameRow: CGFloat = 8
     internal var minimumItemSpacingBetweenGrids: CGFloat = 8
