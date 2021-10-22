@@ -63,9 +63,12 @@ class CustomPhotoAlbum: NSObject {
             }
         }
 
-        self.checkAuthorizationWithHandler { (success, status) in
+        self.checkAuthorizationWithHandler { [self] (success, status) in
             if status == .limited  {
-                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                DispatchQueue.main.async {
+                    self.saveContext(attribute: identifier)
+                    self.showLimitedAccessAlert(self.parentVC, image: image)
+                }
                 return
             }
             if success {
@@ -81,7 +84,9 @@ class CustomPhotoAlbum: NSObject {
                         
                     }, completionHandler: nil)
                     self.showInfoMessages(with: nil)
-                    self.saveContext(attribute: identifier)
+                    DispatchQueue.main.async {
+                        self.saveContext(attribute: identifier)
+                    }
                 } else {
                     PHPhotoLibrary.shared().performChanges({
                         PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: AppConfig.albumName)   // create an asset collection with the album name
@@ -102,6 +107,8 @@ class CustomPhotoAlbum: NSObject {
                         self.showInfoMessages(with: error)
                     }
                 }
+            } else {
+                self.showDeniedAccessAlert(parentVC)
             }
         }
     }
@@ -158,6 +165,44 @@ class CustomPhotoAlbum: NSObject {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+    }
+
+}
+
+// MARK: - Show Alert Dialogs
+extension CustomPhotoAlbum {
+
+    private func showLimitedAccessAlert(_ viewController: UIViewController, image: UIImage) {
+        if UserDefaults.standard.bool(forKey: "photo_alertDialog") { return }
+        let alert = UIAlertController(title: "limited_alert_title".localized(), message: "limited_alert_message".localized(), preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "settings".localized(), style: .default, handler: { action in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "limited_alert_not_asked_again".localized(), style: .destructive, handler: { action in
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            UserDefaults.standard.set(true, forKey: "photo_alertDialog")
+        }))
+        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: { action in
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }))
+
+        viewController.present(alert, animated: true, completion: nil)
+    }
+
+    private func showDeniedAccessAlert(_ viewController: UIViewController) {
+        let alert = UIAlertController(title: "denied_alert_title".localized(), message: "denied_alert_message".localized(), preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "settings".localized(), style: .default, handler: { action in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel))
+
+        viewController.present(alert, animated: true, completion: nil)
     }
 
 }

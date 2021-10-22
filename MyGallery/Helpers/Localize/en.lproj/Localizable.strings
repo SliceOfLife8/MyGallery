@@ -57,3 +57,8 @@
 "change_language_desc" = "If you select another language, the application will change all the words according to your preference.";
 "already_fetched" = "Image has been already taken!";
 "album_footer" = "Click here to view the entire album!";
+"limited_alert_title" = "Limited access";
+"limited_alert_message" = "You seem to have limited access to your photos. This way you will not be able to see your album, however the photos are normally stored on the device. If you want to change it you can press the button below. 👇";
+"limited_alert_not_asked_again" = "Do not ask again";
+"denied_alert_title" = "You don't have access";
+"denied_alert_message" = "It seems that you haven't given access to your photos. To save photos and explore them in your own album press here! 👇";

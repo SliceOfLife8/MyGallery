@@ -31,7 +31,6 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
             previewProvider: nil, /// pass nil, if custom preview not needed
             actionProvider: { _ in
                 let children: [UIMenuElement] = []
-                UIApplication.deleteLoafView()
                 return UIMenu(title: "", children: children)
             })
     }
@@ -96,7 +95,8 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
         else {
             return nil
         }
-        
+
+        UIApplication.deleteLoafView()
         // Return the custom targeted preview
         return UITargetedPreview(view: image)
     }
