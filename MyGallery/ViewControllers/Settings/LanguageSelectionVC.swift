@@ -20,7 +20,8 @@ class LanguageSelectionVC: BaseVC {
     private var greekEnabled: Bool {
         get {
             let lan = UserDefaults.standard.value(forKeyPath: "AppleLanguages") as? [String]
-            return lan?.first == "el"
+            let enabled = lan?.first?.oneOf(other: "el","el-GR")
+            return enabled == true
         }
     }
     

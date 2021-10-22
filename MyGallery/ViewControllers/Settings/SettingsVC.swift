@@ -122,9 +122,8 @@ class SettingsVC: BaseVC {
     
     // TODO: check again this func
     private func shareApp() {
-        if let urlStr = NSURL(string: "https://itunes.apple.com/us/app/myapp/idxxxxxxxx?ls=1&mt=8") {
-            let objectsToShare = [urlStr]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        if let urlStr = URL(string: "https://apps.apple.com/us/app/id1535629801") {
+            let activityVC = UIActivityViewController(activityItems: [urlStr], applicationActivities: nil)
             
             self.present(activityVC, animated: true, completion: nil)
         }

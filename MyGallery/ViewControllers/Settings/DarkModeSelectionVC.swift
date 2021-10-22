@@ -63,8 +63,7 @@ class DarkModeSelectionVC: BaseVC {
     
     private func getDarkModeStatus() -> Int {
         // unspecified = 0, light = 1, dark = 2
-        let style = UserDefaults.standard.overridedUserInterfaceStyle
-        return style.rawValue
+        return UserDefaults.standard.overridedUserInterfaceStyle.rawValue
     }
     
     private func updateDarkMode(_ style: UIUserInterfaceStyle) {
