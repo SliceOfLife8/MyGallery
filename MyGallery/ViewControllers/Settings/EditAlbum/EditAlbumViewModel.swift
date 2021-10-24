@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 import Photos
 
 enum InfoMessages: String {
@@ -33,84 +32,29 @@ enum InfoMessages: String {
 }
 
 protocol EditAlbumVMDelegate: AnyObject {
-    func didGetImages()
     func didDeleteAlbum(status: Bool)
+    func cleanData()
 }
 
 class EditAlbumViewModel {
     
     weak var delegate: EditAlbumVMDelegate?
-    
-    var assetCollection: PHAssetCollection?
-    var images: [UIImage] = []
-    var photoAssets = PHFetchResult<PHAsset>()
+
     var indexPathsToBeDeleted: [IndexPath] = []
     var loafTitle: InfoMessages = .deleteMultipleImagesFromAlbum
     
     init() {}
     
-    func fetchCustomAlbumPhotos() {
-        var albumFound = Bool()
-        
-        assetCollection = CustomPhotoAlbum.fetchAssetCollectionForAlbum()
-        albumFound = (assetCollection != nil) ? true : false
-        
-        guard albumFound == true, let myCollection = assetCollection else {
-            self.delegate?.didGetImages()
-            return
-        }
-        photoAssets = PHAsset.fetchAssets(in: myCollection, options: nil)
-        let imageManager = PHCachingImageManager()
-        if photoAssets.count == 0 {
-            self.delegate?.didGetImages()
-            return
-        }
-        photoAssets.enumerateObjects{(object: AnyObject!,
-                                      count: Int,
-                                      stop: UnsafeMutablePointer<ObjCBool>) in
-            
-            if object is PHAsset {
-                let asset = object as! PHAsset
-                let imageSize = CGSize(width: asset.pixelWidth,
-                                       height: asset.pixelHeight)
-                
-                /* For faster performance, and maybe degraded image */
-                let options = PHImageRequestOptions()
-                options.deliveryMode = .opportunistic
-                options.isSynchronous = true
-                options.isNetworkAccessAllowed = true /// This is mandatory for iCloud images.
-                
-                imageManager.requestImage(for: asset,
-                                          targetSize: imageSize,
-                                          contentMode: .aspectFill,
-                                          options: options,
-                                          resultHandler: {
-                                            (image, info) -> Void in
-                                            if let _image = image {
-                                                self.addImages(uploadImage: _image, totalAssets: self.photoAssets.count)
-                                            }
-                                          })
-            }
-        }
-    }
-    
-    func addImages(uploadImage: UIImage, totalAssets: Int) {
-        self.images.append(uploadImage)
-        if totalAssets == images.count {
-            self.delegate?.didGetImages()
-        }
-    }
-    
     // Delete image directly from 'Collection'
     func deleteImages(indexPaths: [IndexPath]?) {
         guard let paths = indexPaths else { return }
-        if paths.count == photoAssets.count {
-            cleanData()
+        if paths.count == PhotoService.shared.photoAssets.count {
+            self.delegate?.cleanData()
         }
         var photoAssets: [PHAsset] = []
         indexPathsToBeDeleted = paths
         paths.forEach { indexPath in
-            photoAssets.append(self.photoAssets.object(at: indexPath.row))
+            photoAssets.append(PhotoService.shared.photoAssets.object(at: indexPath.row))
         }
         loafTitle = (paths.count == 1) ? .deleteSingleImage : .deleteMultipleImages
         
@@ -121,14 +65,14 @@ class EditAlbumViewModel {
     
     // Delete images only from custom album
     func deleteImagesFromAlbum(indexPaths: [IndexPath]?) {
-        guard let collection = assetCollection, let paths = indexPaths else { return }
-        if paths.count == photoAssets.count {
-            cleanData()
+        guard let collection = PhotoService.shared.assetCollection, let paths = indexPaths else { return }
+        if paths.count == PhotoService.shared.photoAssets.count {
+            self.delegate?.cleanData()
         }
         var photoAssets: [PHAsset] = []
         indexPathsToBeDeleted = paths
         paths.forEach { indexPath in
-            photoAssets.append(self.photoAssets.object(at: indexPath.row))
+            photoAssets.append(PhotoService.shared.photoAssets.object(at: indexPath.row))
         }
         loafTitle = (paths.count == 1) ? .deleteSingleImageFromAlbum : .deleteMultipleImagesFromAlbum
         
@@ -141,22 +85,20 @@ class EditAlbumViewModel {
     
     // Delete entire collection aka Custom album & delete coreData
     func deleteAlbum() {
-        cleanData()
-        guard let collection = assetCollection else { return }
+        self.delegate?.cleanData()
+        guard let collection = PhotoService.shared.assetCollection else { return }
         let fastEnumeration = NSArray(array: [collection])
         loafTitle = .deleteAlbum
         
         PHPhotoLibrary.shared().performChanges({
             PHAssetCollectionChangeRequest.deleteAssetCollections(fastEnumeration)
         }, completionHandler: { (success, error) in
-            self.delegate?.didDeleteAlbum(status: success)
+            if let _ = error {
+                self.delegate?.didDeleteAlbum(status: false)
+            } else if success {
+                self.delegate?.didDeleteAlbum(status: true)
+            }
         })
-    }
-
-    private func cleanData() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.deleteCoreData()
-        }
     }
     
 }

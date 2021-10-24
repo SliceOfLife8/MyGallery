@@ -13,6 +13,7 @@ class EditCustomAlbumVC: BaseVC {
     
     // MARK: - Vars
     private(set) var viewModel: EditAlbumViewModel
+    private(set) var service: PhotoService
     
     // MARK: - Vars about collectionView
     internal weak var collectionView: UICollectionView?
@@ -34,6 +35,7 @@ class EditCustomAlbumVC: BaseVC {
     // MARK: - Init
     init(_ viewModel: EditAlbumViewModel) {
         self.viewModel = viewModel
+        self.service = PhotoService.shared
         super.init(nibName: nil, bundle: nil)
         configure(viewModel: viewModel)
     }
@@ -66,7 +68,8 @@ class EditCustomAlbumVC: BaseVC {
     }
     
     private func populateData() {
-        viewModel.fetchCustomAlbumPhotos()
+        service.fetchCustomAlbumPhotos()
+        service.delegate = self
     }
     
     func updateBarRightItem() {
@@ -99,13 +102,10 @@ class EditCustomAlbumVC: BaseVC {
 
 // MARK: - EditAlbumViewModel Delegate
 extension EditCustomAlbumVC: EditAlbumVMDelegate {
-    
-    func didGetImages() {
-        if viewModel.images.count == 0 {
-            self.collectionView?.isHidden = true
-            self.noAssetsView.isHidden = false
-        } else {
-            self.collectionView?.reloadData()
+
+    func cleanData() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.deleteCoreData()
         }
     }
     
@@ -116,7 +116,7 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
                 self.collectionView?.isHidden = true
                 self.noAssetsView.isHidden = false
             } else {
-                Loaf("something_went_wrong".localized(), state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                Loaf("something_went_wrong".localized(), state: .custom(.init(backgroundColor: UIColor(named: "Red")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
             }
         }
     }
@@ -126,7 +126,7 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
 // MARK: - PHPhotoLibraryChangeObserver delegate
 extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
-        guard let collectionView = self.collectionView, let assetCollection = viewModel.assetCollection else { return }
+        guard let collectionView = self.collectionView, let assetCollection = service.assetCollection else { return }
         // Change notifications may be made on a background queue.
         // Re-dispatch to the main queue to update the UI.
         DispatchQueue.main.sync {
@@ -136,16 +136,16 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                 // If album delete return
                 if albumChanges.objectWasDeleted == true { return }
                 // Fetch the new album and update the UI accordingly.
-                viewModel.assetCollection = albumChanges.objectAfterChanges!
+                service.assetCollection = albumChanges.objectAfterChanges!
             }
             // Check for changes to the list of assets (insertions, deletions, moves, or updates).
-            if let changes = changeInstance.changeDetails(for: viewModel.photoAssets) {
+            if let changes = changeInstance.changeDetails(for: service.photoAssets) {
                 // Keep the new fetch result for future use.
-                viewModel.photoAssets = changes.fetchResultAfterChanges
+                service.photoAssets = changes.fetchResultAfterChanges
                 // Update datasource of images
                 let sortedIndices = viewModel.indexPathsToBeDeleted.sorted { $0.row > $1.row }
                 sortedIndices.forEach { indexPath in
-                    viewModel.images.remove(at: indexPath.row)
+                    service.images.remove(at: indexPath.row)
                 }
                 viewModel.indexPathsToBeDeleted.removeAll()
                 selectedIndexPaths.removeAll()
@@ -174,11 +174,22 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                 }
                 updateBarRightItem()
                 Loaf(viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
-                if self.viewModel.images.count == 0 {
-                    self.collectionView?.isHidden = true
-                    self.noAssetsView.isHidden = false
+                if service.images.count == 0 {
+                    collectionView.isHidden = true
+                    noAssetsView.isHidden = false
                 }
             }
+        }
+    }
+}
+
+extension EditCustomAlbumVC: PhotoServiceDelegate {
+    func didGetImages() {
+        if service.images.count == 0 {
+            collectionView?.isHidden = true
+            noAssetsView.isHidden = false
+        } else {
+            collectionView?.reloadData()
         }
     }
 }

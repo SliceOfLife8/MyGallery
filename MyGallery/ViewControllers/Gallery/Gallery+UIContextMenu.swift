@@ -139,7 +139,8 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
     
     func downloadAsset(for image: UIImage?, presentOverModal: Bool = false, attribute: String?) {
         guard let asset = image else { return }
-        guard let currentVC = presentOverModal ? UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController : self else { return }
+        let presenter: UIViewController = UIApplication.shared.sceneDelegate.window?.rootViewController?.presentedViewController ?? self
+        let currentVC = presentOverModal ? presenter : self
         CustomPhotoAlbum.shared.save(image: asset, with: currentVC, identifier: attribute)
     }
     

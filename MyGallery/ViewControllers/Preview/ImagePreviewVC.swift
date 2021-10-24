@@ -335,6 +335,7 @@ open class ImagePreviewVC: UIViewController {
             gesture.setTranslation(CGPoint.zero, in: nil)
         case .ended:
             if getProgress() > 0.25 || getVelocity() > 1000 {
+                UIApplication.deleteLoafView()
                 dismiss(animated: true, completion: dismissCompletion)
             } else {
                 fallthrough

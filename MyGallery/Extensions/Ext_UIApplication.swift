@@ -33,14 +33,6 @@ extension UIApplication {
         }
     }
     
-    static var topSafeAreaHeight: CGFloat {
-        var topSafeAreaHeight: CGFloat = 0
-        let window = UIApplication.shared.windows[0]
-        let safeFrame = window.safeAreaLayoutGuide.layoutFrame
-        topSafeAreaHeight = safeFrame.minY
-        return topSafeAreaHeight
-    }
-    
     class func topViewController(base: UIViewController? = UIApplication.shared.windows[0].rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)

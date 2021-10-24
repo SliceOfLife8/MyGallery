@@ -11,6 +11,8 @@
 		1B13D7FC27228F460059324C /* Ext_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FB27228F460059324C /* Ext_Equatable.swift */; };
 		1B13D7FE272291A00059324C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FD272291A00059324C /* Settings.swift */; };
 		1B13D800272292670059324C /* Ext_UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FF272292670059324C /* Ext_UIFont.swift */; };
+		1B1615D727248DE5008D679D /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615D627248DE5008D679D /* PhotoService.swift */; };
+		1B1615DA2724A083008D679D /* LightboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615D92724A083008D679D /* LightboxHelper.swift */; };
 		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
 		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
 		1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF1272197DB00303050 /* Images.xcdatamodeld */; };
@@ -101,6 +103,8 @@
 		1B13D7FB27228F460059324C /* Ext_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Equatable.swift; sourceTree = "<group>"; };
 		1B13D7FD272291A00059324C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1B13D7FF272292670059324C /* Ext_UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIFont.swift; sourceTree = "<group>"; };
+		1B1615D627248DE5008D679D /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		1B1615D92724A083008D679D /* LightboxHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightboxHelper.swift; sourceTree = "<group>"; };
 		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		1B50EBF2272197DB00303050 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
@@ -210,6 +214,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B1615D82724A06B008D679D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B6A4CBB62689FE6000E5CA01 /* CustomPhotoAlbum.swift */,
+				1B1615D627248DE5008D679D /* PhotoService.swift */,
+				1B1615D92724A083008D679D /* LightboxHelper.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		3A40DFA92DF89F80B2E94FFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,9 +495,9 @@
 		B6AFA76B268B26F500344FD5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1B1615D82724A06B008D679D /* Images */,
 				B6A3E407268F3629003684B3 /* Security */,
 				B6A3E406268F3608003684B3 /* Localize */,
-				B6A4CBB62689FE6000E5CA01 /* CustomPhotoAlbum.swift */,
 				B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */,
 				1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */,
 			);
@@ -777,6 +791,7 @@
 				B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */,
 				B6D012072695D97C009F51AB /* Ext_NotificationName.swift in Sources */,
 				B698E30B268DAA1D00AE6FBF /* ReachabilityManager.swift in Sources */,
+				1B1615DA2724A083008D679D /* LightboxHelper.swift in Sources */,
 				B63CEABD2684834000DC941F /* PhotoCell.swift in Sources */,
 				B693CC392685D718001715AF /* Ext_UIView.swift in Sources */,
 				B63CEAB62684807B00DC941F /* CuratedModel.swift in Sources */,
@@ -789,6 +804,7 @@
 				B6AFA76D268B271000344FD5 /* StoreReviewHelper.swift in Sources */,
 				B6AFA771268B432C00344FD5 /* Ext_UserDefaults.swift in Sources */,
 				B698E30D268DABEE00AE6FBF /* BaseVC.swift in Sources */,
+				1B1615D727248DE5008D679D /* PhotoService.swift in Sources */,
 				B6AFA76F268B32E000344FD5 /* DarkModeSelectionVC.swift in Sources */,
 				B63CEA7426845F3C00DC941F /* SceneDelegate.swift in Sources */,
 				1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */,

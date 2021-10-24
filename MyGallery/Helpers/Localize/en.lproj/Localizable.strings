@@ -23,6 +23,7 @@
 "select_images" = "Select images to delete them";
 "search_images" = "Search for images";
 "edit_album" = "Edit album";
+"show_album" = "Show album";
 "something_went_wrong" = "It seems that something went wrong! Try again!";
 "no_album_found" = "There are no photos available in the Album.\nYou can add from the gallery or search tab!";
 "album_deleted" = "The album has been deleted!";

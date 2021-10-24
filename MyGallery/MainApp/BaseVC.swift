@@ -62,7 +62,7 @@ extension BaseVC: NetworkStatusListener {
     func networkStatusDidChange(status: Reachability.Connection) {
         if status == .unavailable && !connectionStatusUnvailable {
             connectionStatusUnvailable = true
-            Loaf("network_fail".localized(), state: .custom(.init(backgroundColor: UIColor(named: "RedColor")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+            Loaf("network_fail".localized(), state: .custom(.init(backgroundColor: UIColor(named: "Red")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
         } else if connectionStatusUnvailable && status.oneOf(other: .wifi, .cellular) {
             connectionStatusUnvailable = false
             Loaf("network_is_back".localized(), state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)

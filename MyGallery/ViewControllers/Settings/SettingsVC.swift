@@ -17,6 +17,7 @@ class SettingsVC: BaseVC {
     }()
     
     var models = [Section]()
+    private var showAlbum: Bool = false
     private var appVersion: String {
         get {
             "version".localized() + " \(AppConfig.appVersion)"
@@ -105,10 +106,15 @@ class SettingsVC: BaseVC {
         /// #Show custom album only if authorizationStatus is authorized.
         if getStatus() {
             models.append(Section(title: "\(AppConfig.albumName) " + "album".localized(), bottomTitle: appVersion, options: [
-                SettingsOption(title: "edit_album".localized(), icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "PurpleColor"), accessoryType: .disclosureIndicator, handle: {
+                SettingsOption(title: "edit_album".localized(), icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "Purple"), accessoryType: .disclosureIndicator, handle: {
                     let editAlbumVC = EditCustomAlbumVC(EditAlbumViewModel())
                     editAlbumVC.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(editAlbumVC, animated: true)
+                }),
+                SettingsOption(title: "show_album".localized(), icon: UIImage(systemName: "photo.on.rectangle.angled"), iconBackgroundColor: UIColor(named: "LightPurple"), accessoryType: .disclosureIndicator, handle: {
+                    self.showAlbum = true
+                    PhotoService.shared.delegate = self
+                    PhotoService.shared.fetchCustomAlbumPhotos()
                 })
             ]))
         }
@@ -180,5 +186,14 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 80
+    }
+}
+
+extension SettingsVC: PhotoServiceDelegate {
+    func didGetImages() {
+        if showAlbum {
+            LightboxHelper.show()
+        }
+        showAlbum = false
     }
 }
