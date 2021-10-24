@@ -1,5 +1,5 @@
 //
-//  Settings.swift
+//  SettingsOption.swift
 //  MyGallery
 //
 //  Created by Petimezas, Chris, Vodafone on 22/10/21.
@@ -18,5 +18,6 @@ struct SettingsOption {
     let icon: UIImage?
     let iconBackgroundColor: UIColor?
     var accessoryType: UITableViewCell.AccessoryType
+    var switchValue: Bool?
     let handle: (() -> Void)
 }

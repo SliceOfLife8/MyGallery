@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol SettingsCellDelegate: AnyObject {
+    func didSwitchChanged(_ status: Bool, cell: SettingsCell)
+}
+
 class SettingsCell: UITableViewCell {
     static let identifier = "SettingsCell"
+    weak var delegate: SettingsCellDelegate?
     
     private let iconContainer: UIView = {
         let view = UIView()
@@ -70,7 +75,22 @@ class SettingsCell: UITableViewCell {
         label.text = model.title
         iconImageView.image = model.icon
         iconContainer.backgroundColor = model.iconBackgroundColor
-        accessoryType = model.accessoryType
+        if let value = model.switchValue {
+            addSwitch(value)
+        } else {
+            accessoryType = model.accessoryType
+        }
+    }
+
+    private func addSwitch(_ value: Bool) {
+        let lightSwitch = UISwitch(frame: .zero) as UISwitch
+        lightSwitch.isOn = value
+        lightSwitch.addTarget(self, action: #selector(switchTriggered), for: .valueChanged)
+        accessoryView = lightSwitch
+    }
+
+    @objc func switchTriggered(sender: UISwitch) {
+        self.delegate?.didSwitchChanged(sender.isOn, cell: self)
     }
     
 }

@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		0E4B84C92AFD2CCC07EF0372 /* Pods_MyGallery_MyGalleryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B209B7C1220E6244FF7007FB /* Pods_MyGallery_MyGalleryUITests.framework */; };
 		1B13D7FC27228F460059324C /* Ext_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FB27228F460059324C /* Ext_Equatable.swift */; };
-		1B13D7FE272291A00059324C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FD272291A00059324C /* Settings.swift */; };
+		1B13D7FE272291A00059324C /* SettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FD272291A00059324C /* SettingsOption.swift */; };
 		1B13D800272292670059324C /* Ext_UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13D7FF272292670059324C /* Ext_UIFont.swift */; };
 		1B1615D727248DE5008D679D /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615D627248DE5008D679D /* PhotoService.swift */; };
 		1B1615DA2724A083008D679D /* LightboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615D92724A083008D679D /* LightboxHelper.swift */; };
+		1B1615E42725A120008D679D /* SoundSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615E32725A120008D679D /* SoundSettingsVC.swift */; };
+		1B1615E62725AD96008D679D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615E52725AD96008D679D /* Settings.swift */; };
 		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
 		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
 		1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF1272197DB00303050 /* Images.xcdatamodeld */; };
@@ -101,10 +103,12 @@
 /* Begin PBXFileReference section */
 		14C6A59D525E7025D6ABE050 /* Pods-MyGallery-MyGalleryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyGallery-MyGalleryUITests.release.xcconfig"; path = "Target Support Files/Pods-MyGallery-MyGalleryUITests/Pods-MyGallery-MyGalleryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B13D7FB27228F460059324C /* Ext_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Equatable.swift; sourceTree = "<group>"; };
-		1B13D7FD272291A00059324C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1B13D7FD272291A00059324C /* SettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOption.swift; sourceTree = "<group>"; };
 		1B13D7FF272292670059324C /* Ext_UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIFont.swift; sourceTree = "<group>"; };
 		1B1615D627248DE5008D679D /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		1B1615D92724A083008D679D /* LightboxHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightboxHelper.swift; sourceTree = "<group>"; };
+		1B1615E32725A120008D679D /* SoundSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSettingsVC.swift; sourceTree = "<group>"; };
+		1B1615E52725AD96008D679D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		1B50EBF2272197DB00303050 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
@@ -365,7 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				B63CEAB52684807B00DC941F /* CuratedModel.swift */,
-				1B13D7FD272291A00059324C /* Settings.swift */,
+				1B13D7FD272291A00059324C /* SettingsOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -423,6 +427,7 @@
 				B6AFA766268B047300344FD5 /* SettingsVC.swift */,
 				B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */,
 				B698E31A268E208400AE6FBF /* LanguageSelectionVC.swift */,
+				1B1615E32725A120008D679D /* SoundSettingsVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 				B6A3E406268F3608003684B3 /* Localize */,
 				B6AFA76C268B271000344FD5 /* StoreReviewHelper.swift */,
 				1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */,
+				1B1615E52725AD96008D679D /* Settings.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				B63CEAC92684B11D00DC941F /* GalleryViewModel.swift in Sources */,
 				B63CEAB126847C0900DC941F /* MediaContext.swift in Sources */,
 				B69A3F3026872F41008F16E3 /* ImagePreviewVC.swift in Sources */,
+				1B1615E62725AD96008D679D /* Settings.swift in Sources */,
 				B698E31B268E208400AE6FBF /* LanguageSelectionVC.swift in Sources */,
 				B6A9F153268C857800D32589 /* EditCustomAlbum+UIMenu.swift in Sources */,
 				B6A9F14F268C5FB300D32589 /* Ext_Array.swift in Sources */,
@@ -798,6 +805,7 @@
 				B673A2312690E41B0098CE10 /* Ext_Collection.swift in Sources */,
 				B6AFA767268B047400344FD5 /* SettingsVC.swift in Sources */,
 				B69A3F402689AF6F008F16E3 /* PhotoManager.swift in Sources */,
+				1B1615E42725A120008D679D /* SoundSettingsVC.swift in Sources */,
 				B69A3F2D26872CAC008F16E3 /* GradientView.swift in Sources */,
 				B6A9F151268C647A00D32589 /* EditCustomAlbum+UICollectionView.swift in Sources */,
 				B63CEAB9268481AF00DC941F /* PinterestLayout.swift in Sources */,
@@ -808,7 +816,7 @@
 				B6AFA76F268B32E000344FD5 /* DarkModeSelectionVC.swift in Sources */,
 				B63CEA7426845F3C00DC941F /* SceneDelegate.swift in Sources */,
 				1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */,
-				1B13D7FE272291A00059324C /* Settings.swift in Sources */,
+				1B13D7FE272291A00059324C /* SettingsOption.swift in Sources */,
 				B6ABA099268B96A400833E8C /* EditCustomAlbumVC.swift in Sources */,
 				B6ABA09D268B979500833E8C /* EditAlbumViewModel.swift in Sources */,
 				B63CEAAA26846B8000DC941F /* SearchImagesVC.swift in Sources */,

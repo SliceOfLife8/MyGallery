@@ -64,6 +64,7 @@ class SettingsVC: BaseVC {
     /// #Create Setting Options for tableView
     func configure() {
         models.removeAll()
+
         /// #Apperance
         var apperanceOptions: [SettingsOption] = [SettingsOption(title: "dark_mode".localized(), icon: UIImage(systemName: "moon.circle.fill"), iconBackgroundColor: UIColor(named: "Black"), accessoryType: .disclosureIndicator, handle: {
             let darkModeVC = DarkModeSelectionVC()
@@ -80,6 +81,16 @@ class SettingsVC: BaseVC {
             }))
         }
         models.append(Section(title: "appearance".localized(), bottomTitle: nil, options: apperanceOptions))
+
+        /// #Sounds
+        models.append(Section(title: nil, bottomTitle: nil, options: [
+                                SettingsOption(title: "sounds_haptics".localized(), icon: UIImage(systemName: "speaker.wave.2.circle"), iconBackgroundColor: UIColor(named: "LightRed"), accessoryType: .disclosureIndicator, handle: {
+                                    let soundsVC = SoundSettingsVC()
+                                    let navigationController = UINavigationController(rootViewController: soundsVC)
+                                    soundsVC.modalPresentationStyle = .popover
+                                    self.present(navigationController, animated: true)
+                                })]))
+
         /// #General
         models.append(Section(title: "general".localized(), bottomTitle: (getStatus() ? nil : appVersion), options: [
             SettingsOption(title: "find_me_on_social".localized(), icon: UIImage(systemName: "link.circle"), iconBackgroundColor: UIColor(named: "LightBlue"), accessoryType: .disclosureIndicator, handle: {
@@ -102,6 +113,7 @@ class SettingsVC: BaseVC {
                 StoreReviewHelper.requestReview()
             })
         ]))
+
         /// #Show custom album only if authorizationStatus is authorized.
         if getStatus() {
             models.append(Section(title: "\(AppConfig.albumName) " + "album".localized(), bottomTitle: appVersion, options: [

@@ -55,6 +55,19 @@ class BaseVC: UIViewController {
     
     /// #Override this method in order to receive language real-time changes.
     func languageDidChange(){}
+
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.present(viewControllerToPresent, animated: flag, completion: completion)
+        self.vibrateIfEnabled()
+    }
+
+    func vibrateIfEnabled() {
+        let visibleVC = UIApplication.topViewController()
+        if Settings.shared.retrieveState(forKey: .vibration) && (visibleVC is LanguageSelectionVC || visibleVC is DarkModeSelectionVC || visibleVC is SoundSettingsVC || visibleVC is UIAlertController) {
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+        }
+    }
     
 }
 
