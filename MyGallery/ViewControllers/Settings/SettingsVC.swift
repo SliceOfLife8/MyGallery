@@ -17,7 +17,6 @@ class SettingsVC: BaseVC {
     }()
     
     var models = [Section]()
-    private var showAlbum: Bool = false
     private var appVersion: String {
         get {
             "version".localized() + " \(AppConfig.appVersion)"
@@ -112,7 +111,7 @@ class SettingsVC: BaseVC {
                     self.navigationController?.pushViewController(editAlbumVC, animated: true)
                 }),
                 SettingsOption(title: "show_album".localized(), icon: UIImage(systemName: "photo.on.rectangle.angled"), iconBackgroundColor: UIColor(named: "LightPurple"), accessoryType: .disclosureIndicator, handle: {
-                    self.showAlbum = true
+                    self.showLoader()
                     PhotoService.shared.delegate = self
                     PhotoService.shared.fetchCustomAlbumPhotos()
                 })
@@ -191,9 +190,28 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension SettingsVC: PhotoServiceDelegate {
     func didGetImages() {
-        if showAlbum {
-            LightboxHelper.show()
+        stopLoader()
+    }
+}
+
+extension SettingsVC {
+    func showLoader() {
+        let alert = UIAlertController(title: nil, message: "please_wait".localized(), preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = .medium
+        loadingIndicator.startAnimating()
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: false, completion: nil)
+    }
+
+    func stopLoader() {
+        if let visibleVC = UIApplication.topViewController() as? UIAlertController {
+            visibleVC.dismiss(animated: false, completion: {
+                LightboxHelper.show()
+            })
         }
-        showAlbum = false
     }
 }

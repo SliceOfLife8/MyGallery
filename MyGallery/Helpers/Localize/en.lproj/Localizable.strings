@@ -63,3 +63,4 @@
 "limited_alert_not_asked_again" = "Do not ask again";
 "denied_alert_title" = "You don't have access";
 "denied_alert_message" = "It seems that you haven't given access to your photos. To save photos and explore them in your own album press here! 👇";
+"please_wait" = "Please wait...";

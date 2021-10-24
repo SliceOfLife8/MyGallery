@@ -218,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				B6A4CBB62689FE6000E5CA01 /* CustomPhotoAlbum.swift */,
-				1B1615D627248DE5008D679D /* PhotoService.swift */,
 				1B1615D92724A083008D679D /* LightboxHelper.swift */,
 			);
 			path = Images;
@@ -441,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				B69A3F3F2689AF6F008F16E3 /* PhotoManager.swift */,
+				1B1615D627248DE5008D679D /* PhotoService.swift */,
 				B698E30A268DAA1D00AE6FBF /* ReachabilityManager.swift */,
 			);
 			path = Services;

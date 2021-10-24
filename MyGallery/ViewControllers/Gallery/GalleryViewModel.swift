@@ -17,7 +17,7 @@ class GalleryViewModel {
     
     var photos: [Photo] = []
     var images: [URL?] = []
-    var page: Int = 1
+    var page: Int = UserDefaults.standard.value(forKey: "Page") as? Int ?? 1
     var hasNext: Bool = false
     var numberOfImagesBatch: Int = 10
     
@@ -30,7 +30,10 @@ class GalleryViewModel {
             case .success(let object):
                 /// Check if there is a corresponding page
                 self.hasNext = (object.nextPage == nil) ? false : true
-                if self.hasNext == false { return }
+                if self.hasNext == false {
+                    UserDefaults.standard.set(1, forKey: "Page") /// restore value
+                    return
+                }
                 self.photos.append(contentsOf: object.photos)
                 self.page += 1
                 self.addImagesURL(object.photos)
@@ -46,6 +49,7 @@ class GalleryViewModel {
             self.images.append(URL(string: element.src.large))
         }
         self.delegate?.didGetImages()
+        UserDefaults.standard.set(page, forKey: "Page")
     }
     
 }
