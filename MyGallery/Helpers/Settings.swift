@@ -6,10 +6,18 @@
 //
 
 import Foundation
+import AVKit
 
 enum SettingKey: String {
     case sound = "SoundSettingState"
     case vibration = "VibrationSettingState"
+}
+
+enum SoundKey: UInt32 {
+    case confirm = 1105
+    case message = 1004
+    case error = 1053
+    case cancel = 1050
 }
 
 class Settings {
@@ -23,5 +31,9 @@ class Settings {
     func updateSetting(state: Bool, key: SettingKey) {
         UserDefaults.standard.set(state, forKey: key.rawValue)
         UserDefaults.standard.synchronize()
+    }
+
+    func playSound(_ key: SoundKey) {
+        AudioServicesPlaySystemSound(key.rawValue)
     }
 }

@@ -113,10 +113,12 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
         DispatchQueue.main.async {
             if status {
                 Loaf(self.viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                self.playMusicIfEnabled(.message)
                 self.collectionView?.isHidden = true
                 self.noAssetsView.isHidden = false
             } else {
                 Loaf("something_went_wrong".localized(), state: .custom(.init(backgroundColor: UIColor(named: "Red")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                self.playMusicIfEnabled(.error)
             }
         }
     }
@@ -174,6 +176,7 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                 }
                 updateBarRightItem()
                 Loaf(viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                self.playMusicIfEnabled(.message)
                 if service.images.count == 0 {
                     collectionView.isHidden = true
                     noAssetsView.isHidden = false

@@ -124,8 +124,10 @@ class CustomPhotoAlbum: NSObject {
         DispatchQueue.main.async {
             if let error = error {
                 Loaf("Error with description: \(error.localizedDescription)", state: .custom(.init(backgroundColor: UIColor(named: "Red")!, icon: Loaf.Icon.error, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self.parentVC).show(.short)
+                self.parentVC.playMusicIfEnabled(.error)
             } else {
                 Loaf("image_saved".localized(), state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self.parentVC).show(.short)
+                self.parentVC.playMusicIfEnabled(.message)
             }
         }
     }
@@ -133,6 +135,7 @@ class CustomPhotoAlbum: NSObject {
     fileprivate func showWarning() {
         DispatchQueue.main.async {
             Loaf("already_fetched".localized(), state: .custom(.init(backgroundColor: UIColor(named: "Orange")!, icon: Loaf.Icon.warning, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self.parentVC).show(.short)
+            self.parentVC.playMusicIfEnabled(.cancel)
         }
     }
 
@@ -181,15 +184,18 @@ extension CustomPhotoAlbum {
 
         alert.addAction(UIAlertAction(title: "settings".localized(), style: .default, handler: { action in
             if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                viewController.playMusicIfEnabled(.confirm)
                 UIApplication.shared.open(settingsUrl)
             }
         }))
         alert.addAction(UIAlertAction(title: "limited_alert_not_asked_again".localized(), style: .destructive, handler: { action in
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
             UserDefaults.standard.set(true, forKey: "photo_alertDialog")
+            viewController.playMusicIfEnabled(.confirm)
         }))
         alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: { action in
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            viewController.playMusicIfEnabled(.cancel)
         }))
 
         viewController.present(alert, animated: true, completion: nil)
@@ -200,10 +206,13 @@ extension CustomPhotoAlbum {
 
         alert.addAction(UIAlertAction(title: "settings".localized(), style: .default, handler: { action in
             if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                viewController.playMusicIfEnabled(.confirm)
                 UIApplication.shared.open(settingsUrl)
             }
         }))
-        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel))
+        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: { _ in
+            viewController.playMusicIfEnabled(.cancel)
+        }))
 
         viewController.present(alert, animated: true, completion: nil)
     }

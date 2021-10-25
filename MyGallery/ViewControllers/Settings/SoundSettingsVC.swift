@@ -12,6 +12,7 @@ class SoundSettingsVC: BaseVC {
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.identifier)
+        table.allowsSelection = false
         return table
     }()
 
@@ -34,7 +35,6 @@ class SoundSettingsVC: BaseVC {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsMultipleSelection = false
     }
 
     override func viewWillLayoutSubviews() {
@@ -49,7 +49,7 @@ class SoundSettingsVC: BaseVC {
     func configure() {
         models.removeAll()
         models.append(Section(title: nil, bottomTitle: nil, options: [
-            SettingsOption(title: "sounds".localized(), icon: "🔈".image(), iconBackgroundColor: .white, accessoryType: .none, switchValue: Settings.shared.retrieveState(forKey: .sound), handle: {}),
+            SettingsOption(title: "sounds".localized(), icon: "🔈".image(), iconBackgroundColor: .clear, accessoryType: .none, switchValue: Settings.shared.retrieveState(forKey: .sound), handle: {}),
             SettingsOption(title: "haptics".localized(), icon: "📳".image(), iconBackgroundColor: .clear, accessoryType: .none, switchValue: Settings.shared.retrieveState(forKey: .vibration), handle: {})
         ]))
     }

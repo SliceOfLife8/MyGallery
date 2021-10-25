@@ -15,6 +15,7 @@
 		1B1615DA2724A083008D679D /* LightboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615D92724A083008D679D /* LightboxHelper.swift */; };
 		1B1615E42725A120008D679D /* SoundSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615E32725A120008D679D /* SoundSettingsVC.swift */; };
 		1B1615E62725AD96008D679D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615E52725AD96008D679D /* Settings.swift */; };
+		1B1615EA2725F507008D679D /* Ext_UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615E92725F507008D679D /* Ext_UIViewController.swift */; };
 		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
 		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
 		1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF1272197DB00303050 /* Images.xcdatamodeld */; };
@@ -109,6 +110,7 @@
 		1B1615D92724A083008D679D /* LightboxHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightboxHelper.swift; sourceTree = "<group>"; };
 		1B1615E32725A120008D679D /* SoundSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSettingsVC.swift; sourceTree = "<group>"; };
 		1B1615E52725AD96008D679D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1B1615E92725F507008D679D /* Ext_UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIViewController.swift; sourceTree = "<group>"; };
 		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		1B50EBF2272197DB00303050 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				B6D012062695D97C009F51AB /* Ext_NotificationName.swift */,
 				1B13D7FB27228F460059324C /* Ext_Equatable.swift */,
 				1B13D7FF272292670059324C /* Ext_UIFont.swift */,
+				1B1615E92725F507008D679D /* Ext_UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 			files = (
 				B63CEAC22684946000DC941F /* Ext_UIImage.swift in Sources */,
 				B6A4CBB72689FE6000E5CA01 /* CustomPhotoAlbum.swift in Sources */,
+				1B1615EA2725F507008D679D /* Ext_UIViewController.swift in Sources */,
 				B63CEAA626846B2800DC941F /* GalleryVC.swift in Sources */,
 				B6A3E40B268F36C7003684B3 /* AppConfig.swift in Sources */,
 				B63CEA7226845F3C00DC941F /* AppDelegate.swift in Sources */,
