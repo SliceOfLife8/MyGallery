@@ -68,8 +68,8 @@ class EditCustomAlbumVC: BaseVC {
     }
     
     private func populateData() {
-        service.fetchCustomAlbumPhotos()
         service.delegate = self
+        service.fetchCustomAlbumPhotos()
     }
     
     func updateBarRightItem() {
@@ -96,6 +96,11 @@ class EditCustomAlbumVC: BaseVC {
         }
         noAssetsLbl.text = "no_album_found".localized()
         noAssetsLbl.textColor = UIColor(named: "Black")
+    }
+
+    private func restoreView() {
+        collectionView?.isHidden = true
+        noAssetsView.isHidden = false
     }
     
 }
@@ -178,8 +183,7 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                 Loaf(viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
                 self.playMusicIfEnabled(.message)
                 if service.images.count == 0 {
-                    collectionView.isHidden = true
-                    noAssetsView.isHidden = false
+                    self.restoreView()
                 }
             }
         }

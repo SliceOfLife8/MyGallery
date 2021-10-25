@@ -202,7 +202,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension SettingsVC: PhotoServiceDelegate {
     func didGetImages() {
-        stopLoader()
+        stopLoader(goToLightboxView: PhotoService.shared.images.count > 0)
     }
 }
 
@@ -219,10 +219,17 @@ extension SettingsVC {
         present(alert, animated: false, completion: nil)
     }
 
-    func stopLoader() {
+    func stopLoader(goToLightboxView status: Bool) {
         if let visibleVC = UIApplication.topViewController() as? UIAlertController {
             visibleVC.dismiss(animated: false, completion: {
-                LightboxHelper.show()
+                if status {
+                    LightboxHelper.show()
+                } else {
+                    let alert = UIAlertController(title: "no_album_found".localized(), message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+                    self.present(alert, animated: false, completion: nil)
+                }
             })
         }
     }
