@@ -40,8 +40,7 @@ class EditAlbumViewModel {
     
     weak var delegate: EditAlbumVMDelegate?
 
-    var indexPathsToBeDeleted: [IndexPath] = []
-    var loafTitle: InfoMessages = .deleteMultipleImagesFromAlbum
+    var loafTitle: InfoMessages?
     
     init() {}
     
@@ -52,7 +51,6 @@ class EditAlbumViewModel {
             self.delegate?.cleanData()
         }
         var photoAssets: [PHAsset] = []
-        indexPathsToBeDeleted = paths
         paths.forEach { indexPath in
             photoAssets.append(PhotoService.shared.photoAssets.object(at: indexPath.row))
         }
@@ -70,7 +68,6 @@ class EditAlbumViewModel {
             self.delegate?.cleanData()
         }
         var photoAssets: [PHAsset] = []
-        indexPathsToBeDeleted = paths
         paths.forEach { indexPath in
             photoAssets.append(PhotoService.shared.photoAssets.object(at: indexPath.row))
         }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 // MARK: - UICollectionView Delegates
 extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -42,7 +43,8 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return service.images.count
+        //return service.images.count
+        return service.photoAssets.count
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -61,14 +63,35 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! GalleryCell
-        
-        cell.imageView?.image = service.images[indexPath.row]
-        
+
+        setImage(cell, asset: service.photoAssets[indexPath.row])
+
         if let index = self.selectedIndexPaths.find(element: { $0 == indexPath }) {
             cell.createCircle(with: index + 1)
         }
         
         return cell
+    }
+
+    private func setImage(_ cell: GalleryCell, asset: PHAsset) {
+        let imageManager = PHCachingImageManager()
+        let imageSize = CGSize(width: asset.pixelWidth,
+                               height: asset.pixelHeight)
+
+        /* For faster performance, and maybe degraded image */
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .opportunistic
+        options.isSynchronous = true
+        options.isNetworkAccessAllowed = true /// This is mandatory for iCloud images.
+
+        imageManager.requestImage(for: asset,
+                                  targetSize: imageSize,
+                                  contentMode: .aspectFill,
+                                  options: options,
+                                  resultHandler: {
+                                    (image, info) -> Void in
+                                    cell.imageView?.image = image
+                                  })
     }
     
     /*

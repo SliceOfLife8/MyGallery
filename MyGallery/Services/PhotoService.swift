@@ -18,7 +18,15 @@ class PhotoService {
     static let shared = PhotoService()
     weak var delegate: PhotoServiceDelegate?
 
-    var assetCollection: PHAssetCollection?
+    var _assetCollection: PHAssetCollection?
+    var assetCollection: PHAssetCollection? {
+        get {
+           return CustomPhotoAlbum.fetchAssetCollectionForAlbum()
+        }
+        set {
+            self._assetCollection = newValue
+        }
+    }
     var images: [UIImage] = []
     var photoAssets = PHFetchResult<PHAsset>()
 
@@ -26,7 +34,6 @@ class PhotoService {
         var albumFound = Bool()
         restoreData()
 
-        assetCollection = CustomPhotoAlbum.fetchAssetCollectionForAlbum()
         albumFound = (assetCollection != nil) ? true : false
 
         guard albumFound == true, let myCollection = assetCollection else {
@@ -39,6 +46,7 @@ class PhotoService {
             self.delegate?.didGetImages()
             return
         }
+        
         photoAssets.enumerateObjects{(object: AnyObject!,
                                       count: Int,
                                       stop: UnsafeMutablePointer<ObjCBool>) in
@@ -68,6 +76,13 @@ class PhotoService {
         }
     }
 
+    func fetchAssets() {
+        restoreData()
+        guard let myCollection = assetCollection else { return }
+
+        photoAssets = PHAsset.fetchAssets(in: myCollection, options: nil)
+    }
+
     private func addImages(uploadImage: UIImage, totalAssets: Int) {
         self.images.append(uploadImage)
         if totalAssets == images.count {
@@ -76,7 +91,6 @@ class PhotoService {
     }
 
     private func restoreData() {
-        assetCollection = nil
         images = []
         photoAssets = PHFetchResult<PHAsset>()
     }

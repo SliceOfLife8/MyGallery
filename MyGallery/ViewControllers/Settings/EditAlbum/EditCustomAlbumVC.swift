@@ -54,6 +54,7 @@ class EditCustomAlbumVC: BaseVC {
         setupCollectionView()
         populateData()
         setupNoAssetsView()
+        defaultStateView()
         
         Loaf("select_images".localized(), state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
         // Observe photo library changes
@@ -68,7 +69,7 @@ class EditCustomAlbumVC: BaseVC {
     }
     
     private func populateData() {
-        service.delegate = self
+        service.fetchAssets()
         service.fetchCustomAlbumPhotos()
     }
     
@@ -99,8 +100,18 @@ class EditCustomAlbumVC: BaseVC {
     }
 
     private func restoreView() {
-        collectionView?.isHidden = true
-        noAssetsView.isHidden = false
+        updateBarRightItem()
+        if let title = viewModel.loafTitle?.raw {
+            Loaf(title, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+        }
+        self.playMusicIfEnabled(.message)
+        defaultStateView()
+        viewModel.loafTitle = nil
+    }
+
+    private func defaultStateView() {
+        collectionView?.isHidden = (service.photoAssets.count == 0) ? true : false
+        noAssetsView.isHidden = (service.photoAssets.count == 0) ? false : true
     }
     
 }
@@ -117,7 +128,8 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
     func didDeleteAlbum(status: Bool) {
         DispatchQueue.main.async {
             if status {
-                Loaf(self.viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+                guard let title = self.viewModel.loafTitle?.raw else { return }
+                Loaf(title, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
                 self.playMusicIfEnabled(.message)
                 self.collectionView?.isHidden = true
                 self.noAssetsView.isHidden = false
@@ -149,19 +161,15 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
             if let changes = changeInstance.changeDetails(for: service.photoAssets) {
                 // Keep the new fetch result for future use.
                 service.photoAssets = changes.fetchResultAfterChanges
-                // Update datasource of images
-                let sortedIndices = viewModel.indexPathsToBeDeleted.sorted { $0.row > $1.row }
-                sortedIndices.forEach { indexPath in
-                    service.images.remove(at: indexPath.row)
-                }
-                viewModel.indexPathsToBeDeleted.removeAll()
-                selectedIndexPaths.removeAll()
                 if changes.hasIncrementalChanges {
                     // If there are incremental diffs, animate them in the collection view.
+                    /// Also, fetch new images for lightBox controller
+                    service.fetchCustomAlbumPhotos()
                     collectionView.performBatchUpdates({
                         // For indexes to make sense, updates must be in this order:
                         // delete, insert, reload, move
                         if let removed = changes.removedIndexes, removed.count > 0 {
+                            self.removeIndexPaths(removed)
                             collectionView.deleteItems(at: removed.map { IndexPath(item: $0, section:0) })
                         }
                         if let inserted = changes.insertedIndexes, inserted.count > 0 {
@@ -177,26 +185,18 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                     })
                 } else {
                     // Reload the collection view if incremental diffs are not available.
+                    self.selectedIndexPaths.removeAll()
                     collectionView.reloadData()
                 }
-                updateBarRightItem()
-                Loaf(viewModel.loafTitle.raw, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, textAlignment: .center, iconAlignment: .right)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
-                self.playMusicIfEnabled(.message)
-                if service.images.count == 0 {
-                    self.restoreView()
-                }
+                restoreView()
             }
         }
     }
-}
 
-extension EditCustomAlbumVC: PhotoServiceDelegate {
-    func didGetImages() {
-        if service.images.count == 0 {
-            collectionView?.isHidden = true
-            noAssetsView.isHidden = false
-        } else {
-            collectionView?.reloadData()
+    private func removeIndexPaths(_ set: IndexSet) {
+        let removed = set.map { IndexPath(item: $0, section:0) }
+        removed.forEach { indexPath in
+            selectedIndexPaths = selectedIndexPaths.filter { $0 != indexPath }
         }
     }
 }
