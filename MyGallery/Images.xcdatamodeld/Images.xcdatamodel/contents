@@ -3,7 +3,11 @@
     <entity name="Asset" representedClassName="Asset" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="GalleryBackground" representedClassName="GalleryBackground" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+    </entity>
     <elements>
         <element name="Asset" positionX="-54" positionY="-9" width="128" height="44"/>
+        <element name="GalleryBackground" positionX="-54" positionY="0" width="128" height="44"/>
     </elements>
 </model>

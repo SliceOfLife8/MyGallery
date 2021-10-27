@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let didChangeLanguage = Notification.Name("didChangeLanguage")
     static let didAlbumCreated = Notification.Name("didAlbumCreated")
+    static let didGalleryBGImageChanged = Notification.Name("didGalleryBackgroundImageChanged")
 }

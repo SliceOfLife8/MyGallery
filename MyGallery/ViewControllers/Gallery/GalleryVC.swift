@@ -38,9 +38,11 @@ class GalleryVC: BaseVC {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .black
+        setupBGImage()
         setupCollectionView()
         populateData()
         StoreReviewHelper.checkAndAskForReview()
+        NotificationCenter.default.addObserver(self, selector: #selector(setupBGImage), name: .didGalleryBGImageChanged, object: nil)
     }
     
     override func languageDidChange() {
@@ -53,10 +55,7 @@ class GalleryVC: BaseVC {
         collectionView.collectionViewLayout = layout
         layout.invalidateLayout()
         layout.delegate = self
-        
-        if let patternImage = UIImage(named: "Pattern") {
-            view.backgroundColor = UIColor(patternImage: patternImage)
-        }
+
         collectionView?.backgroundColor = .clear
         collectionView?.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 10, right: 16)
         collectionView.dataSource = self
@@ -66,6 +65,20 @@ class GalleryVC: BaseVC {
     
     private func populateData() {
         viewModel.getImages()
+    }
+
+    @objc func setupBGImage() {
+        view.backgroundColor = nil // reset values
+        view.layer.contents = nil
+        let retrieve = FirebaseStorageManager.shared.retrieveGalleryImage()
+
+        if let patternImage = retrieve.image {
+            if retrieve.defaultImage {
+                view.backgroundColor = UIColor(patternImage: patternImage)
+            } else {
+                view.layer.contents = patternImage.cgImage
+            }
+        }
     }
     
 }
