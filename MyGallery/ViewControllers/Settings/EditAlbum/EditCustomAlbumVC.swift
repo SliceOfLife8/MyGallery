@@ -163,8 +163,6 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                 service.photoAssets = changes.fetchResultAfterChanges
                 if changes.hasIncrementalChanges {
                     // If there are incremental diffs, animate them in the collection view.
-                    /// Also, fetch new images for lightBox controller
-                    service.fetchCustomAlbumPhotos()
                     collectionView.performBatchUpdates({
                         // For indexes to make sense, updates must be in this order:
                         // delete, insert, reload, move
@@ -183,6 +181,8 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                                                     to: IndexPath(item: toIndex, section: 0))
                         }
                     })
+                    /// Also, fetch new images for lightBox controller
+                    service.fetchCustomAlbumPhotos()
                 } else {
                     // Reload the collection view if incremental diffs are not available.
                     self.selectedIndexPaths.removeAll()

@@ -28,6 +28,10 @@ final class AppConfig {
     static var albumName: String {
         return path("CFBundleName")
     }
+
+    static var firebaseStorage: String {
+        return "gs://mygallery-5b7f1.appspot.com"
+    }
     
     static func decryptApiKey() {
         do {

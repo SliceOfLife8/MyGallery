@@ -10,6 +10,9 @@ PODS:
   - Firebase/Crashlytics (8.0.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 8.0.0)
+  - Firebase/Storage (8.0.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 8.0.0)
   - FirebaseAnalytics (8.0.0):
     - FirebaseAnalytics/AdIdSupport (= 8.0.0)
     - FirebaseCore (~> 8.0)
@@ -57,6 +60,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
     - PromisesObjC (~> 1.2)
+  - FirebaseStorage (8.0.0):
+    - FirebaseCore (~> 8.0)
+    - GTMSessionFetcher/Core (~> 1.5)
   - GoogleAppMeasurement (8.0.0):
     - GoogleAppMeasurement/AdIdSupport (= 8.0.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -93,6 +99,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.4.1):
     - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.7.0)
   - Imaginary (5.0.0):
     - Cache (~> 6.0.0)
   - Lightbox (2.5.0):
@@ -110,6 +117,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Crashlytics
+  - Firebase/Storage
   - Lightbox (= 2.5.0)
   - Loaf (= 0.7.0)
   - Nuke (~> 10.4.1)
@@ -124,9 +132,11 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
     - FirebaseInstallations
+    - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - GTMSessionFetcher
     - Imaginary
     - Lightbox
     - Loaf
@@ -143,9 +153,11 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: a31d987ba0fe16d59886a5dbadc2f1de871f88c8
   FirebaseCrashlytics: 69cddb6bfa7656c5346e603bc85b029392252ee6
   FirebaseInstallations: c4aab1005d6547b00a7529777fe52f5d4d45165b
+  FirebaseStorage: 61bcd27880fa17362f68be67d3683d04bfd7b1c7
   GoogleAppMeasurement: c6bbc9753d046b5456dd4f940057fbad2c28419e
   GoogleDataTransport: 11e3a5f2c190327df1a4a5d7e7ae3d4d5b9c9e4c
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
+  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   Imaginary: cf5e3a7dd6ab1dcbd47ba8ce5edf2307c4e99eb3
   Lightbox: cc3d5124f024fa8197fd23f913160db1c61a1852
   Loaf: d69937cd00649f3fa260beb8b7aef0a1feb861ef
@@ -154,6 +166,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: 3ea95f61d0001bfd02366962d5b9938e59b2859c
+PODFILE CHECKSUM: 2a58bd58f4d096453e1c88e58d18e577e69880ea
 
 COCOAPODS: 1.10.0

@@ -15,6 +15,7 @@ target 'MyGallery' do
   pod 'Lightbox', '2.5.0'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Storage'
   
   target 'MyGalleryTests' do
     inherit! :search_paths

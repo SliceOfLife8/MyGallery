@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          You should call this method whenever the user engaging factor of your application is increased */
         AppConfig.decryptGoogleKey()
         AppConfig.decryptApiKey()
+        FirebaseStorageManager.shared.retrieve()
         StoreReviewHelper.incrementAppOpenedCount()
         return true
     }
@@ -64,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data Delete data
-    func deleteCoreData() {
-        let entityNames = persistentContainer.managedObjectModel.entities.compactMap({ $0.name })
+    func deleteCoreData(_ name: String = "Asset") {
+        let entityNames = persistentContainer.managedObjectModel.entities.filter { $0.name == name }.compactMap({ $0.name })
         entityNames.forEach { [weak self] entityName in
             let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
