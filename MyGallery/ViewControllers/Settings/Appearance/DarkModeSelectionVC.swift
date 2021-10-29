@@ -34,14 +34,6 @@ class DarkModeSelectionVC: BaseVC {
         tableView.frame = view.bounds
     }
     
-    /// #Detect when darkMode changed
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            self.tableView.reloadData()
-        }
-    }
-    
     @objc func back() {
         self.dismiss(animated: true, completion: nil)
     }

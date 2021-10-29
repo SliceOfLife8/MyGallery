@@ -53,14 +53,6 @@ class SettingsVC: BaseVC {
         tableView.frame = view.bounds
     }
     
-    /// #Detect when darkMode changed
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            self.tableView.reloadData()
-        }
-    }
-    
     /// #Create Setting Options for tableView
     func configure() {
         models.removeAll()

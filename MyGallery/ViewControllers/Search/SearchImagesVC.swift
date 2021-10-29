@@ -67,14 +67,6 @@ class SearchImagesVC: BaseVC {
         searchTF.becomeFirstResponder()
     }
     
-    /// #Detect when darkMode changed
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            self.collectionView.reloadData()
-        }
-    }
-    
     private func setupViews() {
         applyGradients()
         searchTF.keyboardType = .asciiCapable

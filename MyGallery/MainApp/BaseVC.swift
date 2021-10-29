@@ -39,6 +39,20 @@ class BaseVC: UIViewController {
         super.viewDidDisappear(animated)
         ReachabilityManager.shared.removeListener(listener: self)
     }
+
+    /// #Detect when darkMode changed
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            self.view.subviews.forEach { subview in
+                if let tv = subview as? UITableView {
+                    tv.reloadData()
+                } else if let cv = subview as? UICollectionView {
+                    cv.reloadData()
+                }
+            }
+        }
+    }
     
     /// #Send Firebase analytics when an api connection occured
     func sendAnalytics() {
@@ -63,7 +77,7 @@ class BaseVC: UIViewController {
 
     func vibrateIfEnabled() {
         let visibleVC = UIApplication.topViewController()
-        if Settings.shared.retrieveState(forKey: .vibration) && (visibleVC is LanguageSelectionVC || visibleVC is DarkModeSelectionVC || visibleVC is SoundSettingsVC || visibleVC is UIAlertController) {
+        if Settings.shared.retrieveState(forKey: .vibration) && (visibleVC is LanguageSelectionVC || visibleVC is DarkModeSelectionVC || visibleVC is ThemeSelectionVC || visibleVC is SoundSettingsVC || visibleVC is UIAlertController) {
             let generator = UIImpactFeedbackGenerator(style: .medium)
             generator.impactOccurred()
         }
