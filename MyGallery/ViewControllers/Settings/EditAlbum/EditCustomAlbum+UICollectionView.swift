@@ -23,6 +23,7 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
         collectionView.addExclusiveConstraints(superview: view, top: (view.safeAreaLayoutGuide.topAnchor, 24), bottom: (view.bottomAnchor, 0), left: (view.leadingAnchor, 16), right: (view.trailingAnchor, 0))
         
         collectionView.register(GalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(SelectThemeHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SelectThemeHeaderView.identifier)
         collectionView.register(AlbumFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AlbumFooterView.identifier)
         collectionView.allowsMultipleSelection = true
         collectionView.backgroundColor = .clear
@@ -43,33 +44,50 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return service.images.count
         return service.photoAssets.count
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footerView =  collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: AlbumFooterView.identifier,
-            for: indexPath) as! AlbumFooterView
-        footerView.delegate = self
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: SelectThemeHeaderView.identifier,
+                for: indexPath) as! SelectThemeHeaderView
+            headerView.setupCell(withTitle: "select_images", gradientColors: [UIColor(hexString: "#4ca1af").cgColor, UIColor(hexString: "#a6d1d8").cgColor])
 
-        return footerView
+            return headerView
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: AlbumFooterView.identifier,
+                for: indexPath) as! AlbumFooterView
+            footerView.delegate = self
+
+            return footerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.size.width, height: 70)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.size.width, height: 100)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! GalleryCell
 
         setImage(cell, asset: service.photoAssets[indexPath.row])
+        cell.bgColor = UIColor(named: "Black")?.cgColor
 
         if let index = self.selectedIndexPaths.find(element: { $0 == indexPath }) {
             cell.createCircle(with: index + 1)
         }
-        
+
         return cell
     }
 
@@ -93,7 +111,7 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
                                     cell.imageView?.image = image
                                   })
     }
-    
+
     /*
      - Deselect items & update datasource of selectedIndexPaths
      - Reload items when it's necessary. This is important when we have f.e. 3 visible & selected cells ( circle indicators 1, 2, 3) and we decide to deselect cell 2. We have to update indicators, so in order to achieve that we force collectionView to performBatchUpdates to certain indexPaths.
@@ -110,7 +128,7 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
         }
         return true
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if let cell = collectionView.cellForItem(at: indexPath) as? GalleryCell {
             let selectedItems = collectionView.indexPathsForSelectedItems?.count ?? 0
@@ -120,7 +138,7 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
         }
         return true
     }
-    
+
     func updateCertainIndexPaths(_ indexPaths: [IndexPath]) {
         for (index, item) in indexPaths.enumerated() {
             collectionView?.performBatchUpdates({
@@ -130,11 +148,11 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
             }, completion: nil)
         }
     }
-    
+
     func getAllIndexPaths() -> [IndexPath] {
         var indexPaths: [IndexPath] = []
         guard let cv = collectionView else { return indexPaths }
-        
+
         for s in 0..<cv.numberOfSections {
             for i in 0..<cv.numberOfItems(inSection: s) {
                 indexPaths.append(IndexPath(item: i, section: s))

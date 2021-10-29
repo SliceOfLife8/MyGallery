@@ -33,7 +33,7 @@ class ThemeSelectionVC: BaseVC {
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 32, height: 250)
         layout.sectionInset = UIEdgeInsets(top: 24, left: 16, bottom: 16, right: 16)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .systemGray4
+        cv.backgroundColor = .systemGray6
         cv.showsVerticalScrollIndicator = false
         return cv
     }()
@@ -79,12 +79,12 @@ class ThemeSelectionVC: BaseVC {
         if let defaultImage = UIImage(named: "Pattern") {
             images.append(defaultImage)
         }
-        let storageImages = FirebaseStorageManager.shared.images.sorted { $0.key < $1.key }
+        let storageImages = FirebaseStorageManager.shared.images.sorted { $0.key < $1.key } /// sorted by key
         images = images + storageImages.map { $0.value }
 
         for (index, element) in storageImages.enumerated() {
             if element.key == storageKey?.rawValue {
-                predefinedIndex = index + 1
+                predefinedIndex = index + 1 // +1 because index -> 0 is the default state
             }
         }
     }
@@ -107,22 +107,24 @@ class ThemeSelectionVC: BaseVC {
 
     @objc func saveBtnTapped() {
         if let selectedItem = collectionView.indexPathsForSelectedItems?.first?.row {
+            var key: FirebaseImages?
             switch selectedItem {
             case 0:
-                FirebaseStorageManager.shared.saveGalleryImage(key: .none)
+                key = .none
             case 1:
-                FirebaseStorageManager.shared.saveGalleryImage(key: .desert)
+                key = .desert
             case 2:
-                FirebaseStorageManager.shared.saveGalleryImage(key: .forest)
+                key = .forest
             case 3:
-                FirebaseStorageManager.shared.saveGalleryImage(key: .mountain)
+                key = .mountain
             case 4:
-                FirebaseStorageManager.shared.saveGalleryImage(key: .sea)
+                key = .sea
             case 5:
-                FirebaseStorageManager.shared.saveGalleryImage(key: .sunset)
+                key = .sunset
             default:
-                FirebaseStorageManager.shared.saveGalleryImage(key: .universe)
+                key = .universe
             }
+            self.saveThemeImage(key)
         }
         self.back()
     }
@@ -158,6 +160,7 @@ extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate
             ofKind: kind,
             withReuseIdentifier: SelectThemeHeaderView.identifier,
             for: indexPath) as! SelectThemeHeaderView
+        headerView.setupCell()
 
         return headerView
     }

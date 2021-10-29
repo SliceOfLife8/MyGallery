@@ -20,7 +20,7 @@
 "no_results" = "No results were found for what you are looking for. Do not give up, give another shot!";
 "discover_images" = "Discover images with one word";
 "only_en_chars" = "(Only english terms are supported)";
-"select_images" = "Select images to delete them";
+"select_images" = "Select images to delete them. You can delete them either from your album or your device!";
 "search_images" = "Search for images";
 "edit_album" = "Edit album";
 "show_album" = "Show album";

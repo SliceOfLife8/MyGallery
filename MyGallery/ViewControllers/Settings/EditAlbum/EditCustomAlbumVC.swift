@@ -55,8 +55,7 @@ class EditCustomAlbumVC: BaseVC {
         populateData()
         setupNoAssetsView()
         defaultStateView()
-        
-        Loaf("select_images".localized(), state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
+
         // Observe photo library changes
         PHPhotoLibrary.shared().register(self)
     }

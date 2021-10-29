@@ -14,7 +14,7 @@ public class GalleryCell: UICollectionViewCell {
     override public var isSelected: Bool {
         didSet {
             self.imageView?.layer.borderWidth = 5.0
-            self.imageView?.layer.borderColor = isSelected ? UIColor(named: "Black")?.cgColor : UIColor.clear.cgColor
+            self.imageView?.layer.borderColor = isSelected ? bgColor : UIColor.clear.cgColor
             if !isSelected {
                 removeCircle()
             }
@@ -28,6 +28,7 @@ public class GalleryCell: UICollectionViewCell {
     }
     
     weak public var imageView: UIImageView?
+    public var bgColor: CGColor? = UIColor(named: "GreenBlue")?.cgColor
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
