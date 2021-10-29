@@ -22,13 +22,6 @@ class SoundSettingsVC: BaseVC {
         super.viewDidLoad()
         setupNavBar()
         setupTV()
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        FirebaseStorageManager.shared.saveGalleryImage(key: .none)
-        NotificationCenter.default.post(name: .didGalleryBGImageChanged, object: nil)
     }
 
     private func setupNavBar() {

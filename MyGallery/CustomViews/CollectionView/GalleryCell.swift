@@ -8,6 +8,8 @@
 import UIKit
 
 public class GalleryCell: UICollectionViewCell {
+
+    public var cellIdentifier = "GalleryCell"
     
     override public var isSelected: Bool {
         didSet {
@@ -16,6 +18,12 @@ public class GalleryCell: UICollectionViewCell {
             if !isSelected {
                 removeCircle()
             }
+        }
+    }
+
+    public override var isHighlighted: Bool {
+        didSet {
+            onHighlightChanged()
         }
     }
     
@@ -40,6 +48,15 @@ public class GalleryCell: UICollectionViewCell {
     override public func prepareForReuse() {
         super.prepareForReuse()
         imageView?.image = nil
+    }
+
+    private func onHighlightChanged() {
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.curveEaseOut], animations: {
+            self.imageView?.alpha = self.isHighlighted ? 0.9 : 1.0
+            self.imageView?.transform = self.isHighlighted ?
+                CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95) :
+                CGAffineTransform.identity
+        })
     }
     
     /**

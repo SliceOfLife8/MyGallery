@@ -73,7 +73,7 @@ class GalleryVC: BaseVC {
         let retrieve = FirebaseStorageManager.shared.retrieveGalleryImage()
 
         if let patternImage = retrieve.image {
-            if retrieve.defaultImage {
+            if retrieve.key == .none {
                 view.backgroundColor = UIColor(patternImage: patternImage)
             } else {
                 view.layer.contents = patternImage.cgImage

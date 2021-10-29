@@ -67,3 +67,7 @@
 "sounds_haptics" = "Sounds and Haptics";
 "sounds" = "Sounds";
 "haptics" = "Vibrations";
+"choose_theme" = "Choose theme";
+"save" = "Save";
+"themes" = "Themes";
+"theme_header" = "Choose one of the following themes for your homepage";

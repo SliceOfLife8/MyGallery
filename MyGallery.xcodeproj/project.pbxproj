@@ -18,6 +18,8 @@
 		1B1615EA2725F507008D679D /* Ext_UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1615E92725F507008D679D /* Ext_UIViewController.swift */; };
 		1B2D4822272067AF00A973CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B2D4821272067AF00A973CE /* Settings.bundle */; };
 		1B2D482627207C1E00A973CE /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */; };
+		1B2D6232272A7FF2008A4F7B /* ThemeSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D6231272A7FF2008A4F7B /* ThemeSelectionVC.swift */; };
+		1B2D6235272A9263008A4F7B /* SelectThemeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D6234272A9263008A4F7B /* SelectThemeHeaderView.swift */; };
 		1B46193627295CAF009C3614 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B46193527295CAF009C3614 /* FirebaseStorageManager.swift */; };
 		1B50EBF3272197DC00303050 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF1272197DB00303050 /* Images.xcdatamodeld */; };
 		1B50EBF52721C63200303050 /* AlbumFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EBF42721C63200303050 /* AlbumFooterView.swift */; };
@@ -114,6 +116,8 @@
 		1B1615E92725F507008D679D /* Ext_UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIViewController.swift; sourceTree = "<group>"; };
 		1B2D4821272067AF00A973CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1B2D482527207C1E00A973CE /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
+		1B2D6231272A7FF2008A4F7B /* ThemeSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectionVC.swift; sourceTree = "<group>"; };
+		1B2D6234272A9263008A4F7B /* SelectThemeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectThemeHeaderView.swift; sourceTree = "<group>"; };
 		1B46193527295CAF009C3614 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		1B50EBF2272197DB00303050 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
 		1B50EBF42721C63200303050 /* AlbumFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFooterView.swift; sourceTree = "<group>"; };
@@ -229,6 +233,16 @@
 				1B1615D92724A083008D679D /* LightboxHelper.swift */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		1B2D6230272A7F62008A4F7B /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */,
+				B698E31A268E208400AE6FBF /* LanguageSelectionVC.swift */,
+				1B2D6231272A7FF2008A4F7B /* ThemeSelectionVC.swift */,
+			);
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 		3A40DFA92DF89F80B2E94FFC /* Frameworks */ = {
@@ -399,6 +413,7 @@
 				B63CEABC2684834000DC941F /* PhotoCell.xib */,
 				B6A9F14C268C52D200D32589 /* GalleryCell.swift */,
 				1B50EBF42721C63200303050 /* AlbumFooterView.swift */,
+				1B2D6234272A9263008A4F7B /* SelectThemeHeaderView.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -428,10 +443,9 @@
 		B69A3F2A26872340008F16E3 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1B2D6230272A7F62008A4F7B /* Appearance */,
 				B6ABA097268B968100833E8C /* EditAlbum */,
 				B6AFA766268B047300344FD5 /* SettingsVC.swift */,
-				B6AFA76E268B32E000344FD5 /* DarkModeSelectionVC.swift */,
-				B698E31A268E208400AE6FBF /* LanguageSelectionVC.swift */,
 				1B1615E32725A120008D679D /* SoundSettingsVC.swift */,
 			);
 			path = Settings;
@@ -801,6 +815,7 @@
 				B69A3F342687A126008F16E3 /* WebPreviewVC.swift in Sources */,
 				B693CC3F26860FC9001715AF /* SearchImages+UIContextMenu.swift in Sources */,
 				B6A3E409268F367C003684B3 /* Encryption.swift in Sources */,
+				1B2D6235272A9263008A4F7B /* SelectThemeHeaderView.swift in Sources */,
 				B698E312268DD21B00AE6FBF /* GalleryUIWindow.swift in Sources */,
 				B693CC372685BD57001715AF /* SearchViewModel.swift in Sources */,
 				B6D012072695D97C009F51AB /* Ext_NotificationName.swift in Sources */,
@@ -810,6 +825,7 @@
 				B693CC392685D718001715AF /* Ext_UIView.swift in Sources */,
 				B63CEAB62684807B00DC941F /* CuratedModel.swift in Sources */,
 				B673A2312690E41B0098CE10 /* Ext_Collection.swift in Sources */,
+				1B2D6232272A7FF2008A4F7B /* ThemeSelectionVC.swift in Sources */,
 				B6AFA767268B047400344FD5 /* SettingsVC.swift in Sources */,
 				B69A3F402689AF6F008F16E3 /* PhotoManager.swift in Sources */,
 				1B1615E42725A120008D679D /* SoundSettingsVC.swift in Sources */,

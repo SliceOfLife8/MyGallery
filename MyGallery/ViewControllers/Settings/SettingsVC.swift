@@ -80,6 +80,13 @@ class SettingsVC: BaseVC {
                 self.present(navigationController, animated: true)
             }))
         }
+        apperanceOptions.append(SettingsOption(title: "choose_theme".localized(), icon: UIImage(systemName: "wand.and.stars"), iconBackgroundColor: UIColor(named: "DarkGray"), accessoryType: .disclosureIndicator, handle: {
+            let themeVC = ThemeSelectionVC()
+            let navigationController = UINavigationController(rootViewController: themeVC)
+            themeVC.modalPresentationStyle = .popover
+            self.present(navigationController, animated: true)
+        }))
+
         models.append(Section(title: "appearance".localized(), bottomTitle: nil, options: apperanceOptions))
 
         /// #Sounds
@@ -152,6 +159,21 @@ class SettingsVC: BaseVC {
             self.tableView.reloadData()
         }
     }
+
+    func stopLoader(goToLightboxView status: Bool) {
+        if let visibleVC = UIApplication.topViewController() as? UIAlertController {
+            visibleVC.dismiss(animated: false, completion: {
+                if status {
+                    LightboxHelper.show()
+                } else {
+                    let alert = UIAlertController(title: "no_album_found".localized(), message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+                    self.present(alert, animated: false, completion: nil)
+                }
+            })
+        }
+    }
     
 }
 
@@ -203,34 +225,5 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 extension SettingsVC: PhotoServiceDelegate {
     func didGetImages() {
         stopLoader(goToLightboxView: PhotoService.shared.images.count > 0)
-    }
-}
-
-extension SettingsVC {
-    func showLoader() {
-        let alert = UIAlertController(title: nil, message: "please_wait".localized(), preferredStyle: .alert)
-
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = .medium
-        loadingIndicator.startAnimating()
-
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: false, completion: nil)
-    }
-
-    func stopLoader(goToLightboxView status: Bool) {
-        if let visibleVC = UIApplication.topViewController() as? UIAlertController {
-            visibleVC.dismiss(animated: false, completion: {
-                if status {
-                    LightboxHelper.show()
-                } else {
-                    let alert = UIAlertController(title: "no_album_found".localized(), message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-
-                    self.present(alert, animated: false, completion: nil)
-                }
-            })
-        }
     }
 }

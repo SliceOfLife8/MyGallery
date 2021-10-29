@@ -47,15 +47,18 @@ class FirebaseStorageManager {
             } else {
                 if let _data = data, let image = UIImage(data: _data) {
                     self.images[key] = image
+                    if self.images.count == 6 {
+                        NotificationCenter.default.post(name: .didAllFirebaseImagesFetched, object: nil)
+                    }
                 }
             }
         }
     }
 
     // Retrieve background Image
-    func retrieveGalleryImage() -> (image: UIImage?, defaultImage: Bool) {
+    func retrieveGalleryImage() -> (image: UIImage?, key: FirebaseImages?) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return (UIImage(named: "Pattern"), true)
+            return (UIImage(named: "Pattern"), .none)
         }
 
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -63,13 +66,15 @@ class FirebaseStorageManager {
 
         do {
             let request = try managedContext.fetch(fetchRequest)
-            if let imageData = request.first?.value(forKey: "image") as? Data {
-                return (UIImage(data: imageData), false)
+
+            if let imageData = request.first?.value(forKey: "image") as? Data,
+               let key = request.first?.value(forKey: "key") as? String {
+                return (UIImage(data: imageData), FirebaseImages(rawValue: key))
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        return (UIImage(named: "Pattern"), true)
+        return (UIImage(named: "Pattern"), .none)
     }
 
     func saveGalleryImage(key: FirebaseImages?) {
@@ -89,6 +94,7 @@ class FirebaseStorageManager {
         let asset = NSManagedObject(entity: entity, insertInto: managedContext)
 
         asset.setValue(imageData, forKeyPath: "image")
+        asset.setValue(imageKey.rawValue, forKey: "key")
 
         do {
             try managedContext.save()
@@ -96,9 +102,5 @@ class FirebaseStorageManager {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-
-    // how to update values
-    // FirebaseStorageManager.shared.saveGalleryImage(key: .universe)
-    // NotificationCenter.default.post(name: .didGalleryBGImageChanged, object: nil)
 
 }
