@@ -73,10 +73,7 @@ class SettingsVC: BaseVC {
             }))
         }
         apperanceOptions.append(SettingsOption(title: "choose_theme".localized(), icon: UIImage(systemName: "wand.and.stars"), iconBackgroundColor: UIColor(named: "DarkGray"), accessoryType: .disclosureIndicator, handle: {
-            let themeVC = ThemeSelectionVC()
-            let navigationController = UINavigationController(rootViewController: themeVC)
-            themeVC.modalPresentationStyle = .popover
-            self.present(navigationController, animated: true)
+            self.openThemeSelectionVC()
         }))
 
         models.append(Section(title: "appearance".localized(), bottomTitle: nil, options: apperanceOptions))
@@ -117,9 +114,7 @@ class SettingsVC: BaseVC {
         if getStatus() {
             models.append(Section(title: "\(AppConfig.albumName) " + "album".localized(), bottomTitle: appVersion, options: [
                 SettingsOption(title: "edit_album".localized(), icon: UIImage(systemName: "photo.fill"), iconBackgroundColor: UIColor(named: "Purple"), accessoryType: .disclosureIndicator, handle: {
-                    let editAlbumVC = EditCustomAlbumVC(EditAlbumViewModel())
-                    editAlbumVC.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(editAlbumVC, animated: true)
+                    self.openEditAlbumVC()
                 }),
                 SettingsOption(title: "show_album".localized(), icon: UIImage(systemName: "photo.on.rectangle.angled"), iconBackgroundColor: UIColor(named: "LightPurple"), accessoryType: .disclosureIndicator, handle: {
                     self.showLoader()
@@ -130,7 +125,7 @@ class SettingsVC: BaseVC {
         }
     }
     
-    private func getStatus() -> Bool {
+    func getStatus() -> Bool {
         let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
 
         return (status == .authorized) ? true : false
@@ -150,6 +145,19 @@ class SettingsVC: BaseVC {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+
+    func openThemeSelectionVC() {
+        let themeVC = ThemeSelectionVC()
+        let navigationController = UINavigationController(rootViewController: themeVC)
+        themeVC.modalPresentationStyle = .popover
+        self.present(navigationController, animated: true)
+    }
+
+    func openEditAlbumVC() {
+        let editAlbumVC = EditCustomAlbumVC()
+        editAlbumVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(editAlbumVC, animated: true)
     }
 
     func stopLoader(goToLightboxView status: Bool) {

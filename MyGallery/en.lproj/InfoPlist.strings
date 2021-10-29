@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  MyGallery
+
+  Created by Petimezas, Chris, Vodafone on 29/10/21.
+  
+*/
+
+SEARCH = "Search";
+ALBUM = "Edit album";

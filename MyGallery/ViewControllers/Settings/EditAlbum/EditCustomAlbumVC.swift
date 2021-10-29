@@ -33,7 +33,7 @@ class EditCustomAlbumVC: BaseVC {
     @IBOutlet weak var noAssetsLbl: UILabel!
     
     // MARK: - Init
-    init(_ viewModel: EditAlbumViewModel) {
+    init(_ viewModel: EditAlbumViewModel = EditAlbumViewModel()) {
         self.viewModel = viewModel
         self.service = PhotoService.shared
         super.init(nibName: nil, bundle: nil)

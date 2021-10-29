@@ -26,5 +26,21 @@ extension UIViewController {
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: false, completion: nil)
     }
+
+    func showDeniedAccessAlert() {
+        let alert = UIAlertController(title: "denied_alert_title".localized(), message: "denied_alert_message".localized(), preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "settings".localized(), style: .default, handler: { action in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                self.playMusicIfEnabled(.confirm)
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: { _ in
+            self.playMusicIfEnabled(.cancel)
+        }))
+
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

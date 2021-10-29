@@ -8,19 +8,11 @@
 import UIKit
 
 internal enum TabBarValues: String {
-    case GalleryAction
     case SearchAction
-    case SettingsAction
+    case AlbumAction
     
     var index: Int {
-        switch self {
-        case .GalleryAction:
-            return 0
-        case .SearchAction:
-            return 1
-        case .SettingsAction:
-            return 2
-        }
+        return (self == .SearchAction) ? 1 : 2
     }
 }
 

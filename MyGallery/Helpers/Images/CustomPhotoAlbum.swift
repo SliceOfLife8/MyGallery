@@ -110,7 +110,7 @@ class CustomPhotoAlbum: NSObject {
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.showDeniedAccessAlert(parentVC)
+                    self.parentVC.showDeniedAccessAlert()
                 }
             }
         }
@@ -195,22 +195,6 @@ extension CustomPhotoAlbum {
         }))
         alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: { action in
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
-            viewController.playMusicIfEnabled(.cancel)
-        }))
-
-        viewController.present(alert, animated: true, completion: nil)
-    }
-
-    private func showDeniedAccessAlert(_ viewController: UIViewController) {
-        let alert = UIAlertController(title: "denied_alert_title".localized(), message: "denied_alert_message".localized(), preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "settings".localized(), style: .default, handler: { action in
-            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                viewController.playMusicIfEnabled(.confirm)
-                UIApplication.shared.open(settingsUrl)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: { _ in
             viewController.playMusicIfEnabled(.cancel)
         }))
 
