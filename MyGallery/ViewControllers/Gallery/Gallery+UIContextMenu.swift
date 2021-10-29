@@ -156,6 +156,7 @@ extension GalleryVC: UIContextMenuInteractionDelegate {
         let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
         
         animator.addCompletion {
+            self.isDark = false
             self.present(imageViewer, animated: true, completion: nil)
         }
     }

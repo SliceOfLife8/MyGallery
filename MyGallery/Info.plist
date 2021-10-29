@@ -18,14 +18,14 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>SEARCH</string>
 		</dict>
-        <dict>
-            <key>UIApplicationShortcutItemType</key>
-            <string>AlbumAction</string>
-            <key>UIApplicationShortcutItemIconSymbolName</key>
-            <string>photo.fill</string>
-            <key>UIApplicationShortcutItemTitle</key>
-            <string>ALBUM</string>
-        </dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>AlbumAction</string>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>photo.fill</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>ALBUM</string>
+		</dict>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>

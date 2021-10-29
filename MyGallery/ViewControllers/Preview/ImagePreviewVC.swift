@@ -168,11 +168,7 @@ open class ImagePreviewVC: UIViewController {
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+
     // MARK: Override
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -282,10 +278,20 @@ open class ImagePreviewVC: UIViewController {
         backBtn.isHidden = hidden
         hqLabel.isHidden = hidden
     }
+
+    fileprivate func restoreStatusBar() {
+        if let vc = (presentingViewController?.children.first as? UINavigationController)?.viewControllers.first as? GalleryVC {
+            vc.changeStatusBar()
+        }
+        if let vc = (presentingViewController?.children[safe: 1] as? UINavigationController)?.viewControllers.first as? SearchImagesVC {
+            vc.isLight = false
+        }
+    }
     
     // MARK: Gesture
     @objc fileprivate func singleTap() {
         if navigationController == nil || (presentingViewController != nil && navigationController!.viewControllers.count <= 1) {
+            restoreStatusBar()
             dismiss(animated: true, completion: dismissCompletion)
         }
     }
@@ -336,6 +342,7 @@ open class ImagePreviewVC: UIViewController {
         case .ended:
             if getProgress() > 0.25 || getVelocity() > 1000 {
                 UIApplication.deleteLoafView()
+                restoreStatusBar()
                 dismiss(animated: true, completion: dismissCompletion)
             } else {
                 fallthrough

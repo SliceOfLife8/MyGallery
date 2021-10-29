@@ -138,6 +138,7 @@ extension SearchImagesVC: UIContextMenuInteractionDelegate {
         let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
         
         animator.addCompletion {
+            self.isLight = true
             self.present(imageViewer, animated: true, completion: nil)
         }
     }

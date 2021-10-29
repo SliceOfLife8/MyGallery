@@ -15,6 +15,13 @@ class GalleryVC: BaseVC {
     private var collectionViewIsUpdating = false
     var sharedImage: UIImage?
     var sharedImageInfo: (sizePerMb: String, photographer: String)?
+    private var backgroundImageKey: FirebaseImages?
+    
+    var isDark: Bool = false {
+        didSet {
+            self.navigationController?.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -33,11 +40,14 @@ class GalleryVC: BaseVC {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return (isDark) ? .darkContent : .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.navigationBar.barStyle = .black
         setupBGImage()
         setupCollectionView()
         populateData()
@@ -78,7 +88,14 @@ class GalleryVC: BaseVC {
             } else {
                 view.layer.contents = patternImage.cgImage
             }
+            backgroundImageKey = retrieve.key
+            changeStatusBar()
         }
+    }
+
+    func changeStatusBar() {
+        // Use lightContent when background image is a bright color
+        isDark = (backgroundImageKey?.oneOf(other: .desert, .forest, .mountain, .sea) == true) ? true : false
     }
     
 }
@@ -107,6 +124,7 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
         imageViewer.delegate = self
         imageViewer.modalPresentationStyle = .overFullScreen
+        isDark = false
         present(imageViewer, animated: true, completion: nil)
     }
     

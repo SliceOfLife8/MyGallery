@@ -28,7 +28,7 @@ class TabBar: UITabBarController {
     fileprivate func createNavController(for rootViewController: UIViewController,
                                          title: String,
                                          image: UIImage?) -> UIViewController {
-        let navController = UINavigationController(rootViewController: rootViewController)
+        let navController = MyNavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
         navController.navigationBar.prefersLargeTitles = true
@@ -43,4 +43,10 @@ class TabBar: UITabBarController {
         ]
     }
     
+}
+
+class MyNavigationController: UINavigationController {
+    override var childForStatusBarStyle: UIViewController? {
+        topViewController
+    }
 }

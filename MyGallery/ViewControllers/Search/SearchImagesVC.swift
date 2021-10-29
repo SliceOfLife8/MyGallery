@@ -16,6 +16,11 @@ class SearchImagesVC: BaseVC {
     var sharedImageInfo: (sizePerMb: String, photographer: String)?
     private var query: String = ""
     var workItem: DispatchWorkItem?
+    var isLight: Bool = false {
+        didSet {
+            self.navigationController?.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
     
     // MARK: - Outlets
     @IBOutlet weak var searchTF: SearchTextField!
@@ -41,6 +46,10 @@ class SearchImagesVC: BaseVC {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return (isLight) ? .lightContent : .default
     }
     
     override func viewDidLoad() {
@@ -193,6 +202,7 @@ extension SearchImagesVC: UICollectionViewDataSource, UICollectionViewDelegateFl
         let imageViewer = ImagePreviewVC(imageInfo: imageInfo, transitionInfo: transitionInfo)
         imageViewer.delegate = self
         imageViewer.modalPresentationStyle = .overFullScreen
+        isLight = true
         present(imageViewer, animated: true, completion: nil)
     }
     
