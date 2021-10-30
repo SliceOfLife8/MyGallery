@@ -42,7 +42,7 @@ class ReachabilityManager: NSObject {
     func startMonitoring() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reachabilityChanged),
-                                               name: Notification.Name.reachabilityChanged,
+                                               name: .reachabilityChanged,
                                                object: reachability)
         do{
             try reachability.startNotifier()
@@ -54,7 +54,7 @@ class ReachabilityManager: NSObject {
     /// Stops monitoring the network availability status
     func stopMonitoring(){
         reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.reachabilityChanged,
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged,
                                                   object: reachability)
     }
     

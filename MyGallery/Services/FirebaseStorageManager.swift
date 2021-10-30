@@ -25,6 +25,7 @@ class FirebaseStorageManager {
     var images: [String: UIImage] = [:]
     var errorCode: StorageErrorCode?
     private var availableImagesName: [String] = FirebaseImages.allCases.map { $0.rawValue }
+    var numOfCalls: Int = 0
 
     func retrieve() {
         let reference = Storage.storage(url: AppConfig.firebaseStorage).reference()
@@ -47,11 +48,19 @@ class FirebaseStorageManager {
             } else {
                 if let _data = data, let image = UIImage(data: _data) {
                     self.images[key] = image
-                    if self.images.count == 6 {
-                        NotificationCenter.default.post(name: .didAllFirebaseImagesFetched, object: nil)
-                    }
                 }
             }
+            self.numOfCalls += 1
+            self.sendEvent()
+        }.withTimeout(time: 30) {
+            // We should create a retrier here!
+            debugPrint("Time out!")
+        }
+    }
+
+    private func sendEvent() {
+        if self.numOfCalls == 6 {
+            NotificationCenter.default.post(name: .didAllFirebaseImagesFetched, object: nil)
         }
     }
 
@@ -102,5 +111,14 @@ class FirebaseStorageManager {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+    
+}
 
+extension StorageDownloadTask {
+    func withTimeout(time: Int, block: @escaping () -> Void) {
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(time), repeats: false) { (_) in
+            self.cancel()
+            block()
+        }
+    }
 }

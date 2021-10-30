@@ -10,14 +10,7 @@ import UIKit
 class ThemeSelectionVC: BaseVC {
 
     private var cellIdentifier = "GalleryCell"
-    private let MAX_LENGTH_OF_IMAGES = 7
-    private var images: [UIImage] = [] {
-        didSet {
-            if images.count == MAX_LENGTH_OF_IMAGES {
-                self.stopLoader()
-            }
-        }
-    }
+    private var images: [UIImage] = []
 
     private var saveBtnIsEnabled: Bool = false {
         didSet {
@@ -41,20 +34,21 @@ class ThemeSelectionVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        if FirebaseStorageManager.shared.numOfCalls != 6 {
+            showLoader()
+        }
         getImages()
         setupCollectionView()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.observeFBStorage),
-                                               name: Notification.Name.didAllFirebaseImagesFetched,
+                                               name: .didAllFirebaseImagesFetched,
                                                object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if images.count < MAX_LENGTH_OF_IMAGES {
-            self.showLoader()
-        } else {
-            self.collectionView.selectItem(at: IndexPath(row: predefinedIndex, section: 0), animated: true, scrollPosition: [])
+        if FirebaseStorageManager.shared.numOfCalls == 6 {
+            self.collectionView.selectItem(at: IndexPath(row: self.predefinedIndex, section: 0), animated: true, scrollPosition: [])
         }
     }
 
@@ -134,6 +128,7 @@ class ThemeSelectionVC: BaseVC {
      */
     @objc func observeFBStorage() {
         images.removeAll()
+        self.stopLoader()
         getImages()
         collectionView.reloadData()
         self.collectionView.selectItem(at: IndexPath(row: predefinedIndex, section: 0), animated: true, scrollPosition: [])
