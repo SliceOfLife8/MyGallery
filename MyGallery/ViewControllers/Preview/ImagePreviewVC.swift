@@ -555,8 +555,9 @@ extension ImagePreviewVC {
     }
     
     private func storeImage() {
-        // Check if user's device settings for HQ switch is on & network is wifi
-        if SettingsBundleHelper.hqEnabled() && ReachabilityManager.shared.checkWifi(), let imageHD = imageInfo.imageHD {
+        // Check if user's device settings for HQ switch is on or network is wifi
+        let hqEligibility = SettingsBundleHelper.hqEnabled() || ReachabilityManager.shared.checkWifi()
+        if hqEligibility, let imageHD = imageInfo.imageHD {
             // Check if image is already downloaded
             if let imageKey = imageInfo.imageHD?.absoluteString, let cachedImage = PhotoManager.shared.retrieveImage(with: imageKey) {
                 self.delegate?.didStoreImage(for: cachedImage, attribute: imageInfo.imageHD?.absoluteString)

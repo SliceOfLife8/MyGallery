@@ -131,9 +131,8 @@ class SettingsVC: BaseVC {
         return (status == .authorized) ? true : false
     }
     
-    // TODO: check again this func
     private func shareApp() {
-        if let urlStr = URL(string: "https://apps.apple.com/us/app/id1535629801") {
+        if let urlStr = URL(string: "https://apps.apple.com/us/app/id1593013678") {
             let activityVC = UIActivityViewController(activityItems: [urlStr], applicationActivities: nil)
             
             self.present(activityVC, animated: true, completion: nil)
