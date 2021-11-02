@@ -143,6 +143,21 @@ extension EditCustomAlbumVC: EditAlbumVMDelegate {
 
 // MARK: - PHPhotoLibraryChangeObserver delegate
 extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
+    /**
+     # "removedIndexes" and "insertedIndexes" go first because this indexes are relative to the original fetch result
+
+     # "removedIndexes" - "indexes are relative to the original fetch result (the fetchResultBeforeChanges property); when updating your app’s interface, apply removals before insertions, changes, and moves." "insertedIndexes" - "indexes are relative to the original fetch result (the fetchResultBeforeChanges property) after you’ve applied the changes described by the removedIndexes property; when updating your app’s interface, apply insertions after removals and before changes and moves."
+
+     # "changedIndexes" can't be processed with "delete"/"insert" because they describe items after insertions/deletions
+
+     # "changedIndexes" - "These indexes are relative to the original fetch result (the fetchResultBeforeChanges property) after you’ve applied the changes described by the removedIndexes and insertedIndexes properties; when updating your app’s interface, apply changes after removals and insertions and before moves.
+
+     # Warning Don't map changedIndexes directly to UICollectionView item indices in batch updates. Use these indices to reconfigure the corresponding cells after performBatchUpdates(_:completion:). UICollectionView and UITableView expect the changedIndexes to be in the before state, while PhotoKit provides them in the after state, resulting in a crash if your app performs insertions and deletions at the same time as the changes."
+
+     # "enumerateMoves" is the last thing we should do.
+
+     # "enumerateMoves" - "The toIndex parameter in the handler block is relative to the state of the fetch result after you’ve applied the changes described by the removedIndexes, insertedIndexes and changedIndexes properties. Therefore, if you use this method to update a collection view or similar user interface displaying the contents of the fetch result, update your UI to reflect insertions, removals, and changes before you process moves."
+     */
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         guard let collectionView = self.collectionView, let assetCollection = service.assetCollection else { return }
         // Change notifications may be made on a background queue.
@@ -172,14 +187,18 @@ extension EditCustomAlbumVC: PHPhotoLibraryChangeObserver {
                         if let inserted = changes.insertedIndexes, inserted.count > 0 {
                             collectionView.insertItems(at: inserted.map { IndexPath(item: $0, section:0) })
                         }
-                        if let changed = changes.changedIndexes, changed.count > 0 {
-                            collectionView.reloadItems(at: changed.map { IndexPath(item: $0, section:0) })
-                        }
-                        changes.enumerateMoves { fromIndex, toIndex in
-                            collectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),
-                                                    to: IndexPath(item: toIndex, section: 0))
-                        }
-                    })
+                    }) { _ in
+                        //                        if let changed = changes.changedIndexes, changed.count > 0 {
+                        //                            collectionView.reloadItems(at: changed.map { IndexPath(item: $0, section:0) })
+                        //                        }
+                        collectionView.performBatchUpdates({
+                            // enumerateMoves
+                            changes.enumerateMoves { fromIndex, toIndex in
+                                collectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),
+                                                        to: IndexPath(item: toIndex, section: 0))
+                            }
+                        })
+                    }
                     /// Also, fetch new images for lightBox controller
                     service.fetchCustomAlbumPhotos()
                 } else {

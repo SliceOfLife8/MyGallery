@@ -67,6 +67,7 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
             return footerView
         default:
             assert(false, "Unexpected element kind")
+            return UICollectionReusableView()
         }
     }
 
