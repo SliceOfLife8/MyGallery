@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseStorageUI
+import SDWebImage
 
 public class GalleryCell: UICollectionViewCell {
 
@@ -49,6 +51,13 @@ public class GalleryCell: UICollectionViewCell {
     override public func prepareForReuse() {
         super.prepareForReuse()
         imageView?.image = nil
+        imageView?.sd_cancelCurrentImageLoad()
+    }
+
+    func loadFBStorageImage(_ index: Int) {
+        let child = FirebaseStorageManager.shared.childs[index - 1]
+        imageView?.sd_imageTransition = .flipFromBottom
+        imageView?.sd_setImage(with: child, placeholderImage: UIImage(named: "placeholder"))
     }
 
     private func onHighlightChanged() {

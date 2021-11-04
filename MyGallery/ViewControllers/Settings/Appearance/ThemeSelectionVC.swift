@@ -10,8 +10,6 @@ import UIKit
 class ThemeSelectionVC: BaseVC {
 
     private var cellIdentifier = "GalleryCell"
-    private var images: [UIImage] = []
-
     private var saveBtnIsEnabled: Bool = false {
         didSet {
             self.navigationItem.rightBarButtonItem?.isEnabled = saveBtnIsEnabled
@@ -19,7 +17,16 @@ class ThemeSelectionVC: BaseVC {
     }
 
     private var storageKey: FirebaseImages? = FirebaseStorageManager.shared.retrieveGalleryImage().key
-    private var predefinedIndex: Int = 0 /// This field is used for observing the pre-selected theme from current user.
+    private var predefinedIndex: Int { /// This field is used for observing the pre-selected theme from current user.
+        get {
+            for (index, element) in FirebaseImages.allCases.enumerated() {
+                if element.rawValue == storageKey?.rawValue {
+                    return index + 1 // +1 because index -> 0 is the default state
+                }
+            }
+            return 0
+        }
+    }
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -28,28 +35,19 @@ class ThemeSelectionVC: BaseVC {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .systemGray6
         cv.showsVerticalScrollIndicator = false
+        cv.isPrefetchingEnabled = false
         return cv
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        if FirebaseStorageManager.shared.numOfCalls != 6 {
-            showLoader()
-        }
-        getImages()
         setupCollectionView()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.observeFBStorage),
-                                               name: .didAllFirebaseImagesFetched,
-                                               object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if FirebaseStorageManager.shared.numOfCalls == 6 {
-            self.collectionView.selectItem(at: IndexPath(row: self.predefinedIndex, section: 0), animated: true, scrollPosition: [])
-        }
+        self.collectionView.selectItem(at: IndexPath(row: self.predefinedIndex, section: 0), animated: true, scrollPosition: [])
     }
 
     private func setupNavBar() {
@@ -69,29 +67,9 @@ class ThemeSelectionVC: BaseVC {
         collectionView.dataSource = self
     }
 
-    private func getImages() {
-        if let defaultImage = UIImage(named: "Pattern") {
-            images.append(defaultImage)
-        }
-        let storageImages = FirebaseStorageManager.shared.images.sorted { $0.key < $1.key } /// sorted by key
-        images = images + storageImages.map { $0.value }
-
-        for (index, element) in storageImages.enumerated() {
-            if element.key == storageKey?.rawValue {
-                predefinedIndex = index + 1 // +1 because index -> 0 is the default state
-            }
-        }
-    }
-
-    private func saveThemeImage(_ key: FirebaseImages?) {
-        FirebaseStorageManager.shared.saveGalleryImage(key: key)
+    private func saveThemeImage(_ key: FirebaseImages?, image: UIImage?) {
+        FirebaseStorageManager.shared.saveGalleryImage(key: key, image: image)
         NotificationCenter.default.post(name: .didGalleryBGImageChanged, object: nil)
-    }
-
-    private func stopLoader() {
-        if let visibleVC = UIApplication.topViewController() as? UIAlertController {
-            visibleVC.dismiss(animated: true, completion: nil)
-        }
     }
 
     // MARK: - Actions
@@ -106,32 +84,40 @@ class ThemeSelectionVC: BaseVC {
             case 0:
                 key = .none
             case 1:
-                key = .desert
+                key = .darkRose
             case 2:
-                key = .forest
+                key = .dream
             case 3:
-                key = .mountain
+                key = .drone
             case 4:
-                key = .sea
+                key = .flowers
             case 5:
-                key = .sunset
+                key = .lake
+            case 6:
+                key = .leaves
+            case 7:
+                key = .mountain
+            case 8:
+                key = .mountainUniverse
+            case 9:
+                key = .reborn
+            case 10:
+                key = .rose
+            case 11:
+                key = .sea
+            case 12:
+                key = .shingle
+            case 13:
+                key = .tech
+            case 14:
+                key = .train
             default:
                 key = .universe
             }
-            self.saveThemeImage(key)
+            let cell = collectionView.cellForItem(at: IndexPath(row: selectedItem, section: 0)) as? GalleryCell
+            self.saveThemeImage(key, image: cell?.imageView?.image)
         }
         self.back()
-    }
-
-    /*
-     We need to observe storage changes because users can enter early in this screen. In this way, we manage to have updated data for users.
-     */
-    @objc func observeFBStorage() {
-        images.removeAll()
-        self.stopLoader()
-        getImages()
-        collectionView.reloadData()
-        self.collectionView.selectItem(at: IndexPath(row: predefinedIndex, section: 0), animated: true, scrollPosition: [])
     }
 
 }
@@ -140,12 +126,16 @@ class ThemeSelectionVC: BaseVC {
 extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return FirebaseStorageManager.shared.availableImages.count + 1 // +1 for default image
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! GalleryCell
-        cell.imageView?.image = images[safe: indexPath.row]
+        if indexPath.row == 0 {
+            cell.imageView?.image = UIImage(named: "Pattern")
+        } else {
+            cell.loadFBStorageImage(indexPath.row)
+        }
 
         return cell
     }

@@ -10,11 +10,20 @@ import FirebaseStorage
 import FirebaseAnalytics
 
 enum FirebaseImages: String, CaseIterable {
-    case desert = "desert"
-    case forest = "forest"
+    case darkRose = "dark_rose"
+    case dream = "dream"
+    case drone = "drone"
+    case flowers = "flowers"
+    case lake = "lake"
+    case leaves = "leaves"
     case mountain = "mountain"
+    case mountainUniverse = "mountain_universe"
+    case reborn = "reborn"
+    case rose = "rose"
     case sea = "sea"
-    case sunset = "sunset"
+    case shingle = "shingle"
+    case tech = "tech"
+    case train = "train"
     case universe = "universe"
 }
 
@@ -22,45 +31,14 @@ class FirebaseStorageManager {
 
     static let shared = FirebaseStorageManager()
 
-    var images: [String: UIImage] = [:]
-    var errorCode: StorageErrorCode?
-    private var availableImagesName: [String] = FirebaseImages.allCases.map { $0.rawValue }
-    var numOfCalls: Int = 0
+    var availableImages: [String] = FirebaseImages.allCases.map { $0.rawValue }
+    var childs: [StorageReference] = []
 
     func retrieve() {
         let reference = Storage.storage(url: AppConfig.firebaseStorage).reference()
         // Create a reference to the file you want to download
-        availableImagesName.forEach { name in
-            let child = reference.child("\(name).jpg")
-            downloadImage(key: name, reference: child)
-        }
-    }
-
-    private func downloadImage(key: String, reference: StorageReference) {
-        // Download in memory with a maximum allowed size of 10MB (10 * 1024 * 1024 bytes)
-        reference.getData(maxSize: 10 * 1024 * 1024) { data, error in
-            if let error = error as NSError? {
-                if let code = StorageErrorCode(rawValue: error.code) {
-                    Analytics.logEvent("storageManager error", parameters: [
-                        "code": code
-                    ])
-                }
-            } else {
-                if let _data = data, let image = UIImage(data: _data) {
-                    self.images[key] = image
-                }
-            }
-            self.numOfCalls += 1
-            self.sendEvent()
-        }.withTimeout(time: 30) {
-            // We should create a retrier here!
-            debugPrint("Time out!")
-        }
-    }
-
-    private func sendEvent() {
-        if self.numOfCalls == 6 {
-            NotificationCenter.default.post(name: .didAllFirebaseImagesFetched, object: nil)
+        availableImages.forEach { name in
+            childs.append(reference.child("\(name).jpg"))
         }
     }
 
@@ -86,7 +64,7 @@ class FirebaseStorageManager {
         return (UIImage(named: "Pattern"), .none)
     }
 
-    func saveGalleryImage(key: FirebaseImages?) {
+    func saveGalleryImage(key: FirebaseImages?, image: UIImage?) {
         // Save image local with coreData
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         guard let imageKey = key else {
@@ -94,7 +72,7 @@ class FirebaseStorageManager {
             return
         }
 
-        guard let imageData = images[imageKey.rawValue]?.pngData() else { return }
+        guard let imageData = image?.pngData() else { return }
         // delete previous binary Data
         appDelegate.deleteCoreData("GalleryBackground")
         
@@ -112,13 +90,4 @@ class FirebaseStorageManager {
         }
     }
     
-}
-
-extension StorageDownloadTask {
-    func withTimeout(time: Int, block: @escaping () -> Void) {
-        Timer.scheduledTimer(withTimeInterval: TimeInterval(time), repeats: false) { (_) in
-            self.cancel()
-            block()
-        }
-    }
 }

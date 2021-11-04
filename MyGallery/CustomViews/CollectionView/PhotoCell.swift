@@ -7,7 +7,7 @@
 // Check this website for gradientColor combinations -> https://digitalsynopsis.com/design/beautiful-color-ui-gradients-backgrounds/
 
 import UIKit
-import Nuke
+import SDWebImage
 
 class PhotoCell: UICollectionViewCell {
     
@@ -34,16 +34,8 @@ class PhotoCell: UICollectionViewCell {
         containerView.backgroundColor = containerBGColor
         nameLbl.text = photographerName
         photographer.text = "photographer".localized()
-        loadImage(with: url)
-    }
-
-    private func loadImage(with url: URL?) {
-        let options = ImageLoadingOptions(
-            placeholder: UIImage(named: "placeholder"),
-          transition: .fadeIn(duration: 0.3)
-        )
-
-        Nuke.loadImage(with: url, options: options, into: imageView)
+        imageView.sd_imageTransition = .fade
+        imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
     }
     
 }

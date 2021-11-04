@@ -43,6 +43,7 @@ static GTMSessionFetcherRetryBlock _retryWhenOffline;
   /// Stored Auth reference, if it exists. This needs to be stored for `copyWithZone:`.
   id<FIRAuthInterop> _Nullable _auth;
   id<FIRAppCheckInterop> _Nullable _appCheck;
+  BOOL _usesEmulator;
   NSTimeInterval _maxUploadRetryTime;
   NSTimeInterval _maxDownloadRetryTime;
   NSTimeInterval _maxOperationRetryTime;
@@ -165,6 +166,7 @@ static GTMSessionFetcherRetryBlock _retryWhenOffline;
     _scheme = kFIRStorageScheme;
     _port = @(kFIRStoragePort);
     _fetcherServiceForApp = nil;  // Configured in `ensureConfigured()`
+    // Must be a serial queue.
     _dispatchQueue = dispatch_queue_create("com.google.firebase.storage", DISPATCH_QUEUE_SERIAL);
     _maxDownloadRetryTime = 600.0;
     _maxDownloadRetryInterval =
@@ -333,6 +335,7 @@ static GTMSessionFetcherRetryBlock _retryWhenOffline;
                        @"reference or trying to load data."];
   }
 
+  _usesEmulator = YES;
   _scheme = @"http";
   _host = host;
   _port = @(port);
@@ -360,6 +363,10 @@ static GTMSessionFetcherRetryBlock _retryWhenOffline;
                                                       bucket:_storageBucket
                                                         auth:_auth
                                                     appCheck:_appCheck];
+    if (_usesEmulator) {
+      _fetcherServiceForApp.allowLocalhostRequest = YES;
+      _fetcherServiceForApp.allowedInsecureSchemes = @[ @"http" ];
+    }
   }
 }
 

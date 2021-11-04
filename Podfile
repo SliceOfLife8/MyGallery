@@ -11,11 +11,12 @@ target 'MyGallery' do
   # Pods for MyGallery
   pod 'Loaf', '0.7.0'
   pod 'ReachabilitySwift', '5.0.0'
-  pod 'Nuke', '~> 10.4.1'
+  pod 'SDWebImage', '~> 5.11.0'
   pod 'Lightbox', '2.5.0'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
-  pod 'Firebase/Storage'
+  pod 'FirebaseUI/Firestore'
+  pod 'FirebaseUI/Storage'
   
   target 'MyGalleryTests' do
     inherit! :search_paths

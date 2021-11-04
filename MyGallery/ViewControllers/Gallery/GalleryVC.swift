@@ -87,6 +87,7 @@ class GalleryVC: BaseVC {
                 view.backgroundColor = UIColor(patternImage: patternImage)
             } else {
                 view.layer.contents = patternImage.cgImage
+                view.layer.contentsGravity = .resizeAspectFill
             }
             backgroundImageKey = retrieve.key
             changeStatusBar()
@@ -95,7 +96,7 @@ class GalleryVC: BaseVC {
 
     func changeStatusBar() {
         // Use lightContent when background image is a bright color
-        isDark = (backgroundImageKey?.oneOf(other: .desert, .forest, .mountain, .sea) == true) ? true : false
+        isDark = (backgroundImageKey?.oneOf(other: .leaves, .mountain, .sea, .flowers, .shingle) == true) ? true : false
     }
     
 }
