@@ -55,9 +55,9 @@ class BaseVC: UIViewController {
     }
     
     /// #Send Firebase analytics when an api connection occured
-    func sendAnalytics() {
+    func sendAnalytics(_ event: String = "api_call") {
         let currentVC = String(describing: type(of: self)) as NSString
-        FirebaseAnalytics.Analytics.logEvent("api_call", parameters: [
+        FirebaseAnalytics.Analytics.logEvent(event, parameters: [
             AnalyticsParameterScreenClass: currentVC,
             "user_device_id" : deviceID
         ])

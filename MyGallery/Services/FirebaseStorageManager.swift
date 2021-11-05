@@ -27,6 +27,10 @@ enum FirebaseImages: String, CaseIterable {
     case universe = "universe"
 }
 
+enum FirebaseError : Error {
+    case storage(Int, String)
+}
+
 class FirebaseStorageManager {
 
     static let shared = FirebaseStorageManager()

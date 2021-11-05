@@ -123,7 +123,7 @@ class ThemeSelectionVC: BaseVC {
 }
 
 // MARK: - UICollectionView Delegates
-extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, GalleryCellDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return FirebaseStorageManager.shared.availableImages.count + 1 // +1 for default image
@@ -137,6 +137,7 @@ extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate
             cell.loadFBStorageImage(indexPath.row)
         }
 
+        cell.delegate = self
         return cell
     }
 
@@ -167,4 +168,13 @@ extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate
         return false
     }
 
+    func didReceiveError(code: Int, message: String) {
+        self.sendAnalytics("\(message) with code: \(code)")
+        let alert = UIAlertController(title: "fb_error".localized(), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+        self.present(alert, animated: true, completion: {
+            self.back()
+        })
+    }
 }

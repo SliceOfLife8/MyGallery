@@ -9,9 +9,14 @@ import UIKit
 import FirebaseStorageUI
 import SDWebImage
 
+protocol GalleryCellDelegate: AnyObject {
+    func didReceiveError(code: Int, message: String)
+}
+
 public class GalleryCell: UICollectionViewCell {
 
     public var cellIdentifier = "GalleryCell"
+    weak var delegate: GalleryCellDelegate?
     
     override public var isSelected: Bool {
         didSet {
@@ -57,7 +62,11 @@ public class GalleryCell: UICollectionViewCell {
     func loadFBStorageImage(_ index: Int) {
         let child = FirebaseStorageManager.shared.childs[index - 1]
         imageView?.sd_imageTransition = .flipFromBottom
-        imageView?.sd_setImage(with: child, placeholderImage: UIImage(named: "placeholder"))
+        imageView?.sd_setImage(with: child, placeholderImage: UIImage(named: "placeholder"), completion: { _, error, _, _ in
+            if case .storage(let code, let errorMessage) = error as? FirebaseError {
+                self.delegate?.didReceiveError(code: code, message: errorMessage)
+            }
+        })
     }
 
     private func onHighlightChanged() {
