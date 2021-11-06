@@ -79,42 +79,10 @@ class ThemeSelectionVC: BaseVC {
 
     @objc func saveBtnTapped() {
         if let selectedItem = collectionView.indexPathsForSelectedItems?.first?.row {
-            var key: FirebaseImages?
-            switch selectedItem {
-            case 0:
-                key = .none
-            case 1:
-                key = .darkRose
-            case 2:
-                key = .dream
-            case 3:
-                key = .drone
-            case 4:
-                key = .flowers
-            case 5:
-                key = .lake
-            case 6:
-                key = .leaves
-            case 7:
-                key = .mountain
-            case 8:
-                key = .mountainUniverse
-            case 9:
-                key = .reborn
-            case 10:
-                key = .rose
-            case 11:
-                key = .sea
-            case 12:
-                key = .shingle
-            case 13:
-                key = .tech
-            case 14:
-                key = .train
-            default:
-                key = .universe
-            }
             let cell = collectionView.cellForItem(at: IndexPath(row: selectedItem, section: 0)) as? GalleryCell
+
+            let key = FirebaseImages.init(rawValue: cell?.accessibilityLabel ?? String())
+
             self.saveThemeImage(key, image: cell?.imageView?.image)
         }
         self.back()
@@ -138,6 +106,7 @@ extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate
         }
 
         cell.delegate = self
+        cell.accessibilityLabel = FirebaseImages.allCases[safe: indexPath.row - 1]?.rawValue
         return cell
     }
 

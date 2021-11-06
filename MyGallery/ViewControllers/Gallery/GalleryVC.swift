@@ -96,7 +96,7 @@ class GalleryVC: BaseVC {
 
     func changeStatusBar() {
         // Use lightContent when background image is a bright color
-        isDark = (backgroundImageKey?.oneOf(other: .leaves, .mountain, .sea, .flowers, .shingle) == true) ? true : false
+        isDark = (backgroundImageKey?.oneOf(other: .flowers, .shingle) == true) ? true : false
     }
     
 }

@@ -10,20 +10,13 @@ import FirebaseStorage
 import FirebaseAnalytics
 
 enum FirebaseImages: String, CaseIterable {
-    case darkRose = "dark_rose"
     case dream = "dream"
-    case drone = "drone"
     case flowers = "flowers"
-    case lake = "lake"
-    case leaves = "leaves"
-    case mountain = "mountain"
     case mountainUniverse = "mountain_universe"
     case reborn = "reborn"
     case rose = "rose"
-    case sea = "sea"
     case shingle = "shingle"
     case tech = "tech"
-    case train = "train"
     case universe = "universe"
 }
 
