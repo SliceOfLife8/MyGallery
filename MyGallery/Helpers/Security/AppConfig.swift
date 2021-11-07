@@ -29,8 +29,8 @@ final class AppConfig {
         return path("CFBundleName")
     }
 
-    static var firebaseStorage: String {
-        return "gs://mygallery-5b7f1.appspot.com"
+    static var imgbbDomain: String {
+        return "https://i.ibb.co/"
     }
     
     static func decryptApiKey() {

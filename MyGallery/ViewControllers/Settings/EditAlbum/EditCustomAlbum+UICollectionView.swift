@@ -34,13 +34,11 @@ extension EditCustomAlbumVC: UICollectionViewDataSource, UICollectionViewDelegat
     
     /// #Estimate size of images depending on default paddings
     internal func estimateSizeOfImages() -> CGSize {
-        let _numberOfElementsInRow = CGFloat(numberOfElementsInRow)
-        let allWidthBetwenCells = _numberOfElementsInRow == 0 ? 0 : minimumItemSpacingAtSameRow * (_numberOfElementsInRow - 1)
+        let allWidthBetwenCells = minimumItemSpacingAtSameRow * (numberOfElementsInRow - 1)
         let standardPaddings: CGFloat = (16 * 2) + allWidthBetwenCells // 16 -> leading & trailing
-        let remainingWidth = screenWidth - standardPaddings
-        let imageSize = CGSize(width: remainingWidth / _numberOfElementsInRow, height: remainingWidth / _numberOfElementsInRow)
+        let remainingSize = ((screenWidth - standardPaddings)/numberOfElementsInRow).rounded(.down)
         
-        return imageSize
+        return CGSize(width: remainingSize, height: remainingSize)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

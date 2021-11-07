@@ -15,7 +15,7 @@ class GalleryVC: BaseVC {
     private var collectionViewIsUpdating = false
     var sharedImage: UIImage?
     var sharedImageInfo: (sizePerMb: String, photographer: String)?
-    private var backgroundImageKey: FirebaseImages?
+    private var backgroundImageKey: ThemeNames?
     
     var isDark: Bool = false {
         didSet {
@@ -80,7 +80,7 @@ class GalleryVC: BaseVC {
     @objc func setupBGImage() {
         view.backgroundColor = nil // reset values
         view.layer.contents = nil
-        let retrieve = FirebaseStorageManager.shared.retrieveGalleryImage()
+        let retrieve = ThemeStorageManager.shared.retrieveGalleryImage()
 
         if let patternImage = retrieve.image {
             if retrieve.key == .none {

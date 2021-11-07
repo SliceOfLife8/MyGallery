@@ -27,8 +27,9 @@ class LightboxHelper: NSObject {
         // Create an instance of LightboxController.
         let controller = LightboxController(images: images)
         // Configuration
+        LightboxConfig.CloseButton.text = "close".localized()
         LightboxConfig.DeleteButton.enabled = true
-        LightboxConfig.DeleteButton.text = "Share"
+        LightboxConfig.DeleteButton.text = "share".localized()
         LightboxConfig.DeleteButton.textAttributes = [
             .font: UIFont.boldSystemFont(ofSize: 16),
             .foregroundColor: UIColor.white,

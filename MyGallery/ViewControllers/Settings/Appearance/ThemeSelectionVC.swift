@@ -16,10 +16,10 @@ class ThemeSelectionVC: BaseVC {
         }
     }
 
-    private var storageKey: FirebaseImages? = FirebaseStorageManager.shared.retrieveGalleryImage().key
+    private var storageKey: ThemeNames? = ThemeStorageManager.shared.retrieveGalleryImage().key
     private var predefinedIndex: Int { /// This field is used for observing the pre-selected theme from current user.
         get {
-            for (index, element) in FirebaseImages.allCases.enumerated() {
+            for (index, element) in ThemeNames.allCases.enumerated() {
                 if element.rawValue == storageKey?.rawValue {
                     return index + 1 // +1 because index -> 0 is the default state
                 }
@@ -67,8 +67,8 @@ class ThemeSelectionVC: BaseVC {
         collectionView.dataSource = self
     }
 
-    private func saveThemeImage(_ key: FirebaseImages?, image: UIImage?) {
-        FirebaseStorageManager.shared.saveGalleryImage(key: key, image: image)
+    private func saveThemeImage(_ key: ThemeNames?, image: UIImage?) {
+        ThemeStorageManager.shared.saveGalleryImage(key: key, image: image)
         NotificationCenter.default.post(name: .didGalleryBGImageChanged, object: nil)
     }
 
@@ -81,7 +81,7 @@ class ThemeSelectionVC: BaseVC {
         if let selectedItem = collectionView.indexPathsForSelectedItems?.first?.row {
             let cell = collectionView.cellForItem(at: IndexPath(row: selectedItem, section: 0)) as? GalleryCell
 
-            let key = FirebaseImages.init(rawValue: cell?.accessibilityLabel ?? String())
+            let key = ThemeNames.init(rawValue: cell?.accessibilityLabel ?? String())
 
             self.saveThemeImage(key, image: cell?.imageView?.image)
         }
@@ -91,10 +91,10 @@ class ThemeSelectionVC: BaseVC {
 }
 
 // MARK: - UICollectionView Delegates
-extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, GalleryCellDelegate {
+extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return FirebaseStorageManager.shared.availableImages.count + 1 // +1 for default image
+        return ThemeStorageManager.shared.availableImages.count + 1 // +1 for default image
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -105,8 +105,7 @@ extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate
             cell.loadFBStorageImage(indexPath.row)
         }
 
-        cell.delegate = self
-        cell.accessibilityLabel = FirebaseImages.allCases[safe: indexPath.row - 1]?.rawValue
+        cell.accessibilityLabel = ThemeNames.allCases[safe: indexPath.row - 1]?.rawValue
         return cell
     }
 
@@ -135,15 +134,5 @@ extension ThemeSelectionVC: UICollectionViewDataSource, UICollectionViewDelegate
 
         saveBtnIsEnabled = false
         return false
-    }
-
-    func didReceiveError(code: Int, message: String) {
-        self.sendAnalytics("\(message) with code: \(code)")
-        let alert = UIAlertController(title: "fb_error".localized(), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-
-        self.present(alert, animated: true, completion: {
-            self.back()
-        })
     }
 }

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          You should call this method whenever the user engaging factor of your application is increased */
         AppConfig.decryptGoogleKey()
         AppConfig.decryptApiKey()
-        FirebaseStorageManager.shared.retrieve()
+        ThemeStorageManager.shared.retrieve()
         StoreReviewHelper.incrementAppOpenedCount()
         return true
     }
