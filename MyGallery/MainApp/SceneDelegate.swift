@@ -48,6 +48,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Starts monitoring network reachability status changes
         ReachabilityManager.shared.startMonitoring()
+        // reset badge count
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
