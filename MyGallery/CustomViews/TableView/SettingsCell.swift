@@ -62,6 +62,8 @@ class SettingsCell: UITableViewCell {
                              y: 0,
                              width: contentView.frame.size.width - 20 - iconContainer.frame.size.width,
                              height: contentView.frame.size.height)
+
+        separatorInset = UIEdgeInsets(top: 0, left: 25 + iconContainer.frame.size.width, bottom: 0, right: 0)
     }
     
     override func prepareForReuse() {

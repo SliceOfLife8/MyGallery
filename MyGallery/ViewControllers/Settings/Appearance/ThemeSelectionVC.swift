@@ -41,6 +41,7 @@ class ThemeSelectionVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeStorageManager.shared.retrieve()
         setupNavBar()
         setupCollectionView()
     }

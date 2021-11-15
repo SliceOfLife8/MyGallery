@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNotifications(application)
         AppConfig.decryptGoogleKey()
         AppConfig.decryptApiKey()
-        ThemeStorageManager.shared.retrieve()
         StoreReviewHelper.incrementAppOpenedCount()
         return true
     }
