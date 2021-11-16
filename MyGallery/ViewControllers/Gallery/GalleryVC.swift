@@ -153,7 +153,8 @@ extension GalleryVC: GalleryVMDelegate {
         DispatchQueue.main.async {
             self.sendAnalytics()
             self.collectionView.reloadData()
-            if self.viewModel.page == 2 {
+            if self.viewModel.displayInfo {
+                self.viewModel.displayInfo.toggle()
                 Loaf("photos_by_pexels".localized(), state: .custom(.init(backgroundColor: UIColor(named: "DarkGray")!, icon: nil, textAlignment: .center)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short)
             }
         }

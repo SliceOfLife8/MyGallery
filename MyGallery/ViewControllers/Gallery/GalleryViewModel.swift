@@ -20,6 +20,7 @@ class GalleryViewModel {
     var page: Int = UserDefaults.standard.value(forKey: "Page") as? Int ?? 1
     var hasNext: Bool = false
     var numberOfImagesBatch: Int = 10
+    var displayInfo: Bool = true
     
     init() {}
     

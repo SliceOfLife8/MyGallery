@@ -17,6 +17,15 @@ internal enum TabBarValues: String {
 }
 
 class TabBar: UITabBarController {
+
+    private var bounceAnimation: CAKeyframeAnimation = {
+        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        bounceAnimation.values = [1.0, 1.4, 0.9, 1.02, 1.0]
+        bounceAnimation.duration = TimeInterval(0.3)
+        bounceAnimation.calculationMode = CAAnimationCalculationMode.cubic
+        return bounceAnimation
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +50,31 @@ class TabBar: UITabBarController {
             createNavController(for: SearchImagesVC(SearchViewModel()), title: "search".localized(), image: UIImage(systemName: "magnifyingglass")),
             createNavController(for: SettingsVC(), title: "settings".localized(), image: UIImage(systemName: "gear")),
         ]
+    }
+
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        let currentIndex = tabBar.items?.firstIndex(of: item)
+        makeEffect(tabBar, currentIndex: currentIndex ?? 0)
+        let selectedVC = (self.selectedViewController as? UINavigationController)?.viewControllers.first
+        /// User has already select index
+        if selectedIndex == 0 && currentIndex == 0 {
+            let galleryVC =  selectedVC as? GalleryVC
+            galleryVC?.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        } else if selectedIndex == 1 && currentIndex == 1 {
+            let searchImagesVC = selectedVC as? SearchImagesVC
+            searchImagesVC?.searchTF.becomeFirstResponder()
+        }
+    }
+
+    private func makeEffect(_ tabBar: UITabBar, currentIndex: Int) {
+        guard tabBar.subviews.count > currentIndex + 1, let imageView = (tabBar.subviews[currentIndex + 1].subviews.first as? UIVisualEffectView)?.contentView.subviews.filter({ $0 is UIImageView }).first else {
+            return
+        }
+        imageView.layer.add(bounceAnimation, forKey: nil)
+        if Settings.shared.retrieveState(forKey: .vibration) {
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+        }
     }
     
 }

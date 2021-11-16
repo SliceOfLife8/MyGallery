@@ -71,9 +71,9 @@ class SearchImagesVC: BaseVC {
         self.collectionView.reloadData() /// If needed
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        searchTF.becomeFirstResponder()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.searchTF.becomeFirstResponder()
     }
     
     private func setupViews() {

@@ -106,7 +106,7 @@ class SettingsVC: BaseVC {
                 self.shareApp()
             }),
             SettingsOption(title: "review_app".localized(), icon: UIImage(systemName: "star.circle.fill"), iconBackgroundColor: UIColor(hexString: "#43cea2"), accessoryType: .disclosureIndicator, handle: {
-                StoreReviewHelper.requestReview()
+                self.rateApp()
             })
         ]))
 
@@ -157,6 +157,24 @@ class SettingsVC: BaseVC {
         let editAlbumVC = EditCustomAlbumVC()
         editAlbumVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(editAlbumVC, animated: true)
+    }
+
+    private func rateApp() {
+        guard let productURL = URL(string: "https://itunes.apple.com/app/id1593013678") else {
+            return
+        }
+
+        var components = URLComponents(url: productURL, resolvingAgainstBaseURL: false)
+
+        components?.queryItems = [
+            URLQueryItem(name: "action", value: "write-review")
+        ]
+
+        guard let writeReviewURL = components?.url else {
+            return
+        }
+
+        UIApplication.shared.open(writeReviewURL)
     }
 
     func stopLoader(goToLightboxView status: Bool) {
