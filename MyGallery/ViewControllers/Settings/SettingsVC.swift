@@ -46,6 +46,7 @@ class SettingsVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.deleteLoafView()
+        deselectRowWithTransition(animated)
     }
     
     override func viewWillLayoutSubviews() {
@@ -62,6 +63,7 @@ class SettingsVC: BaseVC {
             let darkModeVC = DarkModeSelectionVC()
             let navigationController = UINavigationController(rootViewController: darkModeVC)
             darkModeVC.modalPresentationStyle = .popover
+            navigationController.transitioningDelegate = self
             self.present(navigationController, animated: true)
         })]
         if greekSupported {
@@ -69,6 +71,7 @@ class SettingsVC: BaseVC {
                 let languageVC = LanguageSelectionVC()
                 let navigationController = UINavigationController(rootViewController: languageVC)
                 languageVC.modalPresentationStyle = .popover
+                navigationController.transitioningDelegate = self
                 self.present(navigationController, animated: true)
             }))
         }
@@ -84,6 +87,7 @@ class SettingsVC: BaseVC {
                                     let soundsVC = SoundSettingsVC()
                                     let navigationController = UINavigationController(rootViewController: soundsVC)
                                     soundsVC.modalPresentationStyle = .popover
+                                    navigationController.transitioningDelegate = self
                                     self.present(navigationController, animated: true)
                                 })]))
 
@@ -100,6 +104,7 @@ class SettingsVC: BaseVC {
                 
                 let webView = WebPreviewVC(with: url)
                 webView.modalPresentationStyle = .popover
+                webView.transitioningDelegate = self
                 self.present(webView, animated: true)
             }),
             SettingsOption(title: "share_app".localized(), icon: UIImage(systemName: "square.and.arrow.up"), iconBackgroundColor: .link, accessoryType: .disclosureIndicator, handle: {
@@ -134,7 +139,7 @@ class SettingsVC: BaseVC {
     private func shareApp() {
         if let urlStr = URL(string: "https://apps.apple.com/us/app/id1593013678") {
             let activityVC = UIActivityViewController(activityItems: [urlStr], applicationActivities: nil)
-            
+            activityVC.transitioningDelegate = self
             self.present(activityVC, animated: true, completion: nil)
         }
     }
@@ -150,6 +155,7 @@ class SettingsVC: BaseVC {
         let themeVC = ThemeSelectionVC()
         let navigationController = UINavigationController(rootViewController: themeVC)
         themeVC.modalPresentationStyle = .popover
+        navigationController.transitioningDelegate = self
         self.present(navigationController, animated: true)
     }
 
@@ -229,7 +235,6 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let model = models[indexPath.section].options[indexPath.row]
         model.handle()
     }
@@ -237,10 +242,33 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 80
     }
+
+    func deselectRowWithTransition(_ animated: Bool) {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            if let coordinator = transitionCoordinator {
+                coordinator.animate(alongsideTransition: { context in
+                    self.tableView.deselectRow(at: selectedIndexPath, animated: true)
+                }) { context in
+                    if context.isCancelled {
+                        self.tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .none)
+                    }
+                }
+            } else {
+                self.tableView.deselectRow(at: selectedIndexPath, animated: animated)
+            }
+        }
+    }
 }
 
 extension SettingsVC: PhotoServiceDelegate {
     func didGetImages() {
         stopLoader(goToLightboxView: PhotoService.shared.images.count > 0)
+    }
+}
+
+extension SettingsVC: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        deselectRowWithTransition(false)
+        return nil
     }
 }

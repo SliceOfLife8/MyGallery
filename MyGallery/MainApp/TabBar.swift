@@ -67,12 +67,12 @@ class TabBar: UITabBarController {
     }
 
     private func makeEffect(_ tabBar: UITabBar, currentIndex: Int) {
-        guard tabBar.subviews.count > currentIndex + 1, let imageView = (tabBar.subviews[currentIndex + 1].subviews.first as? UIVisualEffectView)?.contentView.subviews.filter({ $0 is UIImageView }).first else {
+        guard let imageView = (tabBar.subviews[safe: currentIndex + 1]?.subviews.first as? UIVisualEffectView)?.contentView.subviews.filter({ $0 is UIImageView }).first else {
             return
         }
         imageView.layer.add(bounceAnimation, forKey: nil)
         if Settings.shared.retrieveState(forKey: .vibration) {
-            let generator = UIImpactFeedbackGenerator(style: .medium)
+            let generator = UIImpactFeedbackGenerator(style: .rigid)
             generator.impactOccurred()
         }
     }
